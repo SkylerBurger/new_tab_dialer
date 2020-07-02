@@ -1,0 +1,9 @@
+{
+    "dials" : [
+        {
+            "name": "Gmail",
+            "url": "http://www.gmail.com/",
+            "image": "./assets/gmail_icon.png"
+        }
+    ]
+}

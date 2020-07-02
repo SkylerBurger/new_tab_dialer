@@ -1,0 +1,52 @@
+@import url('reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-image: url(./assets/window_oil_painting.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  margin: 0;
+  font-family: 'Special Elite', cursive, sans-serif;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: rgba(153, 153, 153, 0.842);
+  font-size: 150px;
+  font-weight: 400;
+}
+
+h2 {
+  color: rgba(153, 153, 153, 0.842);
+  font-size: 75px;
+  font-weight: 400;
+  margin-bottom: 100px;
+}
+
+#dials {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#dials a img {
+  width: 150px;
+}
