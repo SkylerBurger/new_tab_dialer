@@ -4,6 +4,47 @@
             "name": "Gmail",
             "url": "http://www.gmail.com/",
             "image": "./assets/gmail_icon.png"
-        }
+          },
+          {
+            "name": "YouTube",
+            "url": "http://www.youtube.com/",
+            "image": "./assets/youtube_icon.png"
+          },
+          {
+            "name": "GitHub",
+            "url": "http://www.github.com/skylerburger",
+            "image": "./assets/github_icon.png"
+          },
+          {
+            "name": "Gmail",
+            "url": "http://www.gmail.com/",
+            "image": "./assets/gmail_icon.png"
+          },
+          {
+            "name": "YouTube",
+            "url": "http://www.youtube.com/",
+            "image": "./assets/youtube_icon.png"
+          },
+          {
+            "name": "GitHub",
+            "url": "http://www.github.com/skylerburger",
+            "image": "./assets/github_icon.png"
+          },
+          {
+            "name": "Gmail",
+            "url": "http://www.gmail.com/",
+            "image": "./assets/gmail_icon.png"
+          },
+          {
+            "name": "YouTube",
+            "url": "http://www.youtube.com/",
+            "image": "./assets/youtube_icon.png"
+          },
+          {
+            "name": "GitHub",
+            "url": "http://www.github.com/skylerburger",
+            "image": "./assets/github_icon.png"
+          }
+
     ]
 }

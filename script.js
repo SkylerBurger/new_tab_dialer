@@ -1,27 +1,12 @@
-let dials = {
-  "dials": [
-    {
-      "name": "Gmail",
-      "url": "http://www.gmail.com/",
-      "image": "./assets/gmail_icon.png"
-    },
-    {
-      "name": "YouTube",
-      "url": "http://www.youtube.com/",
-      "image": "./assets/youtube_icon.png"
-    },
-    {
-      "name": "GitHub",
-      "url": "http://www.github.com/skylerburger",
-      "image": "./assets/github_icon.png"
-    },
-  ],
-}
-
 window.onload = () => {
-  insertCurrentTime();
-  loadDials();
+  startup();
 };
+
+async function startup() {
+  insertCurrentTime();
+  await loadDials();
+  reveal();
+}
 
 function insertCurrentTime() {
   let timeDiv = document.getElementById('time');
@@ -31,15 +16,16 @@ function insertCurrentTime() {
   setInterval(insertCurrentTime, 1000);
 }
 
-function loadDials() {
+async function loadDials() {
   let dialDiv = document.getElementById('dials')
 
-  dials.dials.forEach( dial => {
-    dialDiv.appendChild(createDial(dial.name, dial.url, dial.image))
-  })
+  const response = await fetch('./dials.json');
+  let dialsJson = await response.json(); 
+
+  dialsJson.dials.forEach( dial => dialDiv.appendChild(renderDial(dial)))
 }
 
-function createDial(name, url, image) {
+function renderDial({ name, url, image }) {
   let dialAnchor = document.createElement('a');
   dialAnchor.href = url;
   
@@ -50,4 +36,9 @@ function createDial(name, url, image) {
   dialAnchor.appendChild(dialImg); 
 
   return dialAnchor;
+}
+
+function reveal() {
+  const overlay = document.getElementById('overlay');
+  overlay.style.opacity = 1;
 }
