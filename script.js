@@ -4,7 +4,7 @@ window.onload = () => {
 
 async function startup() {
   insertCurrentTime();
-  await loadDials();
+  await loadJson();
   reveal();
 }
 
@@ -16,13 +16,18 @@ function insertCurrentTime() {
   setInterval(insertCurrentTime, 1000);
 }
 
-async function loadDials() {
+async function loadJson() {
   let dialDiv = document.getElementById('dials')
 
   const response = await fetch('./dials.json');
-  let dialsJson = await response.json(); 
+  let storedJson = await response.json();
+  
+  // Background Image
+  const body = document.getElementById("body");
+  body.style.backgroundImage = `url('${storedJson.background}')`;
 
-  dialsJson.dials.forEach( dial => dialDiv.appendChild(renderDial(dial)))
+  // Dials
+  storedJson.dials.forEach( dial => dialDiv.appendChild(renderDial(dial)))
 }
 
 function renderDial({ name, url, image }) {
@@ -39,6 +44,6 @@ function renderDial({ name, url, image }) {
 }
 
 function reveal() {
-  const overlay = document.getElementById('overlay');
-  overlay.style.opacity = 1;
+  const body = document.getElementById('body');
+  body.style.opacity = 1;
 }
