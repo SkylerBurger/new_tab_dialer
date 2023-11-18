@@ -1,0 +1,21 @@
+@import url('reset.css');
+
+* {
+    box-sizing: border-box;
+}
+  
+html, body {
+    height: 100%;
+    background-color: black;
+}
+  
+body {
+    transition: opacity 1s ease-in;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin: 0;
+}
+
+#root {
+    height: 100%;
+}

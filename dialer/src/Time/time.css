@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+.time {
+    color: rgba(153, 153, 153, 0.842);
+    font-family: 'Special Elite', cursive, sans-serif;
+    font-size: 150px;
+    font-weight: 400;
+    margin-bottom: 50px;
+}
