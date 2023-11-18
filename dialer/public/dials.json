@@ -1,0 +1,45 @@
+{
+  "background": "https://skybur-backgrounds.s3.us-west-2.amazonaws.com/window_oil_painting.png",
+  "dials" : [
+      {
+        "name": "BeCU",
+        "url": "http://www.becu.org/",
+        "image": "https://skybur-icons.s3.us-west-2.amazonaws.com/becu.png"
+      },
+      {
+        "name": "Chase",
+        "url": "https://www.chase.com/",
+        "image": "https://skybur-icons.s3.us-west-2.amazonaws.com/chase.png"
+      },
+      {
+        "name": "Current Status IO",
+        "url": "https://currentstatus.io/",
+        "image": "https://skybur-icons.s3.us-west-2.amazonaws.com/news_icon.png"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://www.github.com/skylerburger",
+        "image": "https://skybur-icons.s3.us-west-2.amazonaws.com/github.png"
+      },
+      {
+        "name": "Gmail",
+        "url": "https://www.gmail.com/",
+        "image": "https://skybur-icons.s3.us-west-2.amazonaws.com/gmail.png"
+      },
+      {
+        "name": "Shudder",
+        "url": "https://www.shudder.com/",
+        "image": "https://skybur-icons.s3.us-west-2.amazonaws.com/shudder.png"
+      },
+      {
+        "name": "Tubi",
+        "url": "http://www.tubi.com/",
+        "image": "https://skybur-icons.s3.us-west-2.amazonaws.com/tubi.png"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://www.youtube.com/",
+        "image": "https://skybur-icons.s3.us-west-2.amazonaws.com/youtube.png"
+      }
+    ]
+}
