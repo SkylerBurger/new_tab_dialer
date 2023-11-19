@@ -12,7 +12,7 @@ function useApp() {
         getData();
     }, [])
 
-    return { ...config, groupIndex }
+    return { ...config, groupIndex, setGroupIndex }
 };
 
 export default useApp;

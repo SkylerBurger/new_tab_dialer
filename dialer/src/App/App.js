@@ -5,7 +5,7 @@ import Time from '../Time/Time';
 import DialGroup from '../Dials/DialGroup';
 
 function App() {
-  const { background, dialGroups, groupIndex } = useApp();
+  const { background, dialGroups, groupIndex, setGroupIndex } = useApp();
 
   function setBackgroundImg() {
     const bodyEl = document.getElementById("App");
@@ -15,7 +15,12 @@ function App() {
   return (
     <div id="App">
       { background ? setBackgroundImg() : null }
-      { dialGroups ? <GroupTabs groups={ dialGroups } index={ groupIndex }/> : null }
+      { dialGroups ? <GroupTabs 
+                        groups={ dialGroups } 
+                        groupIndex={ groupIndex } 
+                        setGroupIndex={ setGroupIndex } 
+                      /> 
+        : null }
       <Time />
       { dialGroups ? <DialGroup { ...dialGroups[groupIndex] }/> : null }
     </div>

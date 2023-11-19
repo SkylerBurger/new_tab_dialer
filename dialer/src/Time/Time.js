@@ -5,7 +5,7 @@ function Time() {
     const { time } = useTime();
 
     return (
-        <div className='time'>{ time }</div>
+        <div className='time'><p>{ time }</p></div>
     )
 }
 

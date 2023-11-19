@@ -1,4 +1,4 @@
-.Dials {
+.DialGroup {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -6,7 +6,7 @@
     justify-content: space-evenly;
 }
 
-.Dials a img {
+.DialGroup a img {
     width: 150px;
     margin: 50px 50px;
 }

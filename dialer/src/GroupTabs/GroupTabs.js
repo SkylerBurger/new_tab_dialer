@@ -1,9 +1,29 @@
-function GroupTabs({ groups, index }) {
-    console.log(groups);
+import './groupTabs.css';
+
+function GroupTabs({ groups, groupIndex, setGroupIndex }) {
+    function handleClick({ target }) {
+        setGroupIndex(target.value);
+    }
+
     return (
-        <ul>
-            { groups.map( group => <li key={ index }>{ group.groupName }</li>)}
-        </ul>
+        <div id="GroupTabs">
+            <ul>
+                { groups.map( (group, idx) => {
+                    const addClass = groupIndex === idx ? 'selectedGroup' : ''
+                    return (
+                        <li 
+                            className={ addClass }
+                            key={ idx } 
+                            value={ idx } 
+                            onClick={ handleClick }
+                        >
+                            { group.groupName }
+                        </li>
+                    );
+                  })
+                }
+            </ul>
+        </div>
     )
 };
 

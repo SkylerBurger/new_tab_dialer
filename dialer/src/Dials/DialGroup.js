@@ -1,9 +1,9 @@
-import "./dials.css";
+import "./dialGroup.css";
 import Dial from "./Dial";
 
 function DialGroup({ groupDials }) {
     return (
-        <div className="Dials">
+        <div className="DialGroup">
             { 
               groupDials.map( (dialData, index) => {
                 return <Dial { ...dialData } key={ index } />
