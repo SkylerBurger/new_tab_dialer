@@ -1,11 +1,11 @@
 import "./dials.css";
 import Dial from "./Dial";
 
-function Dials({ dials }) {
+function DialGroup({ groupDials }) {
     return (
         <div className="Dials">
             { 
-              dials.map( (dialData, index) => {
+              groupDials.map( (dialData, index) => {
                 return <Dial { ...dialData } key={ index } />
               }) 
             }
@@ -13,4 +13,4 @@ function Dials({ dials }) {
     );
 };
 
-export default Dials;
+export default DialGroup;

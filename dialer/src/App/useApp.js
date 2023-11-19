@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 function useApp() {
     const [ config, setConfig ] = useState(null);
+    const [ groupIndex, setGroupIndex ] = useState(0);
     useEffect(() => {
         async function getData () {
             const response = await fetch('./config.json');
@@ -11,7 +12,7 @@ function useApp() {
         getData();
     }, [])
 
-    return { ...config }
+    return { ...config, groupIndex }
 };
 
 export default useApp;
