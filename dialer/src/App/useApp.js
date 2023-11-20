@@ -3,13 +3,27 @@ import { useEffect, useState } from 'react';
 function useApp() {
     const [ config, setConfig ] = useState(null);
     const [ groupIndex, setGroupIndex ] = useState(0);
+    
     useEffect(() => {
         async function getData () {
-            const response = await fetch('./config.json');
-            const parsedConfig = await response.json();
-            setConfig(parsedConfig);
+            const configUrl = window.prompt('URL to JSON config file:');
+            
+            try {
+                const response = await fetch(configUrl);
+                const parsedConfig = await response.json();
+                localStorage.setItem('dialer-config', JSON.stringify(parsedConfig));
+                setConfig(parsedConfig);
+            } catch (error) {
+                console.error(error);
+            }
         };
-        getData();
+
+        const savedConfig = localStorage.getItem('dialer-config');
+        if (savedConfig) {
+            setConfig(JSON.parse(savedConfig));
+        } else {
+            getData();
+        }
     }, [])
 
     return { ...config, groupIndex, setGroupIndex }
