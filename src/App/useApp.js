@@ -5,28 +5,28 @@ function useApp() {
     const [ groupIndex, setGroupIndex ] = useState(0);
     
     useEffect(() => {
-        async function getData () {
-            const configUrl = window.prompt('URL to JSON config file:');
-            
-            try {
-                const response = await fetch(configUrl);
-                const parsedConfig = await response.json();
-                localStorage.setItem('dialer-config', JSON.stringify(parsedConfig));
-                setConfig(parsedConfig);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
         const savedConfig = localStorage.getItem('dialer-config');
         if (savedConfig) {
             setConfig(JSON.parse(savedConfig));
         } else {
-            getData();
+            const configUrl = window.prompt('URL to JSON config file:');
+            getData(configUrl, setConfig);
         }
     }, [])
 
-    return { ...config, groupIndex, setGroupIndex }
+    return { config, setConfig, groupIndex, setGroupIndex }
+};
+
+export async function getData (configUrl, setConfig) {
+    try {
+        const response = await fetch(configUrl);
+        const parsedConfig = await response.json();
+        parsedConfig.configUrl = configUrl;
+        localStorage.setItem('dialer-config', JSON.stringify(parsedConfig));
+        setConfig(parsedConfig);
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export default useApp;
