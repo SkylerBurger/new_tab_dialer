@@ -2,12 +2,13 @@
 
 #GroupTabs {
     color: white;
+    display: flex;
+    justify-content:space-between;
 }
 
 ul {
     display: flex;
     flex-direction: row;
-    justify-content: left;
 }
 
 ul li {
