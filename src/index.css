@@ -1,17 +1,18 @@
-@import url('reset.css');
+@import url("reset.css");
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-  
-html, body {
-    height: 100%;
-    background-color: black;
-}
-  
+
+html,
 body {
-    transition: opacity 1s ease-in;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    margin: 0;
+  height: 100%;
+  background-color: black;
+}
+
+body {
+  transition: opacity 1s ease-in;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  margin: 0;
 }

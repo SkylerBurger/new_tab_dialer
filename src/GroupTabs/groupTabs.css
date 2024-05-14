@@ -1,33 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Oldenburg&family=Oxygen+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oldenburg&family=Oxygen+Mono&display=swap");
 
 #GroupTabs {
-    color: white;
-    display: flex;
-    justify-content:space-between;
+  color: white;
+  display: flex;
+  justify-content: space-between;
 }
 
 ul {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 ul li {
-    position: relative;
-    top: -5px;
-    border: 1px solid white;
-    border-top: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0 5px 5px 5px;
-    background-color: rgba(255, 255, 255, 0.03);
-    font-family: 'Oxygen Mono', monospace;
+  position: relative;
+  top: -5px;
+  border: 1px solid white;
+  border-top: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 5px 5px 5px;
+  background-color: rgba(255, 255, 255, 0.03);
+  font-family: "Oxygen Mono", monospace;
 }
 
 .selectedGroup {
-    background-color: rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.18);
 }
 
 .tabOptions {
-    display: inline;
-    margin: 0 5px 0 10px;
+  display: inline;
+  margin: 0 5px 0 10px;
 }

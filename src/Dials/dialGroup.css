@@ -1,12 +1,12 @@
 .DialGroup {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .DialGroup a img {
-    width: 150px;
-    margin: 50px 50px;
+  width: 150px;
+  margin: 50px 50px;
 }

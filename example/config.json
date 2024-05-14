@@ -1,7 +1,7 @@
 {
   "background": "https://my-bucket.s3.us-west-2.amazonaws.com/window_oil_painting.png",
-  "dialGroups" : [
-    { 
+  "dialGroups": [
+    {
       "groupName": "default",
       "groupDials": [
         {
@@ -31,7 +31,7 @@
         }
       ]
     },
-    { 
+    {
       "groupName": "media",
       "groupDials": [
         {
