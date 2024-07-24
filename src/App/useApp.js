@@ -2,7 +2,27 @@ import { useEffect, useState } from "react";
 
 function useApp() {
   const [config, setConfig] = useState(null);
-  const [groupIndex, setGroupIndex] = useState(0);
+
+  const updateConfig = (newConfigObj) => {
+    localStorage.setItem("dialer-config", JSON.stringify(newConfigObj));
+    setConfig(newConfigObj);
+  }
+
+  const updateGroupIndex = (newIndex) => {
+    const newConfig = {...config, "groupIndex": newIndex}
+    updateConfig(newConfig);
+  }
+
+  const getData = async (configUrl) => {
+    try {
+      const response = await fetch(configUrl);
+      const parsedConfig = await response.json();
+      parsedConfig.configUrl = configUrl;
+      updateConfig(parsedConfig);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     const savedConfig = localStorage.getItem("dialer-config");
@@ -14,19 +34,7 @@ function useApp() {
     }
   }, []);
 
-  return { config, setConfig, groupIndex, setGroupIndex };
-}
-
-export async function getData(configUrl, setConfig) {
-  try {
-    const response = await fetch(configUrl);
-    const parsedConfig = await response.json();
-    parsedConfig.configUrl = configUrl;
-    localStorage.setItem("dialer-config", JSON.stringify(parsedConfig));
-    setConfig(parsedConfig);
-  } catch (error) {
-    console.error(error);
-  }
+  return { config, updateGroupIndex };
 }
 
 export default useApp;

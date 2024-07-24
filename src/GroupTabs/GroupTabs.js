@@ -1,12 +1,12 @@
 import "./groupTabs.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowRotateRight,
+  // faArrowRotateRight,
   faEllipsisVertical,
 } from "@fortawesome/free-solid-svg-icons";
 import Settings from "../Settings/Settings";
 
-function GroupTab({ group, idx, isSelected, setGroupIndex }) {
+function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
   function TabOptions() {
     return (
       <div className="tabOptions">
@@ -16,14 +16,14 @@ function GroupTab({ group, idx, isSelected, setGroupIndex }) {
   }
 
   function handleClick({ target }) {
-    setGroupIndex(target.value);
+    updateGroupIndex(target.dataset.index);
   }
 
   return (
     <li
-      className={isSelected ? "selectedGroup" : ""}
+    className={isSelected ? "selectedGroup" : ""}
+    data-index={idx}
       key={idx}
-      value={idx}
       onClick={handleClick}
     >
       {group.groupName}
@@ -32,7 +32,7 @@ function GroupTab({ group, idx, isSelected, setGroupIndex }) {
   );
 }
 
-function GroupTabs({ groups, groupIndex, refreshConfig, setGroupIndex }) {
+function GroupTabs({ groups, groupIndex, updateGroupIndex }) {
   return (
     <div id="GroupTabs">
       <ul>
@@ -42,7 +42,7 @@ function GroupTabs({ groups, groupIndex, refreshConfig, setGroupIndex }) {
               group={group}
               idx={idx}
               isSelected={groupIndex === idx}
-              setGroupIndex={setGroupIndex}
+              updateGroupIndex={updateGroupIndex}
             />
           );
         })}
