@@ -7,6 +7,6 @@
 }
 
 .DialGroup a img {
-  width: 150px;
-  margin: 50px 50px;
+  max-width: 150px;
+  margin: 40px; 
 }
