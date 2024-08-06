@@ -2,9 +2,15 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 50px auto;
+  margin: 40px auto;
   color: rgba(153, 153, 153, 0.842);
   font-family: 'Courier New', Courier, monospace;
-  font-size: 150px;
+  font-size: 100px;
   font-weight: 400;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.time.ready {
+  opacity: 1;
 }

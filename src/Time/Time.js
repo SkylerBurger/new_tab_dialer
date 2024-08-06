@@ -2,10 +2,10 @@ import "./time.css";
 import useTime from "./useTime";
 
 function Time() {
-  const { time } = useTime();
+  const { ready, time } = useTime();
 
   return (
-    <div className="time">
+    <div className={`time ${ready ? 'ready' : ''}`}>
       <p>{time}</p>
     </div>
   );
