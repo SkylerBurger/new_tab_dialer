@@ -1,7 +1,7 @@
-function Dial({ image, name, url }, key) {
+function Dial({ image, onImgLoad, name, url }, key) {
   return (
     <a href={url} key={key}>
-      <img src={image} alt={name} />
+      <img src={image} alt={name} onLoad={onImgLoad} />
     </a>
   );
 }

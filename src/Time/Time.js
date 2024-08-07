@@ -5,7 +5,7 @@ function Time() {
   const { ready, time } = useTime();
 
   return (
-    <div className={`time ${ready ? 'ready' : ''}`}>
+    <div className={`time ${ready ? "ready" : ""}`}>
       <p>{time}</p>
     </div>
   );

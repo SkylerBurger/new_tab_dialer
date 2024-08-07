@@ -5,7 +5,8 @@ import Time from "../Time/Time";
 import DialGroup from "../Dials/DialGroup";
 
 function App() {
-  const { config, updateGroupIndex } = useApp();
+  const { config, updateGroupIndex, dialsVisibility, setDialsVisibility } =
+    useApp();
 
   function setBackgroundImg() {
     const bodyEl = document.getElementById("App");
@@ -24,7 +25,11 @@ function App() {
       ) : null}
       <Time />
       {config && config.dialGroups ? (
-        <DialGroup {...config.dialGroups[config.groupIndex]} />
+        <DialGroup
+          {...config.dialGroups[config.groupIndex]}
+          dialVisibility={dialsVisibility}
+          setDialVisibility={setDialsVisibility}
+        />
       ) : null}
     </div>
   );

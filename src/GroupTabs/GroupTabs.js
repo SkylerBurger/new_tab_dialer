@@ -21,8 +21,8 @@ function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
 
   return (
     <li
-    className={isSelected ? "selectedGroup" : ""}
-    data-index={idx}
+      className={isSelected ? "selectedGroup" : ""}
+      data-index={idx}
       key={idx}
       onClick={handleClick}
     >

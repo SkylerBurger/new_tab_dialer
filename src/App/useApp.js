@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 
 function useApp() {
   const [config, setConfig] = useState(null);
+  const [dialsVisibility, setDialsVisibility] = useState(false);
 
   const updateConfig = (newConfigObj) => {
     localStorage.setItem("dialer-config", JSON.stringify(newConfigObj));
     setConfig(newConfigObj);
-  }
+  };
 
   const updateGroupIndex = (newIndex) => {
-    const newConfig = {...config, "groupIndex": newIndex}
+    const newConfig = { ...config, groupIndex: newIndex };
+    setDialsVisibility(false);
     updateConfig(newConfig);
-  }
+  };
 
   const getData = async (configUrl) => {
     try {
@@ -22,7 +24,7 @@ function useApp() {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     const savedConfig = localStorage.getItem("dialer-config");
@@ -34,7 +36,7 @@ function useApp() {
     }
   }, []);
 
-  return { config, updateGroupIndex };
+  return { config, updateGroupIndex, dialsVisibility, setDialsVisibility };
 }
 
 export default useApp;
