@@ -10,9 +10,11 @@ function useApp() {
   };
 
   const updateGroupIndex = (newIndex) => {
-    const newConfig = { ...config, groupIndex: newIndex };
-    setDialsVisibility(false);
-    updateConfig(newConfig);
+    if (newIndex !== config.groupIndex) {
+      const newConfig = { ...config, groupIndex: newIndex };
+      setDialsVisibility(false);
+      updateConfig(newConfig);
+    }
   };
 
   const getData = async (configUrl) => {
