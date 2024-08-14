@@ -13,7 +13,7 @@ function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
   }
 
   function handleClick({ target }) {
-    const liElement = target.closest('li[data-index');
+    const liElement = target.closest("li[data-index]");
     if (liElement) {
       updateGroupIndex(liElement.dataset.index);
     }
