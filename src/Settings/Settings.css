@@ -1,0 +1,20 @@
+h1 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+#config-url {
+  width: 33%;
+}
+
+.refresh-icon {
+  color: white;
+  margin-left: 5px;
+}

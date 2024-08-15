@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 function useApp() {
   const [config, setConfig] = useState(null);
   const [dialsVisibility, setDialsVisibility] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const updateConfig = (newConfigObj) => {
     localStorage.setItem("dialer-config", JSON.stringify(newConfigObj));
@@ -21,6 +22,7 @@ function useApp() {
     try {
       const response = await fetch(configUrl);
       const parsedConfig = await response.json();
+      // TODO: Add validation of the retrieved config here; Joi too much?
       parsedConfig.configUrl = configUrl;
       updateConfig(parsedConfig);
     } catch (error) {
@@ -34,11 +36,19 @@ function useApp() {
       setConfig(JSON.parse(savedConfig));
     } else {
       const configUrl = window.prompt("URL to JSON config file:");
-      getData(configUrl, setConfig);
+      getData(configUrl);
     }
   }, []);
 
-  return { config, updateGroupIndex, dialsVisibility, setDialsVisibility };
+  return {
+    config,
+    getData,
+    updateGroupIndex,
+    dialsVisibility,
+    setDialsVisibility,
+    showSettings,
+    setShowSettings,
+  };
 }
 
 export default useApp;
