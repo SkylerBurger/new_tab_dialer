@@ -1,7 +1,7 @@
 import "./groupTabs.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import Settings from "../Settings/Settings";
+import { SettingsIcon } from "../Settings/Settings";
 
 function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
   function TabOptions() {
@@ -32,7 +32,13 @@ function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
   );
 }
 
-function GroupTabs({ groups, groupIndex, updateGroupIndex }) {
+function GroupTabs({
+  groups,
+  groupIndex,
+  updateGroupIndex,
+  showSettings,
+  setShowSettings,
+}) {
   return (
     <div id="GroupTabs">
       <ul>
@@ -49,7 +55,10 @@ function GroupTabs({ groups, groupIndex, updateGroupIndex }) {
       </ul>
       <ul>
         <li>
-          <Settings />
+          <SettingsIcon
+            showSettings={showSettings}
+            setShowSettings={setShowSettings}
+          />
         </li>
       </ul>
     </div>

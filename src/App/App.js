@@ -1,16 +1,39 @@
 import "./App.css";
 import useApp from "./useApp";
 import GroupTabs from "../GroupTabs/GroupTabs";
+import { Settings } from "../Settings/Settings";
 import Time from "../Time/Time";
 import DialGroup from "../Dials/DialGroup";
 
 function App() {
-  const { config, updateGroupIndex, dialsVisibility, setDialsVisibility } =
-    useApp();
+  const {
+    config,
+    getData,
+    updateGroupIndex,
+    dialsVisibility,
+    setDialsVisibility,
+    showSettings,
+    setShowSettings,
+  } = useApp();
 
   function setBackgroundImg() {
     const bodyEl = document.getElementById("App");
     bodyEl.style.backgroundImage = `url('${config.background}')`;
+  }
+
+  function mainContent() {
+    return (
+      <>
+        <Time />
+        {config && config.dialGroups ? (
+          <DialGroup
+            {...config.dialGroups[config.groupIndex]}
+            dialVisibility={dialsVisibility}
+            setDialVisibility={setDialsVisibility}
+          />
+        ) : null}
+      </>
+    );
   }
 
   return (
@@ -21,16 +44,15 @@ function App() {
           groups={config.dialGroups}
           groupIndex={config.groupIndex}
           updateGroupIndex={updateGroupIndex}
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
         />
       ) : null}
-      <Time />
-      {config && config.dialGroups ? (
-        <DialGroup
-          {...config.dialGroups[config.groupIndex]}
-          dialVisibility={dialsVisibility}
-          setDialVisibility={setDialsVisibility}
-        />
-      ) : null}
+      {showSettings ? (
+        <Settings configUrl={config.configUrl} getData={getData} />
+      ) : (
+        mainContent()
+      )}
     </div>
   );
 }
