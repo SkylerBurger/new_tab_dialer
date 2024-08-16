@@ -1,14 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faRefresh } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGear,
+  faRectangleXmark,
+  faRefresh,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import "./Settings.css";
 
-export function SettingsIcon({ showSettings, setShowSettings }) {
+export function SettingsTab({ showSettings, setShowSettings }) {
   function handleClick() {
     setShowSettings(!showSettings);
   }
-  return <FontAwesomeIcon onClick={handleClick} icon={faGear} />;
+  return (
+    <ul>
+      <li className={showSettings ? "close-attention" : ""}>
+        <FontAwesomeIcon
+          onClick={handleClick}
+          icon={showSettings ? faRectangleXmark : faGear}
+        />
+      </li>
+    </ul>
+  );
 }
 
 export function Settings({ configUrl, getData }) {
