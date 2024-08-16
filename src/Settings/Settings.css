@@ -18,3 +18,7 @@ h2 {
   color: white;
   margin-left: 5px;
 }
+
+.close-attention {
+  background-color: rgba(255, 105, 105, 0.5);
+}

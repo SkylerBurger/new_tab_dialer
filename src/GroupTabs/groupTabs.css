@@ -34,3 +34,7 @@ ul li {
   display: inline;
   margin: 0 5px 0 10px;
 }
+
+.hide-tabs {
+  visibility: hidden;
+}
