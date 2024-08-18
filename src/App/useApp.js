@@ -5,6 +5,11 @@ function useApp() {
   const [dialsVisibility, setDialsVisibility] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
+  const updateSetting = (settingName, settingValue) => {
+    const newConfig = { ...config, [settingName]: settingValue };
+    updateConfig(newConfig);
+  };
+
   const updateConfig = (newConfigObj) => {
     localStorage.setItem("dialer-config", JSON.stringify(newConfigObj));
     setConfig(newConfigObj);
@@ -48,6 +53,7 @@ function useApp() {
     setDialsVisibility,
     showSettings,
     setShowSettings,
+    updateSetting,
   };
 }
 
