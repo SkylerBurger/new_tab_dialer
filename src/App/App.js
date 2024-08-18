@@ -27,7 +27,7 @@ function App() {
 
     return (
       <>
-        {config.timeEnabled ? <Time /> : null}
+        {config.timeEnabled ? <Time timeFormat={config.timeFormat} /> : null}
         {config.dialGroups ? (
           <DialGroup
             {...config.dialGroups[config.groupIndex]}

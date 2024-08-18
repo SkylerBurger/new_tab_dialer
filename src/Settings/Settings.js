@@ -56,6 +56,7 @@ export function Settings({ config, configUrl, getData, updateSetting }) {
       />
       <TimeSettings
         timeEnabled={config.timeEnabled}
+        timeFormat={config.timeFormat}
         updateSetting={updateSetting}
       />
     </div>
