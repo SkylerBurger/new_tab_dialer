@@ -14,6 +14,7 @@ function App() {
     setDialsVisibility,
     showSettings,
     setShowSettings,
+    updateSetting,
   } = useApp();
 
   function setBackgroundImg() {
@@ -22,10 +23,12 @@ function App() {
   }
 
   function mainContent() {
+    if (!config) return;
+
     return (
       <>
-        <Time />
-        {config && config.dialGroups ? (
+        {config.timeEnabled ? <Time /> : null}
+        {config.dialGroups ? (
           <DialGroup
             {...config.dialGroups[config.groupIndex]}
             dialVisibility={dialsVisibility}
@@ -49,7 +52,12 @@ function App() {
         />
       ) : null}
       {showSettings ? (
-        <Settings configUrl={config.configUrl} getData={getData} />
+        <Settings
+          config={config}
+          configUrl={config.configUrl}
+          getData={getData}
+          updateSetting={updateSetting}
+        />
       ) : (
         mainContent()
       )}

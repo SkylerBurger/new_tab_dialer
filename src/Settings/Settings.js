@@ -7,6 +7,7 @@ import {
 import { useState } from "react";
 
 import "./Settings.css";
+import { TimeSettings } from "./TimeSettings/TimeSettings";
 
 export function SettingsTab({ showSettings, setShowSettings }) {
   function handleClick() {
@@ -24,7 +25,7 @@ export function SettingsTab({ showSettings, setShowSettings }) {
   );
 }
 
-export function Settings({ configUrl, getData }) {
+export function Settings({ config, configUrl, getData, updateSetting }) {
   const [urlInputValue, setUrlInputValue] = useState(configUrl);
 
   const handleConfigRefresh = () => {
@@ -38,7 +39,7 @@ export function Settings({ configUrl, getData }) {
   };
 
   return (
-    <>
+    <div id="Settings">
       <h1>Settings</h1>
       <h2>Config File URL</h2>
       <input
@@ -53,6 +54,10 @@ export function Settings({ configUrl, getData }) {
         icon={faRefresh}
         className="refresh-icon"
       />
-    </>
+      <TimeSettings
+        timeEnabled={config.timeEnabled}
+        updateSetting={updateSetting}
+      />
+    </div>
   );
 }
