@@ -1,13 +1,21 @@
-import "./groupTabs.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+
+import "./groupTabs.css";
+import TabMenu from "./TabMenu/TabMenu";
 import { SettingsTab } from "../Settings/Settings";
 
 function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
-  function TabOptions() {
+  const [showTabMenu, setShowTabMenu] = useState(false);
+
+  function TabOptions({ onClick }) {
     return (
-      <div className="tabOptions">
-        <FontAwesomeIcon icon={faEllipsisVertical} />
+      <div className="tabOptions" onClick={onClick}>
+        <FontAwesomeIcon
+          className="fa-sm"
+          icon={showTabMenu ? faAnglesUp : faAnglesDown}
+        />
       </div>
     );
   }
@@ -19,6 +27,15 @@ function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
     }
   }
 
+  function openMenu(event) {
+    event.stopPropagation();
+    setShowTabMenu(true);
+  }
+
+  function closeMenu() {
+    setShowTabMenu(false);
+  }
+
   return (
     <li
       className={isSelected ? "selectedGroup" : ""}
@@ -27,7 +44,8 @@ function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
       onClick={handleClick}
     >
       {group.groupName}
-      {isSelected ? <TabOptions /> : ""}
+      {isSelected && <TabOptions onClick={openMenu} />}
+      {showTabMenu && <TabMenu onClose={closeMenu} />}
     </li>
   );
 }
