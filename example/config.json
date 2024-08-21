@@ -1,5 +1,5 @@
 {
-  "background": "https://my-bucket.s3.us-west-2.amazonaws.com/window_oil_painting.png",
+  "background": "https://my-bucket.s3.us-west-1.amazonaws.com/window_oil_painting.png",
   "dialGroups": [
     {
       "groupName": "default",
@@ -7,27 +7,27 @@
         {
           "name": "BeCU",
           "url": "http://www.becu.org/",
-          "image": "https://my-bucket.s3.us-west-2.amazonaws.com/becu.png"
+          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/becu.png"
         },
         {
           "name": "Chase",
           "url": "https://www.chase.com/",
-          "image": "https://my-bucket.s3.us-west-2.amazonaws.com/chase.png"
+          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/chase.png"
         },
         {
           "name": "Current Status IO",
           "url": "https://currentstatus.io/",
-          "image": "https://my-bucket.s3.us-west-2.amazonaws.com/news_icon.png"
+          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/news_icon.png"
         },
         {
           "name": "GitHub",
-          "url": "https://www.github.com/skylerburger",
-          "image": "https://my-bucket.s3.us-west-2.amazonaws.com/github.png"
+          "url": "https://www.github.com/",
+          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/github.png"
         },
         {
           "name": "Gmail",
           "url": "https://www.gmail.com/",
-          "image": "https://my-bucket.s3.us-west-2.amazonaws.com/gmail.png"
+          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/gmail.png"
         }
       ]
     },
@@ -37,17 +37,17 @@
         {
           "name": "Shudder",
           "url": "https://www.shudder.com/",
-          "image": "https://my-bucket.s3.us-west-2.amazonaws.com/shudder.png"
+          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/shudder.png"
         },
         {
           "name": "Tubi",
           "url": "http://www.tubi.com/",
-          "image": "https://my-bucket.s3.us-west-2.amazonaws.com/tubi.png"
+          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/tubi.png"
         },
         {
           "name": "YouTube",
           "url": "https://www.youtube.com/",
-          "image": "https://my-bucket.s3.us-west-2.amazonaws.com/youtube.png"
+          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/youtube.png"
         }
       ]
     }

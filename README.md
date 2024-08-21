@@ -27,6 +27,28 @@ The extension is a React application so Node.js is required for development and 
 5. In Chrome, go to Extensions > Manage Extensions > Load Unpacked. Then navigate to the renamed build directory, "New Tab Dialer" in this example.
 6. Open a new Chrome Tab then enter the URL of an accessible copy of your configuration file to get started. (Soon you'll be able to start without a pre-existing config file.) You can use the `example/config.json` file to write in your own Dial Groups and Dials, just upload it somewhere that can be accessed by a URL, I recommend AWS S3.
 
+### The Configuration File
+
+The current version of the extension starts by checking `localStorage` for a saved config or by loading a configuration file by URL. In the future you'll be able to start from scratch but for now you have to supply a config as a starting point. There is an `example/config.json` file you can use as a starter.
+
+The config file needs to be uploaded somewhere that allows the raw file to be requested by URL. I happen to be using an AWS S3 bucket to hold my config file but there are many options.
+
+#### Hosting Your Config on GitHub Gist
+
+One free, simple, and quick solution is to host your config file as a gist. Gist is GitHub's service for sharing code snippets and just happens to meet the needs of hosting a New Tab Dialer configuration file using these simple steps:
+
+1. Create an account and/or sign in to [gist.github.com](https://gist.github.com/).
+2. Click on the "plus" symbol in the top-right corner to create a new gist. 
+3. Paste the contents of your config file, or the `example/config.json` file, into the body of the gist.
+4. Give the gist a filename and extension of `.json`.
+5. At the bottom-right corner choose to either "Create secret gist" or "Create public gist". I recommend creating a secret gist otherwise the contents of your config are publicly visible to anyone. If you mark the gist as "secret", the gist is still technically visible by URL, but it is not discoverable. So weigh those concerns when determining if hosting on Gist is right for you.
+6. Once the gist has been created, click on the "Raw" button located near the top-right of the file.
+7. After being redirected to the raw file view, copy the URL in your browser and supply that to your New Tab Dialer extension at startup or in the Settings view.
+
 ### Development
 
 When working on the project locally you similarly need to make sure you have Node installed on your system. Clone the repo then install the Node dependencies, `npm i`. You can easily create builds and run them immediately in the browser with the `npm run now` script, this allows you to develop the app like a regular React site without having to install it as an extension.
+
+This project uses `prettier` for JavaScript formatting. Run `npm run format` to perform a formatting pass before committing.
+
+New Tab Dialer's current configuration is saved in `localStorage` under the key `"dialer-config"`. You can easily delete this entry if you want to purge the existing config and load a new one by URL.
