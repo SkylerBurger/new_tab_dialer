@@ -10,7 +10,10 @@ function useApp() {
     updateConfig(newConfig);
   };
 
-  const updateConfig = (newConfigObj) => { localStorage.setItem("dialer-config", JSON.stringify(newConfigObj)); setConfig(newConfigObj);};
+  const updateConfig = (newConfigObj) => {
+    localStorage.setItem("dialer-config", JSON.stringify(newConfigObj));
+    setConfig(newConfigObj);
+  };
 
   const updateGroupIndex = (newIndex) => {
     if (newIndex !== config.groupIndex) {
