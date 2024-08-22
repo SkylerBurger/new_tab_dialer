@@ -2,12 +2,19 @@ import { useEffect, useRef } from "react";
 
 import "./TabMenu.css";
 
-function TabMenu({ onClose }) {
+function TabMenu({ onClose, setShowDetails }) {
   const menuRef = useRef(null);
 
   // TODO: Remove this
-  const mockFunctionality = (name) => {
+  const mockFunctionality = (event, name) => {
+    event.stopPropagation();
     console.log(`${name} was selected`);
+    if (menuRef.current) menuRef.current.blur();
+  };
+
+  const openDetails = (event) => {
+    event.stopPropagation();
+    setShowDetails(true);
     if (menuRef.current) menuRef.current.blur();
   };
 
@@ -20,9 +27,9 @@ function TabMenu({ onClose }) {
   return (
     <div ref={menuRef} className="TabMenu" onBlur={onClose} tabIndex={0}>
       <ul>
-        <li onClick={() => mockFunctionality("Add")}>Add</li>
-        <li onClick={() => mockFunctionality("Mopdify")}>Modify</li>
-        <li onClick={() => mockFunctionality("Delete")}>Delete</li>
+        <li onClick={(e) => mockFunctionality(e, "Add Dial")}>Add Dial</li>
+        <li onClick={openDetails}>Edit Group</li>
+        <li onClick={(e) => mockFunctionality(e, "New Group")}>New Group</li>
       </ul>
     </div>
   );

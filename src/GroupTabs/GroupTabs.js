@@ -7,7 +7,13 @@ import { SettingsTab } from "../Settings/Settings";
 import "./groupTabs.css";
 import TabMenu from "./TabMenu/TabMenu";
 
-function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
+function GroupTab({
+  group,
+  idx,
+  isSelected,
+  setShowDetails,
+  updateGroupIndex,
+}) {
   const [showTabMenu, setShowTabMenu] = useState(false);
 
   function TabOptions({ onClick }) {
@@ -24,6 +30,7 @@ function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
   function handleClick({ target }) {
     const liElement = target.closest("li[data-index]");
     if (liElement) {
+      setShowDetails(false);
       updateGroupIndex(liElement.dataset.index);
     }
   }
@@ -46,12 +53,20 @@ function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
     >
       {group.groupName}
       {isSelected && <TabOptions onClick={openMenu} />}
-      {showTabMenu && <TabMenu onClose={closeMenu} />}
+      {showTabMenu && (
+        <TabMenu onClose={closeMenu} setShowDetails={setShowDetails} />
+      )}
     </li>
   );
 }
 
-function GroupTabs({ groups, groupIndex, setShowSettings, updateGroupIndex }) {
+function GroupTabs({
+  groups,
+  groupIndex,
+  setShowDetails,
+  setShowSettings,
+  updateGroupIndex,
+}) {
   return (
     <nav className="GroupTabs">
       <ul>
@@ -61,6 +76,7 @@ function GroupTabs({ groups, groupIndex, setShowSettings, updateGroupIndex }) {
               group={group}
               idx={idx}
               isSelected={idx === parseInt(groupIndex)}
+              setShowDetails={setShowDetails}
               updateGroupIndex={updateGroupIndex}
             />
           );
