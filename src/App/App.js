@@ -1,9 +1,8 @@
 import "./App.css";
+import Dialer from "../Dialer/Dialer";
 import useApp from "./useApp";
 import GroupTabs from "../GroupTabs/GroupTabs";
 import { Settings } from "../Settings/Settings";
-import Time from "../Time/Time";
-import DialGroup from "../Dials/DialGroup";
 
 function App() {
   const {
@@ -23,19 +22,14 @@ function App() {
   }
 
   function mainContent() {
-    if (!config) return;
-
-    return (
-      <>
-        {config.timeEnabled ? <Time timeFormat={config.timeFormat} /> : null}
-        {config.dialGroups ? (
-          <DialGroup
-            {...config.dialGroups[config.groupIndex]}
-            dialVisibility={dialsVisibility}
-            setDialVisibility={setDialsVisibility}
-          />
-        ) : null}
-      </>
+    return ( config &&
+      <Dialer
+        dialGroup={config.dialGroups[config.groupIndex]}
+        dialsVisibility={dialsVisibility}
+        setDialsVisibility={setDialsVisibility} 
+        timeEnabled={config.timeEnabled}
+        timeFormat={config.timeFormat}
+      />
     );
   }
 
