@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useDialGroup(groupDials, setDialVisibility) {
+function useDialGroup(groupDials, setDialsVisibility) {
   const [loadedImgCount, setLoadedImgCount] = useState(0);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ function useDialGroup(groupDials, setDialVisibility) {
 
   useEffect(() => {
     if (loadedImgCount === groupDials.length) {
-      setDialVisibility(true);
+      setDialsVisibility(true);
     }
   }, [loadedImgCount, groupDials.length]);
 

@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
+import { SettingsTab } from "../Settings/Settings";
+
 import "./groupTabs.css";
 import TabMenu from "./TabMenu/TabMenu";
-import { SettingsTab } from "../Settings/Settings";
 
 function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
   const [showTabMenu, setShowTabMenu] = useState(false);
@@ -50,16 +51,10 @@ function GroupTab({ group, idx, isSelected, updateGroupIndex }) {
   );
 }
 
-function GroupTabs({
-  groups,
-  groupIndex,
-  updateGroupIndex,
-  showSettings,
-  setShowSettings,
-}) {
+function GroupTabs({ groups, groupIndex, setShowSettings, updateGroupIndex }) {
   return (
-    <div id="GroupTabs">
-      <ul className={showSettings ? "hide-tabs" : ""}>
+    <nav className="GroupTabs">
+      <ul>
         {groups.map((group, idx) => {
           return (
             <GroupTab
@@ -71,11 +66,8 @@ function GroupTabs({
           );
         })}
       </ul>
-      <SettingsTab
-        showSettings={showSettings}
-        setShowSettings={setShowSettings}
-      />
-    </div>
+      <SettingsTab setShowSettings={setShowSettings} />
+    </nav>
   );
 }
 

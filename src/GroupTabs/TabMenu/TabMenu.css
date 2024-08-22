@@ -1,4 +1,4 @@
-.tabMenu {
+.TabMenu {
   position: absolute;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -8,7 +8,7 @@
   left: 0;
 }
 
-.tabMenu ul {
+.TabMenu ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
   padding: 0;
 }
 
-.tabMenu li {
+.TabMenu ul li {
   top: 0;
   border: none;
   margin: 5px;
@@ -24,6 +24,6 @@
   cursor: pointer;
 }
 
-.tabMenu li:hover {
+.TabMenu li:hover {
   background-color: #f0f0f05b;
 }

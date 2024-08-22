@@ -1,9 +1,8 @@
+import Dialer from "../Dialer/Dialer";
+import { Settings } from "../Settings/Settings";
+
 import "./App.css";
 import useApp from "./useApp";
-import GroupTabs from "../GroupTabs/GroupTabs";
-import { Settings } from "../Settings/Settings";
-import Time from "../Time/Time";
-import DialGroup from "../Dials/DialGroup";
 
 function App() {
   const {
@@ -22,44 +21,35 @@ function App() {
     bodyEl.style.backgroundImage = `url('${config.background}')`;
   }
 
-  function mainContent() {
-    if (!config) return;
-
+  const renderDialer = () => {
     return (
-      <>
-        {config.timeEnabled ? <Time timeFormat={config.timeFormat} /> : null}
-        {config.dialGroups ? (
-          <DialGroup
-            {...config.dialGroups[config.groupIndex]}
-            dialVisibility={dialsVisibility}
-            setDialVisibility={setDialsVisibility}
-          />
-        ) : null}
-      </>
+      config && (
+        <Dialer
+          dialGroups={config.dialGroups}
+          dialsVisibility={dialsVisibility}
+          groupIndex={config.groupIndex}
+          setDialsVisibility={setDialsVisibility}
+          setShowSettings={setShowSettings}
+          timeEnabled={config.timeEnabled}
+          timeFormat={config.timeFormat}
+          updateGroupIndex={updateGroupIndex}
+        />
+      )
     );
-  }
+  };
 
   return (
     <div id="App">
       {config && config.background ? setBackgroundImg() : null}
-      {config && config.dialGroups ? (
-        <GroupTabs
-          groups={config.dialGroups}
-          groupIndex={config.groupIndex}
-          updateGroupIndex={updateGroupIndex}
-          showSettings={showSettings}
-          setShowSettings={setShowSettings}
-        />
-      ) : null}
       {showSettings ? (
         <Settings
           config={config}
-          configUrl={config.configUrl}
           getData={getData}
+          setShowSettings={setShowSettings}
           updateSetting={updateSetting}
         />
       ) : (
-        mainContent()
+        renderDialer()
       )}
     </div>
   );
