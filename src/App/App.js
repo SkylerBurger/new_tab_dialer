@@ -1,8 +1,8 @@
-import "./App.css";
 import Dialer from "../Dialer/Dialer";
-import useApp from "./useApp";
-import GroupTabs from "../GroupTabs/GroupTabs";
 import { Settings } from "../Settings/Settings";
+
+import "./App.css";
+import useApp from "./useApp";
 
 function App() {
   const {
@@ -21,39 +21,35 @@ function App() {
     bodyEl.style.backgroundImage = `url('${config.background}')`;
   }
 
-  function mainContent() {
-    return ( config &&
-      <Dialer
-        dialGroup={config.dialGroups[config.groupIndex]}
-        dialsVisibility={dialsVisibility}
-        setDialsVisibility={setDialsVisibility} 
-        timeEnabled={config.timeEnabled}
-        timeFormat={config.timeFormat}
-      />
+  const renderDialer = () => {
+    return (
+      config && (
+        <Dialer
+          dialGroups={config.dialGroups}
+          dialsVisibility={dialsVisibility}
+          groupIndex={config.groupIndex}
+          setDialsVisibility={setDialsVisibility}
+          setShowSettings={setShowSettings}
+          timeEnabled={config.timeEnabled}
+          timeFormat={config.timeFormat}
+          updateGroupIndex={updateGroupIndex}
+        />
+      )
     );
-  }
+  };
 
   return (
     <div id="App">
       {config && config.background ? setBackgroundImg() : null}
-      {config && config.dialGroups ? (
-        <GroupTabs
-          groups={config.dialGroups}
-          groupIndex={config.groupIndex}
-          updateGroupIndex={updateGroupIndex}
-          showSettings={showSettings}
-          setShowSettings={setShowSettings}
-        />
-      ) : null}
       {showSettings ? (
         <Settings
           config={config}
-          configUrl={config.configUrl}
           getData={getData}
+          setShowSettings={setShowSettings}
           updateSetting={updateSetting}
         />
       ) : (
-        mainContent()
+        renderDialer()
       )}
     </div>
   );

@@ -18,7 +18,7 @@ function TabMenu({ onClose }) {
   });
 
   return (
-    <div ref={menuRef} className="tabMenu" onBlur={onClose} tabIndex={0}>
+    <div ref={menuRef} className="TabMenu" onBlur={onClose} tabIndex={0}>
       <ul>
         <li onClick={() => mockFunctionality("Add")}>Add</li>
         <li onClick={() => mockFunctionality("Mopdify")}>Modify</li>

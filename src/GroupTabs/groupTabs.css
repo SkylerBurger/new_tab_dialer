@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oldenburg&family=Oxygen+Mono&display=swap");
 
-#GroupTabs {
+.GroupTabs {
   color: white;
   display: flex;
   justify-content: space-between;
@@ -9,12 +9,12 @@
   z-index: 100;
 }
 
-ul {
+.GroupTabs ul {
   display: flex;
   flex-direction: row;
 }
 
-ul li {
+.GroupTabs ul li {
   position: relative;
   top: -5px;
   border: 1px solid white;
@@ -34,8 +34,4 @@ ul li {
 .tabOptions {
   display: inline;
   margin: 0 5px 0 10px;
-}
-
-.hide-tabs {
-  visibility: hidden;
 }

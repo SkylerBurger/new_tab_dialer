@@ -1,22 +1,35 @@
-import Time from "../Time/Time";
 import DialGroup from "../Dials/DialGroup";
+import GroupTabs from "../GroupTabs/GroupTabs";
+import Time from "../Time/Time";
 
-
-export default function Dialer({ 
-  dialGroup, 
+export default function Dialer({
+  dialGroups,
   dialsVisibility,
+  groupIndex,
   setDialsVisibility,
-  timeEnabled, 
-  timeFormat, 
+  setShowSettings,
+  timeEnabled,
+  timeFormat,
+  updateGroupIndex,
 }) {
-  return (<>
-    {timeEnabled && <Time timeFormat={timeFormat} />}
+  return (
+    dialGroups && (
+      <>
+        <GroupTabs
+          groups={dialGroups}
+          groupIndex={groupIndex}
+          setShowSettings={setShowSettings}
+          updateGroupIndex={updateGroupIndex}
+        />
 
-      <DialGroup
-        {...dialGroup}
-        dialsVisibility={dialsVisibility}
-        setDialsVisibility={setDialsVisibility}
-      />
+        {timeEnabled && <Time timeFormat={timeFormat} />}
 
-  </>)
+        <DialGroup
+          {...dialGroups[groupIndex]}
+          dialsVisibility={dialsVisibility}
+          setDialsVisibility={setDialsVisibility}
+        />
+      </>
+    )
+  );
 }
