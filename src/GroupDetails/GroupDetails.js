@@ -25,6 +25,7 @@ export default function GroupDetails({
           <DialDetail {...dial} />
         ))}
       </ul>
+      <button>Add Dial</button>
       <button onClick={() => setShowDetails(false)}>Cancel</button>
       <button>Apply</button>
     </div>
