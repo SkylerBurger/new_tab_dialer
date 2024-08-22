@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 import DialGroup from "../Dials/DialGroup";
+import GroupDetails from "../GroupDetails/GroupDetails";
 import GroupTabs from "../GroupTabs/GroupTabs";
 import Time from "../Time/Time";
 
@@ -12,23 +15,33 @@ export default function Dialer({
   timeFormat,
   updateGroupIndex,
 }) {
+  const [showDetails, setShowDetails] = useState(false);
+
   return (
     dialGroups && (
       <>
         <GroupTabs
           groups={dialGroups}
           groupIndex={groupIndex}
+          setShowDetails={setShowDetails}
           setShowSettings={setShowSettings}
           updateGroupIndex={updateGroupIndex}
         />
 
         {timeEnabled && <Time timeFormat={timeFormat} />}
 
-        <DialGroup
-          {...dialGroups[groupIndex]}
-          dialsVisibility={dialsVisibility}
-          setDialsVisibility={setDialsVisibility}
-        />
+        {showDetails ? (
+          <GroupDetails
+            {...dialGroups[groupIndex]}
+            setShowDetails={setShowDetails}
+          />
+        ) : (
+          <DialGroup
+            {...dialGroups[groupIndex]}
+            dialsVisibility={dialsVisibility}
+            setDialsVisibility={setDialsVisibility}
+          />
+        )}
       </>
     )
   );
