@@ -1,3 +1,18 @@
 .GroupDetails {
   color: white;
 }
+
+.DialDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 60px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.DialDetails img {
+  height: 50px;
+  width: 50px;
+  margin: 0 5px;
+}

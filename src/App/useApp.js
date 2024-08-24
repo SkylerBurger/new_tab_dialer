@@ -15,6 +15,18 @@ function useApp() {
     setConfig(newConfigObj);
   };
 
+  const updateGroupDials = (groupName, newDials) => {
+    const newConfig = {
+      ...config,
+      dialGroups: config.dialGroups.map((group) =>
+        group.groupName === groupName
+          ? { ...group, groupDials: newDials }
+          : group,
+      ),
+    };
+    updateConfig(newConfig);
+  };
+
   const updateGroupIndex = (newIndex) => {
     if (newIndex !== config.groupIndex) {
       const newConfig = { ...config, groupIndex: newIndex };
@@ -54,6 +66,7 @@ function useApp() {
     showSettings,
     setShowSettings,
     updateSetting,
+    updateGroupDials,
   };
 }
 

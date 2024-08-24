@@ -14,6 +14,7 @@ export default function Dialer({
   timeEnabled,
   timeFormat,
   updateGroupIndex,
+  updateGroupDials,
 }) {
   const [showDetails, setShowDetails] = useState(false);
 
@@ -34,6 +35,7 @@ export default function Dialer({
           <GroupDetails
             {...dialGroups[groupIndex]}
             setShowDetails={setShowDetails}
+            updateGroupDials={updateGroupDials}
           />
         ) : (
           <DialGroup
