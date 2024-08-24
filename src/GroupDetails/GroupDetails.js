@@ -13,7 +13,11 @@ function DialDetails({ index, first, last, name, image, url, shiftDial }) {
         upAble={!first}
       />
       <img src={image} alt={name} />
-      {name} - {url} - {image}
+      <div>
+        <p>{name}</p>
+        <p>{url}</p>
+        <p>{image}</p>
+      </div>
     </li>
   );
 }
