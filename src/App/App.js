@@ -14,6 +14,7 @@ function App() {
     showSettings,
     setShowSettings,
     updateSetting,
+    updateGroupDials,
   } = useApp();
 
   function setBackgroundImg() {
@@ -33,6 +34,7 @@ function App() {
           timeEnabled={config.timeEnabled}
           timeFormat={config.timeFormat}
           updateGroupIndex={updateGroupIndex}
+          updateGroupDials={updateGroupDials}
         />
       )
     );
