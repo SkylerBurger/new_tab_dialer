@@ -16,7 +16,6 @@ function DialDetails({ index, first, last, name, image, url, shiftDial }) {
       <div>
         <p>{name}</p>
         <p>{url}</p>
-        <p>{image}</p>
       </div>
     </li>
   );
