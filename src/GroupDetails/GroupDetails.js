@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import "./GroupDetails.css";
+import { useGroupDetails } from "./useGroupDetails";
 import { ArrowSelector } from "../ArrowSelector/ArrowSelector";
 
 function DialDetails({ index, first, last, name, image, url, shiftDial }) {
@@ -27,19 +28,12 @@ export default function GroupDetails({
   setShowDetails,
   updateGroupDials,
 }) {
-  const [dials, setDials] = useState([...groupDials]);
-
-  const shiftDial = (index, offset) => {
-    const newDials = [...dials];
-    const dial = newDials.splice(index, 1)[0];
-    newDials.splice(index + offset, 0, dial);
-    setDials(newDials);
-  };
-
-  const applyChanges = (groupName, dials) => {
-    updateGroupDials(groupName, dials);
-    setShowDetails(false);
-  };
+  const { dials, isPendingChanges, shiftDial, applyChanges } =
+    useGroupDetails({
+      groupDials,
+      setShowDetails,
+      updateGroupDials,
+    });
 
   return (
     <div className="GroupDetails">
@@ -57,7 +51,12 @@ export default function GroupDetails({
       </ul>
       <button>Add Dial</button>
       <button onClick={() => setShowDetails(false)}>Cancel</button>
-      <button onClick={() => applyChanges(groupName, dials)}>Apply</button>
+      <button
+        onClick={() => applyChanges(groupName, dials)}
+        disabled={!isPendingChanges}
+      >
+        Apply
+      </button>
     </div>
   );
 }
