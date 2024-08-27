@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 
 export function useGroupDetails({
   groupDials,
+  setIsPendingChanges,
+  setShowConfirm,
   setShowDetails,
   updateGroupDials,
+  updateGroupIndex,
 }) {
   const [dials, setDials] = useState([...groupDials]);
-  const [isPendingChanges, setIsPendingChanges] = useState(false);
 
-  const arraysEqual = (a, b) => a.length === b.length && a.every((val, index) => val === b[index]);
+  const arraysEqual = (a, b) =>
+    a.length === b.length && a.every((val, index) => val === b[index]);
 
   useEffect(() => {
     setIsPendingChanges(arraysEqual(groupDials, dials) ? false : true);
-  }, [dials, groupDials])
+  }, [dials, groupDials]);
 
   const shiftDial = (index, offset) => {
     const newDials = [...dials];
@@ -26,10 +29,17 @@ export function useGroupDetails({
     setShowDetails(false);
   };
 
+  function forceGroupNavigation(newIndex) {
+    setShowConfirm(null);
+    setShowDetails(false);
+    setIsPendingChanges(false);
+    updateGroupIndex(newIndex);
+  }
+
   return {
-    dials,
-    isPendingChanges,
-    shiftDial,
     applyChanges,
+    dials,
+    forceGroupNavigation,
+    shiftDial,
   };
 }

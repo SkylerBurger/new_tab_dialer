@@ -10,7 +10,9 @@ import TabMenu from "./TabMenu/TabMenu";
 function GroupTab({
   group,
   idx,
+  isPendingChanges,
   isSelected,
+  setShowConfirm,
   setShowDetails,
   updateGroupIndex,
 }) {
@@ -29,7 +31,9 @@ function GroupTab({
 
   function handleClick({ target }) {
     const liElement = target.closest("li[data-index]");
-    if (liElement) {
+    if (liElement && isPendingChanges) {
+      setShowConfirm({ newIndex: liElement.dataset.index });
+    } else if (liElement) {
       setShowDetails(false);
       updateGroupIndex(liElement.dataset.index);
     }
@@ -63,6 +67,8 @@ function GroupTab({
 function GroupTabs({
   groups,
   groupIndex,
+  isPendingChanges,
+  setShowConfirm,
   setShowDetails,
   setShowSettings,
   updateGroupIndex,
@@ -75,7 +81,9 @@ function GroupTabs({
             <GroupTab
               group={group}
               idx={idx}
+              isPendingChanges={isPendingChanges}
               isSelected={idx === parseInt(groupIndex)}
+              setShowConfirm={setShowConfirm}
               setShowDetails={setShowDetails}
               updateGroupIndex={updateGroupIndex}
             />

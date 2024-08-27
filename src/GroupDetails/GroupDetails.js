@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import "./GroupDetails.css";
 import { useGroupDetails } from "./useGroupDetails";
 import { ArrowSelector } from "../ArrowSelector/ArrowSelector";
@@ -25,19 +23,34 @@ function DialDetails({ index, first, last, name, image, url, shiftDial }) {
 export default function GroupDetails({
   groupDials,
   groupName,
+  isPendingChanges,
+  setIsPendingChanges,
   setShowDetails,
+  showConfirm,
+  setShowConfirm,
   updateGroupDials,
+  updateGroupIndex,
 }) {
-  const { dials, isPendingChanges, shiftDial, applyChanges } =
+  const { applyChanges, dials, forceGroupNavigation, shiftDial } =
     useGroupDetails({
       groupDials,
+      setIsPendingChanges,
+      setShowConfirm,
       setShowDetails,
       updateGroupDials,
+      updateGroupIndex,
     });
 
   return (
     <div className="GroupDetails">
       <h1>{groupName}</h1>
+      <div className={`confirm ${showConfirm === null ? "hide" : ""}`}>
+        <p>Unsaved changes. Return to apply them or continue without saving.</p>
+        <button onClick={() => setShowConfirm(null)}>Return</button>
+        <button onClick={() => forceGroupNavigation(showConfirm.newIndex)}>
+          Continue
+        </button>
+      </div>
       <ul>
         {dials.map((dial, index) => (
           <DialDetails
