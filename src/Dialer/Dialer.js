@@ -17,6 +17,8 @@ export default function Dialer({
   updateGroupDials,
 }) {
   const [showDetails, setShowDetails] = useState(false);
+  const [isPendingChanges, setIsPendingChanges] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(null);
 
   return (
     dialGroups && (
@@ -24,6 +26,8 @@ export default function Dialer({
         <GroupTabs
           groups={dialGroups}
           groupIndex={groupIndex}
+          isPendingChanges={isPendingChanges}
+          setShowConfirm={setShowConfirm}
           setShowDetails={setShowDetails}
           setShowSettings={setShowSettings}
           updateGroupIndex={updateGroupIndex}
@@ -34,8 +38,13 @@ export default function Dialer({
         {showDetails ? (
           <GroupDetails
             {...dialGroups[groupIndex]}
+            showConfirm={showConfirm}
+            setShowConfirm={setShowConfirm}
+            isPendingChanges={isPendingChanges}
+            setIsPendingChanges={setIsPendingChanges}
             setShowDetails={setShowDetails}
             updateGroupDials={updateGroupDials}
+            updateGroupIndex={updateGroupIndex}
           />
         ) : (
           <DialGroup
