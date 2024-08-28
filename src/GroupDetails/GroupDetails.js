@@ -32,10 +32,11 @@ export default function GroupDetails({
   updateGroupDials,
   updateGroupIndex,
 }) {
-  const { applyChanges, dials, forceGroupNavigation, shiftDial } =
+  const { applyChanges, confirmOptions, dials, message, shiftDial } =
     useGroupDetails({
       groupDials,
       setIsPendingChanges,
+      showConfirm,
       setShowConfirm,
       setShowDetails,
       updateGroupDials,
@@ -45,7 +46,7 @@ export default function GroupDetails({
   return (
     <div className="GroupDetails">
       <h1>{groupName}</h1>
-      <Confirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} forceGroupNavigation={forceGroupNavigation} />
+      {showConfirm && <Confirm message={message} options={confirmOptions} />}
       <ul>
         {dials.map((dial, index) => (
           <DialDetails

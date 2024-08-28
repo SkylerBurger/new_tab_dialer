@@ -1,11 +1,21 @@
-export function Confirm({ showConfirm, setShowConfirm, forceGroupNavigation }) {
+import "./Confirm.css";
+
+export function Confirm({ message, options }) {
   return (
-    <div className={`confirm ${showConfirm === null ? "hide" : ""}`}>
-      <p>Unsaved changes. Return to apply them or continue without saving.</p>
-      <button onClick={() => setShowConfirm(null)}>Return</button>
-      <button onClick={() => forceGroupNavigation(showConfirm.newIndex)}>
-        Continue
-      </button>
+    <div className={`Confirm`}>
+      <div className="popup">
+        <p>{message}</p>
+        {options.map((option) => {
+          const buttonStyle = option.color
+            ? { backgroundColor: option.color }
+            : {};
+          return (
+            <button style={buttonStyle} onClick={option.action}>
+              {option.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export function useGroupDetails({
   groupDials,
   setIsPendingChanges,
+  showConfirm,
   setShowConfirm,
   setShowDetails,
   updateGroupDials,
@@ -36,10 +37,26 @@ export function useGroupDetails({
     updateGroupIndex(newIndex);
   }
 
+  const confirmOptions = [
+    {
+      label: "Return to Apply Changes",
+      action: () => setShowConfirm(null),
+      color: "#4CAF50",
+    },
+    {
+      label: "Continue Without Saving",
+      action: () => forceGroupNavigation(showConfirm.newIndex),
+      color: "#f44336",
+    },
+  ];
+
+  const message = "You have unsaved changes.";
+
   return {
     applyChanges,
+    confirmOptions,
     dials,
-    forceGroupNavigation,
+    message,
     shiftDial,
   };
 }
