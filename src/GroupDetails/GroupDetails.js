@@ -29,16 +29,18 @@ export default function GroupDetails({
   setShowDetails,
   showConfirm,
   setShowConfirm,
+  setShowSettings,
   updateGroupDials,
   updateGroupIndex,
 }) {
-  const { applyChanges, confirmOptions, dials, message, shiftDial } =
+  const { applyChanges, confirmOptions, dials, message, onCancel, shiftDial } =
     useGroupDetails({
       groupDials,
       setIsPendingChanges,
       showConfirm,
       setShowConfirm,
       setShowDetails,
+      setShowSettings,
       updateGroupDials,
       updateGroupIndex,
     });
@@ -59,7 +61,7 @@ export default function GroupDetails({
         ))}
       </ul>
       <button>Add Dial</button>
-      <button onClick={() => setShowDetails(false)}>Cancel</button>
+      <button onClick={onCancel}>Cancel</button>
       <button
         onClick={() => applyChanges(groupName, dials)}
         disabled={!isPendingChanges}

@@ -7,9 +7,17 @@ import NavClose from "../NavClose/NavClose";
 import "./Settings.css";
 import { TimeSettings } from "./TimeSettings/TimeSettings";
 
-export function SettingsTab({ setShowSettings }) {
+export function SettingsTab({
+  isPendingChanges,
+  setShowConfirm,
+  setShowSettings,
+}) {
   function handleClick() {
-    setShowSettings(true);
+    if (isPendingChanges) {
+      setShowConfirm({ newIndex: "settings" });
+    } else {
+      setShowSettings(true);
+    }
   }
   return (
     <ul>

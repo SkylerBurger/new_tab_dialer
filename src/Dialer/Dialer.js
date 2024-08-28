@@ -43,6 +43,7 @@ export default function Dialer({
             isPendingChanges={isPendingChanges}
             setIsPendingChanges={setIsPendingChanges}
             setShowDetails={setShowDetails}
+            setShowSettings={setShowSettings}
             updateGroupDials={updateGroupDials}
             updateGroupIndex={updateGroupIndex}
           />

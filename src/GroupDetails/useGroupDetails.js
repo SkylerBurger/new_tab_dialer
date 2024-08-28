@@ -6,6 +6,7 @@ export function useGroupDetails({
   showConfirm,
   setShowConfirm,
   setShowDetails,
+  setShowSettings,
   updateGroupDials,
   updateGroupIndex,
 }) {
@@ -34,7 +35,11 @@ export function useGroupDetails({
     setShowConfirm(null);
     setShowDetails(false);
     setIsPendingChanges(false);
-    updateGroupIndex(newIndex);
+    if (newIndex === "settings") {
+      setShowSettings(true);
+    } else {
+      updateGroupIndex(newIndex);
+    }
   }
 
   const confirmOptions = [
@@ -52,11 +57,17 @@ export function useGroupDetails({
 
   const message = "You have unsaved changes.";
 
+  const onCancel = () => {
+    setIsPendingChanges(false);
+    setShowDetails(false);
+  };
+
   return {
     applyChanges,
     confirmOptions,
     dials,
     message,
+    onCancel,
     shiftDial,
   };
 }

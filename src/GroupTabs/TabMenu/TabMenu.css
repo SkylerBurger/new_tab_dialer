@@ -17,11 +17,13 @@
 }
 
 .TabMenu ul li {
+  height: auto;
   top: 0;
   border: none;
   margin: 5px;
   padding: 10px;
   cursor: pointer;
+  text-align: center;
 }
 
 .TabMenu li:hover {
