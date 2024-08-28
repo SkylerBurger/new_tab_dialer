@@ -29,9 +29,3 @@
 .hide {
   display: none !important;
 }
-
-.confirm {
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-}

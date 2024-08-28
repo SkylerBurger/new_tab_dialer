@@ -1,0 +1,33 @@
+.Confirm {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup {
+  background-color: #faf0e6;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.popup button {
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  color: black;
+  cursor: pointer;
+  align-self: center;
+}

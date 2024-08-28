@@ -1,6 +1,7 @@
 import "./GroupDetails.css";
 import { useGroupDetails } from "./useGroupDetails";
 import { ArrowSelector } from "../ArrowSelector/ArrowSelector";
+import { Confirm } from "../Confirm/Confirm";
 
 function DialDetails({ index, first, last, name, image, url, shiftDial }) {
   return (
@@ -28,15 +29,18 @@ export default function GroupDetails({
   setShowDetails,
   showConfirm,
   setShowConfirm,
+  setShowSettings,
   updateGroupDials,
   updateGroupIndex,
 }) {
-  const { applyChanges, dials, forceGroupNavigation, shiftDial } =
+  const { applyChanges, confirmOptions, dials, message, onCancel, shiftDial } =
     useGroupDetails({
       groupDials,
       setIsPendingChanges,
+      showConfirm,
       setShowConfirm,
       setShowDetails,
+      setShowSettings,
       updateGroupDials,
       updateGroupIndex,
     });
@@ -44,13 +48,7 @@ export default function GroupDetails({
   return (
     <div className="GroupDetails">
       <h1>{groupName}</h1>
-      <div className={`confirm ${showConfirm === null ? "hide" : ""}`}>
-        <p>Unsaved changes. Return to apply them or continue without saving.</p>
-        <button onClick={() => setShowConfirm(null)}>Return</button>
-        <button onClick={() => forceGroupNavigation(showConfirm.newIndex)}>
-          Continue
-        </button>
-      </div>
+      {showConfirm && <Confirm message={message} options={confirmOptions} />}
       <ul>
         {dials.map((dial, index) => (
           <DialDetails
@@ -63,7 +61,7 @@ export default function GroupDetails({
         ))}
       </ul>
       <button>Add Dial</button>
-      <button onClick={() => setShowDetails(false)}>Cancel</button>
+      <button onClick={onCancel}>Cancel</button>
       <button
         onClick={() => applyChanges(groupName, dials)}
         disabled={!isPendingChanges}

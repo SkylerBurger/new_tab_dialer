@@ -90,7 +90,11 @@ function GroupTabs({
           );
         })}
       </ul>
-      <SettingsTab setShowSettings={setShowSettings} />
+      <SettingsTab
+        isPendingChanges={isPendingChanges}
+        setShowConfirm={setShowConfirm}
+        setShowSettings={setShowSettings}
+      />
     </nav>
   );
 }
