@@ -1,6 +1,7 @@
 import "./GroupDetails.css";
 import { useGroupDetails } from "./useGroupDetails";
 import { ArrowSelector } from "../ArrowSelector/ArrowSelector";
+import { Confirm } from "../Confirm/Confirm";
 
 function DialDetails({ index, first, last, name, image, url, shiftDial }) {
   return (
@@ -44,13 +45,7 @@ export default function GroupDetails({
   return (
     <div className="GroupDetails">
       <h1>{groupName}</h1>
-      <div className={`confirm ${showConfirm === null ? "hide" : ""}`}>
-        <p>Unsaved changes. Return to apply them or continue without saving.</p>
-        <button onClick={() => setShowConfirm(null)}>Return</button>
-        <button onClick={() => forceGroupNavigation(showConfirm.newIndex)}>
-          Continue
-        </button>
-      </div>
+      <Confirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} forceGroupNavigation={forceGroupNavigation} />
       <ul>
         {dials.map((dial, index) => (
           <DialDetails
