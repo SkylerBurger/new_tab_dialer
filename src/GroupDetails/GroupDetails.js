@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import "./GroupDetails.css";
 import { useGroupDetails } from "./useGroupDetails";
 import { ArrowSelector } from "../ArrowSelector/ArrowSelector";
@@ -17,6 +20,11 @@ function DialDetails({ index, first, last, name, image, url, shiftDial }) {
         <p>{name}</p>
         <p>{url}</p>
       </div>
+      <FontAwesomeIcon
+        className="faTrash"
+        icon={faTrash}
+        onClick={() => shiftDial(index, null)}
+      />
     </li>
   );
 }
