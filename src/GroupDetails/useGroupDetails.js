@@ -20,9 +20,12 @@ export function useGroupDetails({
   }, [dials, groupDials]);
 
   const shiftDial = (index, offset) => {
+    // If offset is null, the dial is deleted rather than shifted
     const newDials = [...dials];
     const dial = newDials.splice(index, 1)[0];
-    newDials.splice(index + offset, 0, dial);
+    if (offset !== null) {
+      newDials.splice(index + offset, 0, dial);
+    }
     setDials(newDials);
   };
 
