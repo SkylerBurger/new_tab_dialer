@@ -11,6 +11,7 @@ export function useGroupDetails({
   updateGroupIndex,
 }) {
   const [dials, setDials] = useState([...groupDials]);
+  const [showAddDial, setShowAddDial] = useState(false);
 
   const arraysEqual = (a, b) =>
     a.length === b.length && a.every((val, index) => val === b[index]);
@@ -65,12 +66,19 @@ export function useGroupDetails({
     setShowDetails(false);
   };
 
+  const insertNewDial = (name, icon, link) => {
+    setDials([...dials, { name, icon, link }]);
+  };
+
   return {
     applyChanges,
     confirmOptions,
     dials,
+    insertNewDial,
     message,
     onCancel,
     shiftDial,
+    showAddDial,
+    setShowAddDial,
   };
 }

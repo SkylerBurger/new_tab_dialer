@@ -6,6 +6,7 @@ import "./GroupDetails.css";
 import { useGroupDetails } from "./useGroupDetails";
 import { ArrowSelector } from "../ArrowSelector/ArrowSelector";
 import { Confirm } from "../Confirm/Confirm";
+import { NewDialForm } from "../NewDialForm/NewDialForm";
 
 function DeleteDial({ index, shiftDial }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -39,7 +40,7 @@ function DeleteDial({ index, shiftDial }) {
   );
 }
 
-function DialDetails({ index, first, last, name, image, url, shiftDial }) {
+function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
   return (
     <li className="DialDetails">
       <ArrowSelector
@@ -48,10 +49,10 @@ function DialDetails({ index, first, last, name, image, url, shiftDial }) {
         onUp={() => shiftDial(index, -1)}
         upAble={!first}
       />
-      <img src={image} alt={name} />
+      <img src={icon} alt={name} />
       <div>
         <p>{name}</p>
-        <p>{url}</p>
+        <p>{link}</p>
       </div>
       <DeleteDial index={index} shiftDial={shiftDial} />
     </li>
@@ -70,22 +71,37 @@ export default function GroupDetails({
   updateGroupDials,
   updateGroupIndex,
 }) {
-  const { applyChanges, confirmOptions, dials, message, onCancel, shiftDial } =
-    useGroupDetails({
-      groupDials,
-      setIsPendingChanges,
-      showConfirm,
-      setShowConfirm,
-      setShowDetails,
-      setShowSettings,
-      updateGroupDials,
-      updateGroupIndex,
-    });
+  const {
+    applyChanges,
+    confirmOptions,
+    dials,
+    insertNewDial,
+    message,
+    onCancel,
+    shiftDial,
+    showAddDial,
+    setShowAddDial,
+  } = useGroupDetails({
+    groupDials,
+    setIsPendingChanges,
+    showConfirm,
+    setShowConfirm,
+    setShowDetails,
+    setShowSettings,
+    updateGroupDials,
+    updateGroupIndex,
+  });
 
   return (
     <div className="GroupDetails">
       <h1>{groupName}</h1>
       {showConfirm && <Confirm message={message} options={confirmOptions} />}
+      {showAddDial && (
+        <NewDialForm
+          insertNewDial={insertNewDial}
+          setShowAddDial={setShowAddDial}
+        />
+      )}
       <ul>
         {dials.map((dial, index) => (
           <DialDetails
@@ -97,7 +113,7 @@ export default function GroupDetails({
           />
         ))}
       </ul>
-      <button>Add Dial</button>
+      <button onClick={() => setShowAddDial(true)}>Add Dial</button>
       <button onClick={onCancel}>Cancel</button>
       <button
         onClick={() => applyChanges(groupName, dials)}
