@@ -17,26 +17,42 @@ export function NewDialForm({ insertNewDial, setShowAddDial }) {
   };
 
   return (
-    <div className="NewDialForm">
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={handleNameChange}
-      />
-      <input
-        type="text"
-        placeholder="Icon"
-        value={icon}
-        onChange={handleIconChange}
-      />
-      <input
-        type="text"
-        placeholder="Link"
-        value={link}
-        onChange={handleLinkChange}
-      />
-      <button onClick={handleAdd}>Add</button>
+    <div className="NewDialPopup">
+      <div className="NewDialForm">
+        <div>
+          <label>Name</label>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={handleNameChange}
+          />
+        </div>
+        <div>
+          <label>Icon URL</label>
+          <input
+            type="text"
+            placeholder="Icon"
+            value={icon}
+            onChange={handleIconChange}
+          />
+        </div>
+        <div>
+          <label>Link URL</label>
+          <input
+            type="text"
+            placeholder="Link"
+            value={link}
+            onChange={handleLinkChange}
+          />
+        </div>
+        <button className="red" onClick={() => setShowAddDial(false)}>
+          Cancel
+        </button>
+        <button className="green" onClick={handleAdd}>
+          Create Dial
+        </button>
+      </div>
     </div>
   );
 }
