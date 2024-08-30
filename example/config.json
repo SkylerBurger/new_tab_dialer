@@ -6,28 +6,28 @@
       "groupDials": [
         {
           "name": "BeCU",
-          "url": "http://www.becu.org/",
-          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/becu.png"
+          "link": "http://www.becu.org/",
+          "icon": "https://my-bucket.s3.us-west-1.amazonaws.com/becu.png"
         },
         {
           "name": "Chase",
-          "url": "https://www.chase.com/",
-          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/chase.png"
+          "link": "https://www.chase.com/",
+          "icon": "https://my-bucket.s3.us-west-1.amazonaws.com/chase.png"
         },
         {
           "name": "Current Status IO",
-          "url": "https://currentstatus.io/",
-          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/news_icon.png"
+          "link": "https://currentstatus.io/",
+          "icon": "https://my-bucket.s3.us-west-1.amazonaws.com/news_icon.png"
         },
         {
           "name": "GitHub",
-          "url": "https://www.github.com/",
-          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/github.png"
+          "link": "https://www.github.com/",
+          "icon": "https://my-bucket.s3.us-west-1.amazonaws.com/github.png"
         },
         {
           "name": "Gmail",
-          "url": "https://www.gmail.com/",
-          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/gmail.png"
+          "link": "https://www.gmail.com/",
+          "icon": "https://my-bucket.s3.us-west-1.amazonaws.com/gmail.png"
         }
       ]
     },
@@ -36,18 +36,18 @@
       "groupDials": [
         {
           "name": "Shudder",
-          "url": "https://www.shudder.com/",
-          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/shudder.png"
+          "link": "https://www.shudder.com/",
+          "icon": "https://my-bucket.s3.us-west-1.amazonaws.com/shudder.png"
         },
         {
           "name": "Tubi",
-          "url": "http://www.tubi.com/",
-          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/tubi.png"
+          "link": "http://www.tubi.com/",
+          "icon": "https://my-bucket.s3.us-west-1.amazonaws.com/tubi.png"
         },
         {
           "name": "YouTube",
-          "url": "https://www.youtube.com/",
-          "image": "https://my-bucket.s3.us-west-1.amazonaws.com/youtube.png"
+          "link": "https://www.youtube.com/",
+          "icon": "https://my-bucket.s3.us-west-1.amazonaws.com/youtube.png"
         }
       ]
     }

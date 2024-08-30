@@ -24,8 +24,10 @@
   padding: 10px;
   cursor: pointer;
   text-align: center;
+  animation: fadeIn 0.3s;
 }
 
 .TabMenu li:hover {
   background-color: #f0f0f05b;
+  transition: background-color 0.3s;
 }
