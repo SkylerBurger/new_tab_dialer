@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function useGroupDetails({
-  groupDials,
+  dials,
   setIsPendingChanges,
   showConfirm,
   setShowConfirm,
@@ -10,29 +10,30 @@ export function useGroupDetails({
   updateGroupDials,
   updateGroupIndex,
 }) {
-  const [dials, setDials] = useState([...groupDials]);
+  const [tempDials, setTempDials] = useState([...dials]);
   const [showAddDial, setShowAddDial] = useState(false);
 
   const arraysEqual = (a, b) =>
     a.length === b.length && a.every((val, index) => val === b[index]);
 
   useEffect(() => {
-    setIsPendingChanges(arraysEqual(groupDials, dials) ? false : true);
-  }, [dials, groupDials]);
+    setIsPendingChanges(arraysEqual(dials, tempDials) ? false : true);
+  }, [tempDials, dials]);
 
   const shiftDial = (index, offset) => {
     // If offset is null, the dial is deleted rather than shifted
-    const newDials = [...dials];
-    const dial = newDials.splice(index, 1)[0];
+    const newDials = [...tempDials];
+    const targetDial = newDials.splice(index, 1)[0];
     if (offset !== null) {
-      newDials.splice(index + offset, 0, dial);
+      newDials.splice(index + offset, 0, targetDial);
     }
-    setDials(newDials);
+    setTempDials(newDials);
   };
 
   const applyChanges = (groupName, dials) => {
     updateGroupDials(groupName, dials);
     setShowDetails(false);
+    setIsPendingChanges(false);
   };
 
   function forceGroupNavigation(newIndex) {
@@ -67,13 +68,13 @@ export function useGroupDetails({
   };
 
   const insertNewDial = (name, icon, link) => {
-    setDials([...dials, { name, icon, link }]);
+    setTempDials([...tempDials, { name, icon, link }]);
   };
 
   return {
     applyChanges,
     confirmOptions,
-    dials,
+    tempDials,
     insertNewDial,
     message,
     onCancel,

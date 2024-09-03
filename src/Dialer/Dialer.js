@@ -6,9 +6,9 @@ import GroupTabs from "../GroupTabs/GroupTabs";
 import Time from "../Time/Time";
 
 export default function Dialer({
-  dialGroups,
+  groups,
   dialsVisibility,
-  groupIndex,
+  currentGroupIndex,
   setDialsVisibility,
   setShowSettings,
   timeEnabled,
@@ -21,11 +21,11 @@ export default function Dialer({
   const [showConfirm, setShowConfirm] = useState(null);
 
   return (
-    dialGroups && (
+    groups && (
       <>
         <GroupTabs
-          groups={dialGroups}
-          groupIndex={groupIndex}
+          groups={groups}
+          currentGroupIndex={currentGroupIndex}
           isPendingChanges={isPendingChanges}
           setShowConfirm={setShowConfirm}
           setShowDetails={setShowDetails}
@@ -37,7 +37,7 @@ export default function Dialer({
 
         {showDetails ? (
           <GroupDetails
-            {...dialGroups[groupIndex]}
+            {...groups[currentGroupIndex]}
             showConfirm={showConfirm}
             setShowConfirm={setShowConfirm}
             isPendingChanges={isPendingChanges}
@@ -49,7 +49,7 @@ export default function Dialer({
           />
         ) : (
           <DialGroup
-            {...dialGroups[groupIndex]}
+            {...groups[currentGroupIndex]}
             dialsVisibility={dialsVisibility}
             setDialsVisibility={setDialsVisibility}
           />

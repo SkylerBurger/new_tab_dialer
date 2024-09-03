@@ -60,8 +60,8 @@ function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
 }
 
 export default function GroupDetails({
-  groupDials,
-  groupName,
+  dials,
+  name,
   isPendingChanges,
   setIsPendingChanges,
   setShowDetails,
@@ -74,7 +74,7 @@ export default function GroupDetails({
   const {
     applyChanges,
     confirmOptions,
-    dials,
+    tempDials,
     insertNewDial,
     message,
     onCancel,
@@ -82,7 +82,7 @@ export default function GroupDetails({
     showAddDial,
     setShowAddDial,
   } = useGroupDetails({
-    groupDials,
+    dials,
     setIsPendingChanges,
     showConfirm,
     setShowConfirm,
@@ -94,7 +94,7 @@ export default function GroupDetails({
 
   return (
     <div className="GroupDetails">
-      <h1>{groupName}</h1>
+      <h1>{name}</h1>
       {showConfirm && <Confirm message={message} options={confirmOptions} />}
       {showAddDial && (
         <NewDialForm
@@ -103,12 +103,12 @@ export default function GroupDetails({
         />
       )}
       <ul>
-        {dials.map((dial, index) => (
+        {tempDials.map((dial, index) => (
           <DialDetails
             {...dial}
             index={index}
             first={index === 0}
-            last={index === dials.length - 1}
+            last={index === tempDials.length - 1}
             shiftDial={shiftDial}
           />
         ))}
@@ -116,7 +116,7 @@ export default function GroupDetails({
       <button onClick={() => setShowAddDial(true)}>Add Dial</button>
       <button onClick={onCancel}>Cancel</button>
       <button
-        onClick={() => applyChanges(groupName, dials)}
+        onClick={() => applyChanges(name, tempDials)}
         disabled={!isPendingChanges}
       >
         Apply

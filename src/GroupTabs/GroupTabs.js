@@ -55,7 +55,7 @@ function GroupTab({
       key={idx}
       onClick={handleClick}
     >
-      {group.groupName}
+      {group.name}
       {isSelected && <TabOptions onClick={openMenu} />}
       {showTabMenu && (
         <TabMenu onClose={closeMenu} setShowDetails={setShowDetails} />
@@ -66,7 +66,7 @@ function GroupTab({
 
 function GroupTabs({
   groups,
-  groupIndex,
+  currentGroupIndex,
   isPendingChanges,
   setShowConfirm,
   setShowDetails,
@@ -82,7 +82,7 @@ function GroupTabs({
               group={group}
               idx={idx}
               isPendingChanges={isPendingChanges}
-              isSelected={idx === parseInt(groupIndex)}
+              isSelected={idx === parseInt(currentGroupIndex)}
               setShowConfirm={setShowConfirm}
               setShowDetails={setShowDetails}
               updateGroupIndex={updateGroupIndex}

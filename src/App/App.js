@@ -19,20 +19,20 @@ function App() {
 
   function setBackgroundImg() {
     const bodyEl = document.getElementById("App");
-    bodyEl.style.backgroundImage = `url('${config.background}')`;
+    bodyEl.style.backgroundImage = `url('${config.settings.background}')`;
   }
 
   const renderDialer = () => {
     return (
       config && (
         <Dialer
-          dialGroups={config.dialGroups}
+          groups={config.groups}
           dialsVisibility={dialsVisibility}
-          groupIndex={config.groupIndex}
+          currentGroupIndex={config.settings.currentGroupIndex}
           setDialsVisibility={setDialsVisibility}
           setShowSettings={setShowSettings}
-          timeEnabled={config.timeEnabled}
-          timeFormat={config.timeFormat}
+          timeEnabled={config.settings.timeEnabled}
+          timeFormat={config.settings.timeFormat}
           updateGroupIndex={updateGroupIndex}
           updateGroupDials={updateGroupDials}
         />
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div id="App">
-      {config && config.background ? setBackgroundImg() : null}
+      {config && config.settings.background ? setBackgroundImg() : null}
       {showSettings ? (
         <Settings
           config={config}

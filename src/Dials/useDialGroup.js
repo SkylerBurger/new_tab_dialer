@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
-function useDialGroup(groupDials, setDialsVisibility) {
+function useDialGroup({ dials, setDialsVisibility }) {
   const [loadedImgCount, setLoadedImgCount] = useState(0);
 
   useEffect(() => {
     setLoadedImgCount(0);
-  }, [groupDials]);
+  }, [dials]);
 
   useEffect(() => {
-    if (loadedImgCount === groupDials.length) {
+    if (loadedImgCount === dials.length) {
       setDialsVisibility(true);
     }
-  }, [loadedImgCount, groupDials.length]);
+  }, [loadedImgCount, dials.length]);
 
   const handleImgLoad = () => {
     setLoadedImgCount((prev) => prev + 1);

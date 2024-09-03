@@ -29,7 +29,7 @@ export function SettingsTab({
 }
 
 export function Settings({ config, getData, setShowSettings, updateSetting }) {
-  const [urlInputValue, setUrlInputValue] = useState(config.configUrl);
+  const [urlInputValue, setUrlInputValue] = useState(config.settings.configUrl);
 
   const handleConfigRefresh = () => {
     const newUrl = document.getElementById("config-url");
@@ -60,8 +60,8 @@ export function Settings({ config, getData, setShowSettings, updateSetting }) {
           className="refresh-icon"
         />
         <TimeSettings
-          timeEnabled={config.timeEnabled}
-          timeFormat={config.timeFormat}
+          timeEnabled={config.settings.timeEnabled}
+          timeFormat={config.settings.timeFormat}
           updateSetting={updateSetting}
         />
       </div>
