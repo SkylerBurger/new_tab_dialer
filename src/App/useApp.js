@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
+import useSettingsStore from "../Stores/useSettingsStore";
 
 function useApp() {
   const [config, setConfig] = useState(null);
   const [dialsVisibility, setDialsVisibility] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [groups, updateGroups] = useGroupStore((state) => [
+    state.groups,
+    state.updateGroups,
+  ]);
+  const [settings, updateSettings] = useSettingsStore((state) => [
+    state.settings,
+    state.updateSettings,
+  ]);
 
   const updateSetting = (settingName, settingValue) => {
     const newConfig = {
@@ -47,6 +56,9 @@ function useApp() {
       const parsedConfig = await response.json();
       // TODO: Add validation of the retrieved config here; Joi too much?
       parsedConfig.settings.configUrl = configUrl;
+      updateSettings(parsedConfig.settings);
+      updateGroups(parsedConfig.groups);
+      // TODO: Remove updateConfig once Zustand is ready
       updateConfig(parsedConfig);
     } catch (error) {
       console.error(error);
@@ -56,7 +68,6 @@ function useApp() {
   useEffect(() => {
     const savedConfig = localStorage.getItem("dialer-config");
     if (savedConfig) {
-      useGroupStore.getState().loadFromLocalStorage();
       setConfig(JSON.parse(savedConfig));
     } else {
       const configUrl = window.prompt("URL to JSON config file:");
