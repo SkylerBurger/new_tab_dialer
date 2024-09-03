@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-// import useGroupStore from "../Stores/useGroupStore";
+import useGroupStore from "../Stores/useGroupStore";
 
 function useApp() {
   const [config, setConfig] = useState(null);
@@ -56,7 +56,7 @@ function useApp() {
   useEffect(() => {
     const savedConfig = localStorage.getItem("dialer-config");
     if (savedConfig) {
-      // useGroupStore.getState().loadFromLocalStorage();
+      useGroupStore.getState().loadFromLocalStorage();
       setConfig(JSON.parse(savedConfig));
     } else {
       const configUrl = window.prompt("URL to JSON config file:");
