@@ -3,20 +3,21 @@ import { faGear, faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import NavClose from "../NavClose/NavClose";
+import useSettingStore from "../Stores/useSettingStore";
 
 import "./Settings.css";
 import { TimeSettings } from "./TimeSettings/TimeSettings";
 
-export function SettingsTab({
-  isPendingChanges,
-  setShowConfirm,
-  setShowSettings,
-}) {
+export function SettingsTab({ setShowConfirm }) {
+  const [isPendingChanges, updateShowSettings] = useSettingStore((state) => [
+    state.isPendingChanges,
+    state.updateShowSettings,
+  ]);
   function handleClick() {
     if (isPendingChanges) {
       setShowConfirm({ newIndex: "settings" });
     } else {
-      setShowSettings(true);
+      updateShowSettings(true);
     }
   }
   return (
@@ -28,8 +29,23 @@ export function SettingsTab({
   );
 }
 
-export function Settings({ config, getData, setShowSettings, updateSetting }) {
-  const [urlInputValue, setUrlInputValue] = useState(config.settings.configUrl);
+export function Settings({ config, getData }) {
+  const [
+    configUrl,
+    timeEnabled,
+    timeFormat,
+    updateSetting,
+    updateShowSettings,
+  ] = useSettingStore((state) => {
+    return [
+      state.configUrl,
+      state.timeEnabled,
+      state.timeFormat,
+      state.updateSetting,
+      state.updateShowSettings,
+    ];
+  });
+  const [urlInputValue, setUrlInputValue] = useState(configUrl);
 
   const handleConfigRefresh = () => {
     const newUrl = document.getElementById("config-url");
@@ -43,7 +59,7 @@ export function Settings({ config, getData, setShowSettings, updateSetting }) {
 
   return (
     <>
-      <NavClose onClose={() => setShowSettings(false)} />
+      <NavClose onClose={() => updateShowSettings(false)} />
       <div className="Settings">
         <h1>Settings</h1>
         <h2>Config File URL</h2>
@@ -60,8 +76,8 @@ export function Settings({ config, getData, setShowSettings, updateSetting }) {
           className="refresh-icon"
         />
         <TimeSettings
-          timeEnabled={config.settings.timeEnabled}
-          timeFormat={config.settings.timeFormat}
+          timeEnabled={timeEnabled}
+          timeFormat={timeFormat}
           updateSetting={updateSetting}
         />
       </div>

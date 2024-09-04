@@ -60,36 +60,28 @@ function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
 }
 
 export default function GroupDetails({
-  dials,
-  name,
-  isPendingChanges,
-  setIsPendingChanges,
   setShowDetails,
   showConfirm,
   setShowConfirm,
-  setShowSettings,
   updateGroupDials,
-  updateGroupIndex,
 }) {
   const {
     applyChanges,
     confirmOptions,
+    isPendingChanges,
     tempDials,
     insertNewDial,
     message,
+    name,
     onCancel,
     shiftDial,
     showAddDial,
     setShowAddDial,
   } = useGroupDetails({
-    dials,
-    setIsPendingChanges,
     showConfirm,
     setShowConfirm,
     setShowDetails,
-    setShowSettings,
     updateGroupDials,
-    updateGroupIndex,
   });
 
   return (

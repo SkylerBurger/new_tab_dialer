@@ -3,20 +3,23 @@ import { faAnglesDown, faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import { SettingsTab } from "../Settings/Settings";
+import useSettingStore from "../Stores/useSettingStore";
 
 import "./groupTabs.css";
 import TabMenu from "./TabMenu/TabMenu";
 
-function GroupTab({
-  group,
-  idx,
-  isPendingChanges,
-  isSelected,
-  setShowConfirm,
-  setShowDetails,
-  updateGroupIndex,
-}) {
+function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
   const [showTabMenu, setShowTabMenu] = useState(false);
+  const [currentGroupIndex, isPendingChanges, updateSetting] = useSettingStore(
+    (state) => {
+      return [
+        state.currentGroupIndex,
+        state.isPendingChanges,
+        state.updateSetting,
+      ];
+    },
+  );
+  const isSelected = idx === parseInt(currentGroupIndex);
 
   function TabOptions({ onClick }) {
     return (
@@ -29,13 +32,13 @@ function GroupTab({
     );
   }
 
-  function handleClick({ target }) {
+  function handleTabClick({ target }) {
     const liElement = target.closest("li[data-index]");
     if (liElement && isPendingChanges) {
       setShowConfirm({ newIndex: liElement.dataset.index });
     } else if (liElement) {
       setShowDetails(false);
-      updateGroupIndex(liElement.dataset.index);
+      updateSetting("currentGroupIndex", liElement.dataset.index);
     }
   }
 
@@ -53,9 +56,9 @@ function GroupTab({
       className={isSelected ? "selectedGroup" : ""}
       data-index={idx}
       key={idx}
-      onClick={handleClick}
+      onClick={handleTabClick}
     >
-      {group.name}
+      {name}
       {isSelected && <TabOptions onClick={openMenu} />}
       {showTabMenu && (
         <TabMenu onClose={closeMenu} setShowDetails={setShowDetails} />
@@ -64,37 +67,22 @@ function GroupTab({
   );
 }
 
-function GroupTabs({
-  groups,
-  currentGroupIndex,
-  isPendingChanges,
-  setShowConfirm,
-  setShowDetails,
-  setShowSettings,
-  updateGroupIndex,
-}) {
+function GroupTabs({ groups, setShowConfirm, setShowDetails }) {
   return (
     <nav className="GroupTabs">
       <ul>
         {groups.map((group, idx) => {
           return (
             <GroupTab
-              group={group}
               idx={idx}
-              isPendingChanges={isPendingChanges}
-              isSelected={idx === parseInt(currentGroupIndex)}
+              name={group.name}
               setShowConfirm={setShowConfirm}
               setShowDetails={setShowDetails}
-              updateGroupIndex={updateGroupIndex}
             />
           );
         })}
       </ul>
-      <SettingsTab
-        isPendingChanges={isPendingChanges}
-        setShowConfirm={setShowConfirm}
-        setShowSettings={setShowSettings}
-      />
+      <SettingsTab setShowConfirm={setShowConfirm} />
     </nav>
   );
 }

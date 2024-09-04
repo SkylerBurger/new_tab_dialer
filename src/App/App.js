@@ -8,12 +8,9 @@ function App() {
   const {
     config,
     getData,
-    updateGroupIndex,
     dialsVisibility,
     setDialsVisibility,
     showSettings,
-    setShowSettings,
-    updateSetting,
     updateGroupDials,
   } = useApp();
 
@@ -30,10 +27,8 @@ function App() {
           dialsVisibility={dialsVisibility}
           currentGroupIndex={config.settings.currentGroupIndex}
           setDialsVisibility={setDialsVisibility}
-          setShowSettings={setShowSettings}
           timeEnabled={config.settings.timeEnabled}
           timeFormat={config.settings.timeFormat}
-          updateGroupIndex={updateGroupIndex}
           updateGroupDials={updateGroupDials}
         />
       )
@@ -44,12 +39,7 @@ function App() {
     <div id="App">
       {config && config.settings.background ? setBackgroundImg() : null}
       {showSettings ? (
-        <Settings
-          config={config}
-          getData={getData}
-          setShowSettings={setShowSettings}
-          updateSetting={updateSetting}
-        />
+        <Settings config={config} getData={getData} />
       ) : (
         renderDialer()
       )}

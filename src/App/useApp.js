@@ -1,28 +1,20 @@
 import { useEffect, useState } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
-import useSettingsStore from "../Stores/useSettingsStore";
+import useSettingStore from "../Stores/useSettingStore";
 
 function useApp() {
   const [config, setConfig] = useState(null);
   const [dialsVisibility, setDialsVisibility] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-  const [groups, updateGroups] = useGroupStore((state) => [
-    state.groups,
-    state.updateGroups,
-  ]);
-  const [settings, updateSettings] = useSettingsStore((state) => [
-    state.settings,
-    state.updateSettings,
-  ]);
 
-  const updateSetting = (settingName, settingValue) => {
-    const newConfig = {
-      ...config,
-      settings: { ...config.settings, [settingName]: settingValue },
-    };
-    updateConfig(newConfig);
-  };
+  const [showSettings, updateAllSettings] = useSettingStore((state) => [
+    state.showSettings,
+    state.updateAllSettings,
+  ]);
+  const [groups, updateAllGroups] = useGroupStore((state) => [
+    state.groups,
+    state.updateAllGroups,
+  ]);
 
   const updateConfig = (newConfigObj) => {
     localStorage.setItem("dialer-config", JSON.stringify(newConfigObj));
@@ -39,25 +31,14 @@ function useApp() {
     updateConfig(newConfig);
   };
 
-  const updateGroupIndex = (newIndex) => {
-    if (newIndex !== config.settings.currentGroupIndex) {
-      const newConfig = {
-        ...config,
-        settings: { ...config.settings, currentGroupIndex: newIndex },
-      };
-      setDialsVisibility(false);
-      updateConfig(newConfig);
-    }
-  };
-
   const getData = async (configUrl) => {
     try {
       const response = await fetch(configUrl);
       const parsedConfig = await response.json();
       // TODO: Add validation of the retrieved config here; Joi too much?
       parsedConfig.settings.configUrl = configUrl;
-      updateSettings(parsedConfig.settings);
-      updateGroups(parsedConfig.groups);
+      updateAllSettings(parsedConfig.settings);
+      updateAllGroups(parsedConfig.groups);
       // TODO: Remove updateConfig once Zustand is ready
       updateConfig(parsedConfig);
     } catch (error) {
@@ -78,12 +59,9 @@ function useApp() {
   return {
     config,
     getData,
-    updateGroupIndex,
     dialsVisibility,
     setDialsVisibility,
     showSettings,
-    setShowSettings,
-    updateSetting,
     updateGroupDials,
   };
 }

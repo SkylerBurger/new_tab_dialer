@@ -1,23 +1,36 @@
 import { useEffect, useState } from "react";
 
+import useGroupStore from "../Stores/useGroupStore";
+import useSettingStore from "../Stores/useSettingStore";
+
 export function useGroupDetails({
-  dials,
-  setIsPendingChanges,
   showConfirm,
   setShowConfirm,
   setShowDetails,
-  setShowSettings,
   updateGroupDials,
-  updateGroupIndex,
 }) {
-  const [tempDials, setTempDials] = useState([...dials]);
   const [showAddDial, setShowAddDial] = useState(false);
+  const [groups] = useGroupStore((state) => [state.groups]);
+  const [currentGroupIndex, isPendingChanges, updateSetting] = useSettingStore(
+    (state) => {
+      return [
+        state.currentGroupIndex,
+        state.isPendingChanges,
+        state.updateSetting,
+      ];
+    },
+  );
+  const { dials, name } = groups[currentGroupIndex];
+  const [tempDials, setTempDials] = useState([...dials]);
 
   const arraysEqual = (a, b) =>
     a.length === b.length && a.every((val, index) => val === b[index]);
 
   useEffect(() => {
-    setIsPendingChanges(arraysEqual(dials, tempDials) ? false : true);
+    updateSetting(
+      "isPendingChanges",
+      arraysEqual(dials, tempDials) ? false : true,
+    );
   }, [tempDials, dials]);
 
   const shiftDial = (index, offset) => {
@@ -33,17 +46,17 @@ export function useGroupDetails({
   const applyChanges = (groupName, dials) => {
     updateGroupDials(groupName, dials);
     setShowDetails(false);
-    setIsPendingChanges(false);
+    updateSetting("isPendingChanges", false);
   };
 
   function forceGroupNavigation(newIndex) {
     setShowConfirm(null);
     setShowDetails(false);
-    setIsPendingChanges(false);
+    updateSetting("isPendingChanges", false);
     if (newIndex === "settings") {
-      setShowSettings(true);
+      updateSetting("showSettings", true);
     } else {
-      updateGroupIndex(newIndex);
+      updateSetting("currentGroupIndex", newIndex);
     }
   }
 
@@ -63,7 +76,7 @@ export function useGroupDetails({
   const message = "You have unsaved changes.";
 
   const onCancel = () => {
-    setIsPendingChanges(false);
+    updateSetting("isPendingChanges", false);
     setShowDetails(false);
   };
 
@@ -74,9 +87,11 @@ export function useGroupDetails({
   return {
     applyChanges,
     confirmOptions,
+    isPendingChanges,
     tempDials,
     insertNewDial,
     message,
+    name,
     onCancel,
     shiftDial,
     showAddDial,

@@ -2,8 +2,8 @@ import "./dialGroup.css";
 import Dial from "./Dial";
 import useDialGroup from "./useDialGroup";
 
-function DialGroup({ dials, dialsVisibility, setDialsVisibility }) {
-  const { handleImgLoad } = useDialGroup({ dials, setDialsVisibility });
+function DialGroup({ dialsVisibility, setDialsVisibility }) {
+  const { dials, handleImgLoad } = useDialGroup({ setDialsVisibility });
 
   return (
     <div className={`DialGroup ${dialsVisibility ? "fade-in" : "fade-out"}`}>
