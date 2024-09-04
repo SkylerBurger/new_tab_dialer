@@ -63,7 +63,6 @@ export default function GroupDetails({
   setShowDetails,
   showConfirm,
   setShowConfirm,
-  updateGroupDials,
 }) {
   const {
     applyChanges,
@@ -81,7 +80,6 @@ export default function GroupDetails({
     showConfirm,
     setShowConfirm,
     setShowDetails,
-    updateGroupDials,
   });
 
   return (

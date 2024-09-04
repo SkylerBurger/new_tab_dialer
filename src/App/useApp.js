@@ -21,16 +21,6 @@ function useApp() {
     setConfig(newConfigObj);
   };
 
-  const updateGroupDials = (groupName, newDials) => {
-    const newConfig = {
-      ...config,
-      groups: config.groups.map((group) =>
-        group.name === groupName ? { ...group, dials: newDials } : group,
-      ),
-    };
-    updateConfig(newConfig);
-  };
-
   const getData = async (configUrl) => {
     try {
       const response = await fetch(configUrl);
@@ -62,7 +52,6 @@ function useApp() {
     dialsVisibility,
     setDialsVisibility,
     showSettings,
-    updateGroupDials,
   };
 }
 

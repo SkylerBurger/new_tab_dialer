@@ -5,35 +5,13 @@ import "./App.css";
 import useApp from "./useApp";
 
 function App() {
-  const {
-    config,
-    getData,
-    dialsVisibility,
-    setDialsVisibility,
-    showSettings,
-    updateGroupDials,
-  } = useApp();
+  const { config, getData, dialsVisibility, setDialsVisibility, showSettings } =
+    useApp();
 
   function setBackgroundImg() {
     const bodyEl = document.getElementById("App");
     bodyEl.style.backgroundImage = `url('${config.settings.background}')`;
   }
-
-  const renderDialer = () => {
-    return (
-      config && (
-        <Dialer
-          groups={config.groups}
-          dialsVisibility={dialsVisibility}
-          currentGroupIndex={config.settings.currentGroupIndex}
-          setDialsVisibility={setDialsVisibility}
-          timeEnabled={config.settings.timeEnabled}
-          timeFormat={config.settings.timeFormat}
-          updateGroupDials={updateGroupDials}
-        />
-      )
-    );
-  };
 
   return (
     <div id="App">
@@ -41,7 +19,10 @@ function App() {
       {showSettings ? (
         <Settings config={config} getData={getData} />
       ) : (
-        renderDialer()
+        <Dialer
+          dialsVisibility={dialsVisibility}
+          setDialsVisibility={setDialsVisibility}
+        />
       )}
     </div>
   );

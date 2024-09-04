@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { SettingsTab } from "../Settings/Settings";
 import useSettingStore from "../Stores/useSettingStore";
+import useGroupStore from "../Stores/useGroupStore";
 
 import "./groupTabs.css";
 import TabMenu from "./TabMenu/TabMenu";
@@ -67,20 +68,23 @@ function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
   );
 }
 
-function GroupTabs({ groups, setShowConfirm, setShowDetails }) {
+function GroupTabs({ setShowConfirm, setShowDetails }) {
+  const groups = useGroupStore((state) => state.groups);
+
   return (
     <nav className="GroupTabs">
       <ul>
-        {groups.map((group, idx) => {
-          return (
-            <GroupTab
-              idx={idx}
-              name={group.name}
-              setShowConfirm={setShowConfirm}
-              setShowDetails={setShowDetails}
-            />
-          );
-        })}
+        {groups &&
+          groups.map((group, idx) => {
+            return (
+              <GroupTab
+                idx={idx}
+                name={group.name}
+                setShowConfirm={setShowConfirm}
+                setShowDetails={setShowDetails}
+              />
+            );
+          })}
       </ul>
       <SettingsTab setShowConfirm={setShowConfirm} />
     </nav>

@@ -5,42 +5,39 @@ import GroupDetails from "../GroupDetails/GroupDetails";
 import GroupTabs from "../GroupTabs/GroupTabs";
 import Time from "../Time/Time";
 
-export default function Dialer({
-  groups,
-  dialsVisibility,
-  setDialsVisibility,
-  timeEnabled,
-  timeFormat,
-  updateGroupDials,
-}) {
-  const [showDetails, setShowDetails] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(null);
+import { useDialer } from "./useDialer";
+
+export default function Dialer({ dialsVisibility, setDialsVisibility }) {
+  const {
+    showDetails,
+    setShowDetails,
+    showConfirm,
+    setShowConfirm,
+    timeEnabled,
+    timeFormat,
+  } = useDialer();
 
   return (
-    groups && (
-      <>
-        <GroupTabs
-          groups={groups}
-          setShowConfirm={setShowConfirm}
+    <>
+      <GroupTabs
+        setShowConfirm={setShowConfirm}
+        setShowDetails={setShowDetails}
+      />
+
+      {timeEnabled && <Time timeFormat={timeFormat} />}
+
+      {showDetails ? (
+        <GroupDetails
           setShowDetails={setShowDetails}
+          showConfirm={showConfirm}
+          setShowConfirm={setShowConfirm}
         />
-
-        {timeEnabled && <Time timeFormat={timeFormat} />}
-
-        {showDetails ? (
-          <GroupDetails
-            setShowDetails={setShowDetails}
-            showConfirm={showConfirm}
-            setShowConfirm={setShowConfirm}
-            updateGroupDials={updateGroupDials}
-          />
-        ) : (
-          <DialGroup
-            dialsVisibility={dialsVisibility}
-            setDialsVisibility={setDialsVisibility}
-          />
-        )}
-      </>
-    )
+      ) : (
+        <DialGroup
+          dialsVisibility={dialsVisibility}
+          setDialsVisibility={setDialsVisibility}
+        />
+      )}
+    </>
   );
 }

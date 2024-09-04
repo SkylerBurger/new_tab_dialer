@@ -11,6 +11,13 @@ const useGroupStore = create(
         return get().groups[useSettingStore.getState().currentGroupIndex];
       },
       updateAllGroups: (groups) => set({ groups }),
+      updateGroupDials: (groupName, newDials) => {
+        set({
+          groups: get().groups.map((group) =>
+            group.name === groupName ? { ...group, dials: newDials } : group,
+          ),
+        });
+      },
     }),
     {
       name: "dialer-groups",

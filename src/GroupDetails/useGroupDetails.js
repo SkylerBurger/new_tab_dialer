@@ -7,10 +7,12 @@ export function useGroupDetails({
   showConfirm,
   setShowConfirm,
   setShowDetails,
-  updateGroupDials,
 }) {
   const [showAddDial, setShowAddDial] = useState(false);
-  const [groups] = useGroupStore((state) => [state.groups]);
+  const [groups, updateGroupDials] = useGroupStore((state) => [
+    state.groups,
+    state.updateGroupDials,
+  ]);
   const [currentGroupIndex, isPendingChanges, updateSetting] = useSettingStore(
     (state) => {
       return [
