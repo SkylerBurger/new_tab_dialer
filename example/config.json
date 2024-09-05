@@ -1,9 +1,8 @@
 {
-  "background": "https://my-bucket.s3.us-west-1.amazonaws.com/window_oil_painting.png",
-  "dialGroups": [
+  "groups": [
     {
-      "groupName": "default",
-      "groupDials": [
+      "name": "default",
+      "dials": [
         {
           "name": "BeCU",
           "link": "http://www.becu.org/",
@@ -32,8 +31,8 @@
       ]
     },
     {
-      "groupName": "media",
-      "groupDials": [
+      "name": "media",
+      "dials": [
         {
           "name": "Shudder",
           "link": "https://www.shudder.com/",
@@ -52,5 +51,11 @@
       ]
     }
   ],
-  "groupIndex": 0
+  "settings": {
+    "background": "https://my-bucket.s3.us-west-1.amazonaws.com/window_oil_painting.png",
+    "configUrl": "",
+    "currentGroupIndex": 0,
+    "timeEnabled": false,
+    "timeFormat": "24"
+  }
 }

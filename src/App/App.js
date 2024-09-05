@@ -5,54 +5,11 @@ import "./App.css";
 import useApp from "./useApp";
 
 function App() {
-  const {
-    config,
-    getData,
-    updateGroupIndex,
-    dialsVisibility,
-    setDialsVisibility,
-    showSettings,
-    setShowSettings,
-    updateSetting,
-    updateGroupDials,
-  } = useApp();
-
-  function setBackgroundImg() {
-    const bodyEl = document.getElementById("App");
-    bodyEl.style.backgroundImage = `url('${config.background}')`;
-  }
-
-  const renderDialer = () => {
-    return (
-      config && (
-        <Dialer
-          dialGroups={config.dialGroups}
-          dialsVisibility={dialsVisibility}
-          groupIndex={config.groupIndex}
-          setDialsVisibility={setDialsVisibility}
-          setShowSettings={setShowSettings}
-          timeEnabled={config.timeEnabled}
-          timeFormat={config.timeFormat}
-          updateGroupIndex={updateGroupIndex}
-          updateGroupDials={updateGroupDials}
-        />
-      )
-    );
-  };
+  const { background, getData, showSettings } = useApp();
 
   return (
-    <div id="App">
-      {config && config.background ? setBackgroundImg() : null}
-      {showSettings ? (
-        <Settings
-          config={config}
-          getData={getData}
-          setShowSettings={setShowSettings}
-          updateSetting={updateSetting}
-        />
-      ) : (
-        renderDialer()
-      )}
+    <div id="App" style={{ backgroundImage: `url("${background}")` }}>
+      {showSettings ? <Settings getData={getData} /> : <Dialer />}
     </div>
   );
 }

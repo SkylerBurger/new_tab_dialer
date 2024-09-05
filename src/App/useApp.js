@@ -1,72 +1,48 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import useGroupStore from "../Stores/useGroupStore";
+import useSettingStore from "../Stores/useSettingStore";
+import useRenderStore from "../Stores/useRenderStore";
 
 function useApp() {
-  const [config, setConfig] = useState(null);
-  const [dialsVisibility, setDialsVisibility] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-
-  const updateSetting = (settingName, settingValue) => {
-    const newConfig = { ...config, [settingName]: settingValue };
-    updateConfig(newConfig);
-  };
-
-  const updateConfig = (newConfigObj) => {
-    localStorage.setItem("dialer-config", JSON.stringify(newConfigObj));
-    setConfig(newConfigObj);
-  };
-
-  const updateGroupDials = (groupName, newDials) => {
-    const newConfig = {
-      ...config,
-      dialGroups: config.dialGroups.map((group) =>
-        group.groupName === groupName
-          ? { ...group, groupDials: newDials }
-          : group,
-      ),
-    };
-    updateConfig(newConfig);
-  };
-
-  const updateGroupIndex = (newIndex) => {
-    if (newIndex !== config.groupIndex) {
-      const newConfig = { ...config, groupIndex: newIndex };
-      setDialsVisibility(false);
-      updateConfig(newConfig);
-    }
-  };
+  const [background, updateAllSettings, settingsFromStorage] = useSettingStore(
+    (state) => [
+      state.background,
+      state.updateAllSettings,
+      state.loadedFromStorage,
+    ],
+  );
+  const [groupsfromStorage, updateAllGroups] = useGroupStore((state) => [
+    state.loadedFromStorage,
+    state.updateAllGroups,
+  ]);
+  const [showSettings] = useRenderStore((state) => [state.showSettings]);
 
   const getData = async (configUrl) => {
     try {
       const response = await fetch(configUrl);
       const parsedConfig = await response.json();
       // TODO: Add validation of the retrieved config here; Joi too much?
-      parsedConfig.configUrl = configUrl;
-      updateConfig(parsedConfig);
+      parsedConfig.settings.configUrl = configUrl;
+      updateAllSettings(parsedConfig.settings);
+      updateAllGroups(parsedConfig.groups);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    const savedConfig = localStorage.getItem("dialer-config");
-    if (savedConfig) {
-      setConfig(JSON.parse(savedConfig));
-    } else {
+    const missingFromStorage = !groupsfromStorage || !settingsFromStorage;
+    if (missingFromStorage) {
       const configUrl = window.prompt("URL to JSON config file:");
       getData(configUrl);
     }
   }, []);
 
   return {
-    config,
+    background,
     getData,
-    updateGroupIndex,
-    dialsVisibility,
-    setDialsVisibility,
     showSettings,
-    setShowSettings,
-    updateSetting,
-    updateGroupDials,
   };
 }
 

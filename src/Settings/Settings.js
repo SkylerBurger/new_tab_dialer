@@ -3,15 +3,17 @@ import { faGear, faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import NavClose from "../NavClose/NavClose";
+import useSettingStore from "../Stores/useSettingStore";
+import useRenderStore from "../Stores/useRenderStore";
 
 import "./Settings.css";
 import { TimeSettings } from "./TimeSettings/TimeSettings";
 
-export function SettingsTab({
-  isPendingChanges,
-  setShowConfirm,
-  setShowSettings,
-}) {
+export function SettingsTab({ setShowConfirm }) {
+  const [isPendingChanges, setShowSettings] = useRenderStore((state) => {
+    return [state.isPendingChanges, state.setShowSettings];
+  });
+
   function handleClick() {
     if (isPendingChanges) {
       setShowConfirm({ newIndex: "settings" });
@@ -28,8 +30,19 @@ export function SettingsTab({
   );
 }
 
-export function Settings({ config, getData, setShowSettings, updateSetting }) {
-  const [urlInputValue, setUrlInputValue] = useState(config.configUrl);
+export function Settings({ getData }) {
+  const [configUrl, timeEnabled, timeFormat, updateSetting] = useSettingStore(
+    (state) => {
+      return [
+        state.configUrl,
+        state.timeEnabled,
+        state.timeFormat,
+        state.updateSetting,
+      ];
+    },
+  );
+  const [setShowSettings] = useRenderStore((state) => [state.setShowSettings]);
+  const [urlInputValue, setUrlInputValue] = useState(configUrl);
 
   const handleConfigRefresh = () => {
     const newUrl = document.getElementById("config-url");
@@ -60,8 +73,8 @@ export function Settings({ config, getData, setShowSettings, updateSetting }) {
           className="refresh-icon"
         />
         <TimeSettings
-          timeEnabled={config.timeEnabled}
-          timeFormat={config.timeFormat}
+          timeEnabled={timeEnabled}
+          timeFormat={timeFormat}
           updateSetting={updateSetting}
         />
       </div>
