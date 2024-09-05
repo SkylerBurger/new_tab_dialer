@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
 import useSettingStore from "../Stores/useSettingStore";
+import useRenderStore from "../Stores/useRenderStore";
 
 export function useGroupDetails({
   showConfirm,
@@ -13,15 +14,15 @@ export function useGroupDetails({
     state.groups,
     state.updateGroupDials,
   ]);
-  const [currentGroupIndex, isPendingChanges, updateSetting] = useSettingStore(
-    (state) => {
-      return [
-        state.currentGroupIndex,
-        state.isPendingChanges,
-        state.updateSetting,
-      ];
-    },
-  );
+  const [isPendingChanges, setIsPendingChanges, setShowSettings] =
+    useRenderStore((state) => [
+      state.isPendingChanges,
+      state.setIsPendingChanges,
+      state.setShowSettings,
+    ]);
+  const [currentGroupIndex, updateSetting] = useSettingStore((state) => {
+    return [state.currentGroupIndex, state.updateSetting];
+  });
   const { dials, name } = groups[currentGroupIndex];
   const [tempDials, setTempDials] = useState([...dials]);
 
@@ -29,10 +30,7 @@ export function useGroupDetails({
     a.length === b.length && a.every((val, index) => val === b[index]);
 
   useEffect(() => {
-    updateSetting(
-      "isPendingChanges",
-      arraysEqual(dials, tempDials) ? false : true,
-    );
+    setIsPendingChanges(!arraysEqual(dials, tempDials));
   }, [tempDials, dials]);
 
   const shiftDial = (index, offset) => {
@@ -48,15 +46,15 @@ export function useGroupDetails({
   const applyChanges = (groupName, dials) => {
     updateGroupDials(groupName, dials);
     setShowDetails(false);
-    updateSetting("isPendingChanges", false);
+    setIsPendingChanges(false);
   };
 
   function forceGroupNavigation(newIndex) {
     setShowConfirm(null);
     setShowDetails(false);
-    updateSetting("isPendingChanges", false);
+    setIsPendingChanges(false);
     if (newIndex === "settings") {
-      updateSetting("showSettings", true);
+      setShowSettings(true);
     } else {
       updateSetting("currentGroupIndex", newIndex);
     }
@@ -78,7 +76,7 @@ export function useGroupDetails({
   const message = "You have unsaved changes.";
 
   const onCancel = () => {
-    updateSetting("isPendingChanges", false);
+    setIsPendingChanges(false);
     setShowDetails(false);
   };
 

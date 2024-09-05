@@ -5,19 +5,18 @@ import "./App.css";
 import useApp from "./useApp";
 
 function App() {
-  const { config, getData, dialsVisibility, setDialsVisibility, showSettings } =
-    useApp();
-
-  function setBackgroundImg() {
-    const bodyEl = document.getElementById("App");
-    bodyEl.style.backgroundImage = `url('${config.settings.background}')`;
-  }
+  const {
+    background,
+    getData,
+    dialsVisibility,
+    setDialsVisibility,
+    showSettings,
+  } = useApp();
 
   return (
-    <div id="App">
-      {config && config.settings.background ? setBackgroundImg() : null}
+    <div id="App" style={{ backgroundImage: `url("${background}")` }}>
       {showSettings ? (
-        <Settings config={config} getData={getData} />
+        <Settings getData={getData} />
       ) : (
         <Dialer
           dialsVisibility={dialsVisibility}

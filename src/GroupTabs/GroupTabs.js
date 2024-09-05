@@ -5,21 +5,19 @@ import { useState } from "react";
 import { SettingsTab } from "../Settings/Settings";
 import useSettingStore from "../Stores/useSettingStore";
 import useGroupStore from "../Stores/useGroupStore";
+import useRenderStore from "../Stores/useRenderStore";
 
 import "./groupTabs.css";
 import TabMenu from "./TabMenu/TabMenu";
 
 function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
   const [showTabMenu, setShowTabMenu] = useState(false);
-  const [currentGroupIndex, isPendingChanges, updateSetting] = useSettingStore(
-    (state) => {
-      return [
-        state.currentGroupIndex,
-        state.isPendingChanges,
-        state.updateSetting,
-      ];
-    },
-  );
+  const [isPendingChanges] = useRenderStore((state) => {
+    return [state.isPendingChanges];
+  });
+  const [currentGroupIndex, updateSetting] = useSettingStore((state) => {
+    return [state.currentGroupIndex, state.updateSetting];
+  });
   const isSelected = idx === parseInt(currentGroupIndex);
 
   function TabOptions({ onClick }) {

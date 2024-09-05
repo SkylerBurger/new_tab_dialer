@@ -6,37 +6,31 @@ const useSettingStore = create(
     (set) => ({
       background: "",
       configUrl: "",
-      isPendingChanges: false,
       timeEnabled: false,
       timeFormat: "12",
       currentGroupIndex: 0,
-      showSettings: false,
+      loadedFromStorage: false,
+      setLoadedFromStorage: (value) => set({ loadedFromStorage: value }),
       updateAllSettings: (settings) => set({ ...settings }),
       updateGroupIndex: (newIndex) => {
-        set((state) => ({
-          ...state,
-          currentGroupIndex: parseInt(newIndex),
-          dialVisibility: false,
-        }));
+        set(() => {
+          currentGroupIndex: parseInt(newIndex);
+        });
       },
       updateSetting: (settingName, settingValue) =>
         set((state) => ({
           ...state,
           [settingName]: settingValue,
         })),
-      updateShowSettings: (newValue) =>
-        set((state) => ({
-          ...state,
-          showSettings: newValue,
-        })),
     }),
     {
       name: "dialer-settings",
-      onRehydrateStorage: () => {
-        return (state) => {
-          state.isPendingChanges = false;
-          state.showSettings = false;
-          return state;
+      onRehydrateStorage: (state) => {
+        const storedSettings = localStorage.getItem("dialer-settings");
+        return () => {
+          if (storedSettings) {
+            state.setLoadedFromStorage(true);
+          }
         };
       },
     },

@@ -4,20 +4,21 @@ import { useState } from "react";
 
 import NavClose from "../NavClose/NavClose";
 import useSettingStore from "../Stores/useSettingStore";
+import useRenderStore from "../Stores/useRenderStore";
 
 import "./Settings.css";
 import { TimeSettings } from "./TimeSettings/TimeSettings";
 
 export function SettingsTab({ setShowConfirm }) {
-  const [isPendingChanges, updateShowSettings] = useSettingStore((state) => [
-    state.isPendingChanges,
-    state.updateShowSettings,
-  ]);
+  const [isPendingChanges, setShowSettings] = useRenderStore((state) => {
+    return [state.isPendingChanges, state.setShowSettings];
+  });
+
   function handleClick() {
     if (isPendingChanges) {
       setShowConfirm({ newIndex: "settings" });
     } else {
-      updateShowSettings(true);
+      setShowSettings(true);
     }
   }
   return (
@@ -29,22 +30,18 @@ export function SettingsTab({ setShowConfirm }) {
   );
 }
 
-export function Settings({ config, getData }) {
-  const [
-    configUrl,
-    timeEnabled,
-    timeFormat,
-    updateSetting,
-    updateShowSettings,
-  ] = useSettingStore((state) => {
-    return [
-      state.configUrl,
-      state.timeEnabled,
-      state.timeFormat,
-      state.updateSetting,
-      state.updateShowSettings,
-    ];
-  });
+export function Settings({ getData }) {
+  const [configUrl, timeEnabled, timeFormat, updateSetting] = useSettingStore(
+    (state) => {
+      return [
+        state.configUrl,
+        state.timeEnabled,
+        state.timeFormat,
+        state.updateSetting,
+      ];
+    },
+  );
+  const [setShowSettings] = useRenderStore((state) => [state.setShowSettings]);
   const [urlInputValue, setUrlInputValue] = useState(configUrl);
 
   const handleConfigRefresh = () => {
@@ -59,7 +56,7 @@ export function Settings({ config, getData }) {
 
   return (
     <>
-      <NavClose onClose={() => updateShowSettings(false)} />
+      <NavClose onClose={() => setShowSettings(false)} />
       <div className="Settings">
         <h1>Settings</h1>
         <h2>Config File URL</h2>

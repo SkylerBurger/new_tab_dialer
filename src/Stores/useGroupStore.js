@@ -7,9 +7,11 @@ const useGroupStore = create(
   persist(
     (set, get) => ({
       groups: [],
-      currentGroup: () => {
+      loadedFromStorage: false,
+      getCurrentGroup: () => {
         return get().groups[useSettingStore.getState().currentGroupIndex];
       },
+      setLoadedFromStorage: (value) => set({ loadedFromStorage: value }),
       updateAllGroups: (groups) => set({ groups }),
       updateGroupDials: (groupName, newDials) => {
         set({
@@ -21,6 +23,12 @@ const useGroupStore = create(
     }),
     {
       name: "dialer-groups",
+      onRehydrateStorage: (state) => {
+        const storedSettings = localStorage.getItem("dialer-groups");
+        return () => {
+          if (storedSettings) state.setLoadedFromStorage(true);
+        };
+      },
     },
   ),
 );

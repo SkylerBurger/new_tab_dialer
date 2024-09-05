@@ -2,24 +2,23 @@ import { useEffect, useState } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
 import useSettingStore from "../Stores/useSettingStore";
+import useRenderStore from "../Stores/useRenderStore";
 
 function useApp() {
-  const [config, setConfig] = useState(null);
   const [dialsVisibility, setDialsVisibility] = useState(false);
 
-  const [showSettings, updateAllSettings] = useSettingStore((state) => [
-    state.showSettings,
-    state.updateAllSettings,
-  ]);
-  const [groups, updateAllGroups] = useGroupStore((state) => [
-    state.groups,
+  const [background, updateAllSettings, settingsFromStorage] = useSettingStore(
+    (state) => [
+      state.background,
+      state.updateAllSettings,
+      state.loadedFromStorage,
+    ],
+  );
+  const [groupsfromStorage, updateAllGroups] = useGroupStore((state) => [
+    state.loadedFromStorage,
     state.updateAllGroups,
   ]);
-
-  const updateConfig = (newConfigObj) => {
-    localStorage.setItem("dialer-config", JSON.stringify(newConfigObj));
-    setConfig(newConfigObj);
-  };
+  const [showSettings] = useRenderStore((state) => [state.showSettings]);
 
   const getData = async (configUrl) => {
     try {
@@ -29,25 +28,21 @@ function useApp() {
       parsedConfig.settings.configUrl = configUrl;
       updateAllSettings(parsedConfig.settings);
       updateAllGroups(parsedConfig.groups);
-      // TODO: Remove updateConfig once Zustand is ready
-      updateConfig(parsedConfig);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    const savedConfig = localStorage.getItem("dialer-config");
-    if (savedConfig) {
-      setConfig(JSON.parse(savedConfig));
-    } else {
+    const missingFromStorage = !groupsfromStorage || !settingsFromStorage;
+    if (missingFromStorage) {
       const configUrl = window.prompt("URL to JSON config file:");
       getData(configUrl);
     }
   }, []);
 
   return {
-    config,
+    background,
     getData,
     dialsVisibility,
     setDialsVisibility,

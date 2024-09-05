@@ -2,25 +2,29 @@ import { useEffect, useState } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
 
-function useDialGroup({ setDialsVisibility }) {
-  const [currentGroup] = useGroupStore((state) => [state.currentGroup()]);
+function useDialGroup() {
+  const [currentGroup] = useGroupStore((state) => [state.getCurrentGroup()]);
   const [loadedImgCount, setLoadedImgCount] = useState(0);
+  const [showDials, setShowDials] = useState(false);
 
   useEffect(() => {
     setLoadedImgCount(0);
-  }, [currentGroup.dials]);
+  }, [currentGroup]);
 
   useEffect(() => {
-    if (loadedImgCount === currentGroup.dials.length) {
-      setDialsVisibility(true);
+    if (currentGroup && loadedImgCount === currentGroup.dials.length) {
+      setShowDials(true);
     }
-  }, [loadedImgCount, currentGroup.dials.length]);
+  }, [loadedImgCount, currentGroup]);
 
   const handleImgLoad = () => {
     setLoadedImgCount((prev) => prev + 1);
   };
 
-  return { dials: currentGroup.dials, handleImgLoad };
+  if (!currentGroup) {
+    return { dials: [] };
+  }
+  return { dials: currentGroup.dials, handleImgLoad, showDials };
 }
 
 export default useDialGroup;
