@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
 import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 
 function useApp() {
-  const [dialsVisibility, setDialsVisibility] = useState(false);
-
   const [background, updateAllSettings, settingsFromStorage] = useSettingStore(
     (state) => [
       state.background,
@@ -44,8 +42,6 @@ function useApp() {
   return {
     background,
     getData,
-    dialsVisibility,
-    setDialsVisibility,
     showSettings,
   };
 }

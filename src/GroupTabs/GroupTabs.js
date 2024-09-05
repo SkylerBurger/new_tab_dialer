@@ -12,8 +12,8 @@ import TabMenu from "./TabMenu/TabMenu";
 
 function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
   const [showTabMenu, setShowTabMenu] = useState(false);
-  const [isPendingChanges] = useRenderStore((state) => {
-    return [state.isPendingChanges];
+  const [isPendingChanges, setShowDials] = useRenderStore((state) => {
+    return [state.isPendingChanges, state.setShowDials];
   });
   const [currentGroupIndex, updateSetting] = useSettingStore((state) => {
     return [state.currentGroupIndex, state.updateSetting];
@@ -37,6 +37,7 @@ function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
       setShowConfirm({ newIndex: liElement.dataset.index });
     } else if (liElement) {
       setShowDetails(false);
+      setShowDials(false);
       updateSetting("currentGroupIndex", liElement.dataset.index);
     }
   }

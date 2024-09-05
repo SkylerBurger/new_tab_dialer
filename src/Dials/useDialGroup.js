@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
+import useRenderStore from "../Stores/useRenderStore";
 
 function useDialGroup() {
   const [currentGroup] = useGroupStore((state) => [state.getCurrentGroup()]);
+  const [showDials, setShowDials] = useRenderStore((state) => [
+    state.showDials,
+    state.setShowDials,
+  ]);
   const [loadedImgCount, setLoadedImgCount] = useState(0);
-  const [showDials, setShowDials] = useState(false);
 
   useEffect(() => {
     setLoadedImgCount(0);

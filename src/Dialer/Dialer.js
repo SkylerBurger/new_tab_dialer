@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import DialGroup from "../Dials/DialGroup";
 import GroupDetails from "../GroupDetails/GroupDetails";
 import GroupTabs from "../GroupTabs/GroupTabs";
@@ -7,7 +5,7 @@ import Time from "../Time/Time";
 
 import { useDialer } from "./useDialer";
 
-export default function Dialer({ dialsVisibility, setDialsVisibility }) {
+export default function Dialer() {
   const {
     showDetails,
     setShowDetails,
@@ -33,10 +31,7 @@ export default function Dialer({ dialsVisibility, setDialsVisibility }) {
           setShowConfirm={setShowConfirm}
         />
       ) : (
-        <DialGroup
-          dialsVisibility={dialsVisibility}
-          setDialsVisibility={setDialsVisibility}
-        />
+        <DialGroup />
       )}
     </>
   );

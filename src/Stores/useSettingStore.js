@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+import useRenderStore from "./useRenderStore";
+
 const useSettingStore = create(
   persist(
     (set) => ({
@@ -13,6 +15,7 @@ const useSettingStore = create(
       setLoadedFromStorage: (value) => set({ loadedFromStorage: value }),
       updateAllSettings: (settings) => set({ ...settings }),
       updateGroupIndex: (newIndex) => {
+        useRenderStore.getState().setShowDials(false);
         set(() => {
           currentGroupIndex: parseInt(newIndex);
         });

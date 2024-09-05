@@ -5,24 +5,11 @@ import "./App.css";
 import useApp from "./useApp";
 
 function App() {
-  const {
-    background,
-    getData,
-    dialsVisibility,
-    setDialsVisibility,
-    showSettings,
-  } = useApp();
+  const { background, getData, showSettings } = useApp();
 
   return (
     <div id="App" style={{ backgroundImage: `url("${background}")` }}>
-      {showSettings ? (
-        <Settings getData={getData} />
-      ) : (
-        <Dialer
-          dialsVisibility={dialsVisibility}
-          setDialsVisibility={setDialsVisibility}
-        />
-      )}
+      {showSettings ? <Settings getData={getData} /> : <Dialer />}
     </div>
   );
 }
