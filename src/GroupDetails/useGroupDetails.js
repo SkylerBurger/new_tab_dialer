@@ -56,7 +56,7 @@ export function useGroupDetails({
     if (newIndex === "settings") {
       setShowSettings(true);
     } else {
-      updateSetting("currentGroupIndex", newIndex);
+      updateSetting("currentGroupIndex", parseInt(newIndex));
     }
   }
 

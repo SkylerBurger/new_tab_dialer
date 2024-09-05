@@ -61,7 +61,12 @@ function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
       {name}
       {isSelected && <TabOptions onClick={openMenu} />}
       {showTabMenu && (
-        <TabMenu onClose={closeMenu} setShowDetails={setShowDetails} />
+        <TabMenu
+          idx={idx}
+          name={name}
+          onClose={closeMenu}
+          setShowDetails={setShowDetails}
+        />
       )}
     </li>
   );

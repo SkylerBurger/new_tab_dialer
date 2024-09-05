@@ -1,34 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
 import useRenderStore from "../Stores/useRenderStore";
+import useSettingStore from "../Stores/useSettingStore";
 
 function useDialGroup() {
-  const [currentGroup] = useGroupStore((state) => [state.getCurrentGroup()]);
+  const [groups] = useGroupStore((state) => [state.groups]);
   const [showDials, setShowDials] = useRenderStore((state) => [
     state.showDials,
     state.setShowDials,
   ]);
-  const [loadedImgCount, setLoadedImgCount] = useState(0);
+  const [currentGroupIndex] = useSettingStore((state) => [
+    state.currentGroupIndex,
+  ]);
+  const currentGroup = groups[currentGroupIndex];
 
   useEffect(() => {
-    setLoadedImgCount(0);
-  }, [currentGroup]);
+    if (!currentGroup) return;
 
-  useEffect(() => {
-    if (currentGroup && loadedImgCount === currentGroup.dials.length) {
-      setShowDials(true);
+    let timeoutId;
+
+    const checkImages = () => {
+      const imgElements = document.querySelectorAll(".DialGroup img");
+      let loadedCount = 0;
+
+      imgElements.forEach((img) => {
+        if (img.complete) loadedCount++;
+      });
+
+      if (loadedCount === currentGroup.dials.length) {
+        setShowDials(true);
+      } else {
+        timeoutId = setTimeout(checkImages, 100);
+      }
+    };
+    // Initial Check
+    checkImages();
+    // Return cleanup function if timeout was set
+    if (timeoutId) {
+      return () => clearTimeout(timeoutId);
     }
-  }, [loadedImgCount, currentGroup]);
-
-  const handleImgLoad = () => {
-    setLoadedImgCount((prev) => prev + 1);
-  };
+  }, [currentGroupIndex]);
 
   if (!currentGroup) {
     return { dials: [] };
   }
-  return { dials: currentGroup.dials, handleImgLoad, showDials };
+  return { dials: currentGroup.dials, showDials };
 }
 
 export default useDialGroup;
