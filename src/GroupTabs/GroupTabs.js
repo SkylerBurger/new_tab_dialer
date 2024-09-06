@@ -35,7 +35,7 @@ function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
     const liElement = target.closest("li[data-index]");
     if (liElement && isPendingChanges) {
       setShowConfirm({ newIndex: liElement.dataset.index });
-    } else if (liElement) {
+    } else if (liElement && liElement.dataset.index !== currentGroupIndex) {
       setShowDetails(false);
       setShowDials(false);
       updateSetting("currentGroupIndex", liElement.dataset.index);
@@ -61,7 +61,12 @@ function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
       {name}
       {isSelected && <TabOptions onClick={openMenu} />}
       {showTabMenu && (
-        <TabMenu onClose={closeMenu} setShowDetails={setShowDetails} />
+        <TabMenu
+          idx={idx}
+          name={name}
+          onClose={closeMenu}
+          setShowDetails={setShowDetails}
+        />
       )}
     </li>
   );

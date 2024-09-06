@@ -16,9 +16,10 @@ const useSettingStore = create(
       updateAllSettings: (settings) => set({ ...settings }),
       updateGroupIndex: (newIndex) => {
         useRenderStore.getState().setShowDials(false);
-        set(() => {
-          currentGroupIndex: parseInt(newIndex);
-        });
+        set((state) => ({
+          ...state,
+          currentGroupIndex: parseInt(newIndex),
+        }));
       },
       updateSetting: (settingName, settingValue) =>
         set((state) => ({

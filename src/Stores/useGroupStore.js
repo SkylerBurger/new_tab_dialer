@@ -11,7 +11,21 @@ const useGroupStore = create(
       getCurrentGroup: () => {
         return get().groups[useSettingStore.getState().currentGroupIndex];
       },
+      getGroupsLength: () => get().groups.length,
       setLoadedFromStorage: (value) => set({ loadedFromStorage: value }),
+      shiftGroup: (groupName, steps) => {
+        const newGroups = get().groups;
+        const groupIndex = newGroups.findIndex(
+          (group) => group.name === groupName,
+        );
+        const newIndex = groupIndex + steps;
+        if (0 <= newIndex && newIndex < newGroups.length) {
+          const [movedGroup] = newGroups.splice(groupIndex, 1);
+          newGroups.splice(newIndex, 0, movedGroup);
+          useSettingStore.getState().updateGroupIndex(newIndex);
+          set({ groups: newGroups });
+        }
+      },
       updateAllGroups: (groups) => set({ groups }),
       updateGroupDials: (groupName, newDials) => {
         set({
