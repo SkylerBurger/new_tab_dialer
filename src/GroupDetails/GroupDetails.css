@@ -26,8 +26,12 @@
   margin: 0 15px 0 10px;
 }
 
-.DialDetails .faTrash {
+.DialDetails .actionsBox {
   margin-left: auto;
-  margin-right: 15px;
+}
+
+.DialDetails .faTrash,
+.DialDetails .transfer {
   cursor: pointer;
+  margin-right: 15px;
 }

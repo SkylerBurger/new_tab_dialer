@@ -1,5 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faArrowRightArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import "./GroupDetails.css";
@@ -7,6 +10,10 @@ import { useGroupDetails } from "./useGroupDetails";
 import { ArrowSelector } from "../ArrowSelector/ArrowSelector";
 import { Confirm } from "../Confirm/Confirm";
 import { NewDialForm } from "../NewDialForm/NewDialForm";
+
+function TransferDial() {
+  return <FontAwesomeIcon className="transfer" icon={faArrowRightArrowLeft} />;
+}
 
 function DeleteDial({ index, shiftDial }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -54,7 +61,10 @@ function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
         <p>{name}</p>
         <p>{link}</p>
       </div>
-      <DeleteDial index={index} shiftDial={shiftDial} />
+      <div className="actionsBox">
+        <TransferDial />
+        <DeleteDial index={index} shiftDial={shiftDial} />
+      </div>
     </li>
   );
 }
