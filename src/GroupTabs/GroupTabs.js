@@ -35,7 +35,7 @@ function GroupTab({ idx, name, setShowConfirm, setShowDetails }) {
     const liElement = target.closest("li[data-index]");
     if (liElement && isPendingChanges) {
       setShowConfirm({ newIndex: liElement.dataset.index });
-    } else if (liElement) {
+    } else if (liElement && liElement.dataset.index !== currentGroupIndex) {
       setShowDetails(false);
       setShowDials(false);
       updateSetting("currentGroupIndex", liElement.dataset.index);
