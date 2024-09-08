@@ -26,6 +26,21 @@ const useGroupStore = create(
           set({ groups: newGroups });
         }
       },
+      transferDial: (fromGroup, dial, toGroup) => {
+        const groups = get().groups.map((group) => {
+          if (group.name === fromGroup) {
+            return {
+              ...group,
+              dials: group.dials.filter((d) => d !== dial),
+            };
+          }
+          if (group.name === toGroup) {
+            return { ...group, dials: [...group.dials, dial] };
+          }
+          return group;
+        });
+        set({ groups });
+      },
       updateAllGroups: (groups) => set({ groups }),
       updateGroupDials: (groupName, newDials) => {
         set({
