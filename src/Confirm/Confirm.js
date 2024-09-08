@@ -5,16 +5,18 @@ export function Confirm({ message, options }) {
     <div className={`Confirm`}>
       <div className="popup">
         <p>{message}</p>
-        {options.map((option) => {
-          const buttonStyle = option.color
-            ? { backgroundColor: option.color }
-            : {};
-          return (
-            <button style={buttonStyle} onClick={option.action}>
-              {option.label}
-            </button>
-          );
-        })}
+        <div className="butonBox">
+          {options.map((option) => {
+            const buttonStyle = option.color
+              ? { backgroundColor: option.color }
+              : {};
+            return (
+              <button style={buttonStyle} onClick={option.action}>
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -26,8 +26,34 @@
   margin: 0 15px 0 10px;
 }
 
-.DialDetails .faTrash {
+.DialDetails .actionsBox {
   margin-left: auto;
-  margin-right: 15px;
+  display: flex;
+}
+
+.DialDetails .faTrash,
+.DialDetails .transfer {
   cursor: pointer;
+  margin-right: 15px;
+}
+
+.TransferDial button {
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.TransferDial .proceed {
+  background-color: #4caf50;
+}
+
+.TransferDial .cancel {
+  background-color: #f44336;
+}
+
+.TransferDial .buttonBox {
+  display: flex;
+  justify-content: space-between;
 }
