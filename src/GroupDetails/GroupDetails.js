@@ -54,6 +54,8 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
     shiftDial,
     showAddDial,
     setShowAddDial,
+    tempName,
+    handleNameInput,
   } = useGroupDetails({
     showConfirm,
     setShowConfirm,
@@ -62,7 +64,11 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
 
   return (
     <div className="GroupDetails">
-      <h1>{name}</h1>
+      {/* <h1>{name}</h1> */}
+      <div className="GroupName">
+        <h1>Group Name:</h1>
+        <input type="text" value={tempName} onChange={handleNameInput} />
+      </div>
       {showConfirm && <Confirm message={message} options={confirmOptions} />}
       {showAddDial && (
         <NewDialForm
@@ -82,14 +88,26 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
           />
         ))}
       </ul>
-      <button onClick={() => setShowAddDial(true)}>Add Dial</button>
-      <button onClick={onCancel}>Cancel</button>
-      <button
-        onClick={() => applyChanges(name, tempDials)}
-        disabled={!isPendingChanges}
-      >
-        Apply
-      </button>
+      <div className="buttonBox">
+        <button
+          style={{ backgroundColor: "#00ffff" }}
+          onClick={() => setShowAddDial(true)}
+        >
+          Add New Dial
+        </button>
+        <div>
+          <button style={{ backgroundColor: "#f44336" }} onClick={onCancel}>
+            Cancel
+          </button>
+          <button
+            className="applyChanges"
+            onClick={() => applyChanges(name, tempDials)}
+            disabled={!isPendingChanges}
+          >
+            Apply Changes
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -25,13 +25,15 @@ export function useGroupDetails({
   });
   const { dials, name } = groups[currentGroupIndex];
   const [tempDials, setTempDials] = useState([...dials]);
+  const [tempName, setTempName] = useState(name);
 
   const arraysEqual = (a, b) =>
     a.length === b.length && a.every((val, index) => val === b[index]);
 
   useEffect(() => {
-    setIsPendingChanges(!arraysEqual(dials, tempDials));
-  }, [tempDials, dials]);
+    const changeDetected = !arraysEqual(dials, tempDials) || tempName !== name;
+    setIsPendingChanges(changeDetected);
+  }, [tempDials, dials, tempName]);
 
   const shiftDial = (index, offset) => {
     // If offset is null, the dial is deleted rather than shifted
@@ -84,6 +86,10 @@ export function useGroupDetails({
     setTempDials([...tempDials, { name, icon, link }]);
   };
 
+  const handleNameInput = (e) => {
+    setTempName(e.target.value);
+  };
+
   return {
     applyChanges,
     confirmOptions,
@@ -96,5 +102,7 @@ export function useGroupDetails({
     shiftDial,
     showAddDial,
     setShowAddDial,
+    tempName,
+    handleNameInput,
   };
 }

@@ -46,12 +46,14 @@ function NewDialForm({ insertNewDial, setShowAddDial }) {
             onChange={handleLinkChange}
           />
         </div>
-        <button className="red" onClick={() => setShowAddDial(false)}>
-          Cancel
-        </button>
-        <button className="green" onClick={handleAdd}>
-          Create Dial
-        </button>
+        <div className="buttonBox">
+          <button className="red" onClick={() => setShowAddDial(false)}>
+            Cancel
+          </button>
+          <button className="green" onClick={handleAdd}>
+            Create Dial
+          </button>
+        </div>
       </div>
     </div>
   );
