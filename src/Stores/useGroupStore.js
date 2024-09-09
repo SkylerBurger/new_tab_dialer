@@ -42,11 +42,18 @@ const useGroupStore = create(
         set({ groups });
       },
       updateAllGroups: (groups) => set({ groups }),
-      updateGroupDials: (groupName, newDials) => {
+      updateGroupDials: (groupName, newGroupName, newDials) => {
         set({
-          groups: get().groups.map((group) =>
-            group.name === groupName ? { ...group, dials: newDials } : group,
-          ),
+          groups: get().groups.map((group) => {
+            if (group.name === groupName) {
+              return {
+                name: newGroupName ? newGroupName : group.name,
+                dials: newDials,
+              };
+            } else {
+              return group;
+            }
+          }),
         });
       },
     }),

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-import NavClose from "../NavClose/NavClose";
+import NavClose from "../Common/NavClose/NavClose";
 import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 

@@ -1,4 +1,4 @@
-import DialGroup from "../Dials/DialGroup";
+import Group from "../Group/Group";
 import GroupDetails from "../GroupDetails/GroupDetails";
 import GroupTabs from "../GroupTabs/GroupTabs";
 import Time from "../Time/Time";
@@ -31,7 +31,7 @@ export default function Dialer() {
           setShowConfirm={setShowConfirm}
         />
       ) : (
-        <DialGroup />
+        <Group />
       )}
     </>
   );

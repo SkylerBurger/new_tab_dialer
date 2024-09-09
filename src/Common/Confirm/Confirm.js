@@ -1,6 +1,6 @@
 import "./Confirm.css";
 
-export function Confirm({ message, options }) {
+function Confirm({ message, options }) {
   return (
     <div className={`Confirm`}>
       <div className="popup">
@@ -21,3 +21,5 @@ export function Confirm({ message, options }) {
     </div>
   );
 }
+
+export default Confirm;

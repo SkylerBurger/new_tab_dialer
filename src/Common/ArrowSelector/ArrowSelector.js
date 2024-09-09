@@ -3,7 +3,7 @@ import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 import "./ArrowSelector.css";
 
-export function ArrowSelector({ downAble, onDown, onUp, upAble }) {
+function ArrowSelector({ downAble, onDown, onUp, upAble }) {
   return (
     <div className="ArrowSelector">
       <FontAwesomeIcon
@@ -19,3 +19,5 @@ export function ArrowSelector({ downAble, onDown, onUp, upAble }) {
     </div>
   );
 }
+
+export default ArrowSelector;

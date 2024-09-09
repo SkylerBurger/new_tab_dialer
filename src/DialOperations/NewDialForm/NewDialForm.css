@@ -15,7 +15,7 @@
 }
 
 .NewDialForm {
-  background-color: #5b869d;
+  background-color: #9cc8e7;
   color: black;
   display: flex;
   flex-direction: column;
@@ -64,4 +64,10 @@
 
 .NewDialForm .red {
   background-color: #f44336;
+}
+
+.NewDialForm .buttonBox {
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }

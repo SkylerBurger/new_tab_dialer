@@ -4,7 +4,7 @@ import useGroupStore from "../Stores/useGroupStore";
 import useRenderStore from "../Stores/useRenderStore";
 import useSettingStore from "../Stores/useSettingStore";
 
-function useDialGroup() {
+function useGroup() {
   const [groups] = useGroupStore((state) => [state.groups]);
   const [showDials, setShowDials] = useRenderStore((state) => [
     state.showDials,
@@ -21,7 +21,7 @@ function useDialGroup() {
     let timeoutId;
 
     const checkImages = () => {
-      const imgElements = document.querySelectorAll(".DialGroup img");
+      const imgElements = document.querySelectorAll(".Group img");
       let loadedCount = 0;
 
       imgElements.forEach((img) => {
@@ -48,4 +48,4 @@ function useDialGroup() {
   return { dials: currentGroup.dials, showDials };
 }
 
-export default useDialGroup;
+export default useGroup;

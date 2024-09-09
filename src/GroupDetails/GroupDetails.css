@@ -57,3 +57,47 @@
   display: flex;
   justify-content: space-between;
 }
+
+.GroupName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.GroupName h1 {
+  margin: 0 10px;
+}
+
+.GroupName input {
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+.GroupDetails .buttonBox {
+  margin: 15px auto 0 auto;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.GroupDetails .innerButtonBox {
+  display: flex;
+}
+
+.GroupDetails button {
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.GroupDetails .applyChanges {
+  background-color: #4caf50;
+}
+
+.GroupDetails .applyChanges:disabled {
+  cursor: default;
+  opacity: 0.5;
+}

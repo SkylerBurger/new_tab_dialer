@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./NewDialForm.css";
 
-export function NewDialForm({ insertNewDial, setShowAddDial }) {
+function NewDialForm({ insertNewDial, setShowAddDial }) {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
   const [link, setLink] = useState("");
@@ -46,13 +46,17 @@ export function NewDialForm({ insertNewDial, setShowAddDial }) {
             onChange={handleLinkChange}
           />
         </div>
-        <button className="red" onClick={() => setShowAddDial(false)}>
-          Cancel
-        </button>
-        <button className="green" onClick={handleAdd}>
-          Create Dial
-        </button>
+        <div className="buttonBox">
+          <button className="red" onClick={() => setShowAddDial(false)}>
+            Cancel
+          </button>
+          <button className="green" onClick={handleAdd}>
+            Create Dial
+          </button>
+        </div>
       </div>
     </div>
   );
 }
+
+export default NewDialForm;
