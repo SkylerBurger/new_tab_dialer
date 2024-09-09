@@ -46,7 +46,8 @@ export function useGroupDetails({
   };
 
   const applyChanges = (groupName, dials) => {
-    updateGroupDials(groupName, dials);
+    const newGroupName = tempName !== groupName ? tempName : null;
+    updateGroupDials(groupName, newGroupName, dials);
     setShowDetails(false);
     setIsPendingChanges(false);
   };
