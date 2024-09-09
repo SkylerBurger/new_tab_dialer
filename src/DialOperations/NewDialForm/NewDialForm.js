@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./NewDialForm.css";
 
-export function NewDialForm({ insertNewDial, setShowAddDial }) {
+function NewDialForm({ insertNewDial, setShowAddDial }) {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
   const [link, setLink] = useState("");
@@ -56,3 +56,5 @@ export function NewDialForm({ insertNewDial, setShowAddDial }) {
     </div>
   );
 }
+
+export default NewDialForm;

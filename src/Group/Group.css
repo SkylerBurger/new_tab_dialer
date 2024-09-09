@@ -1,4 +1,4 @@
-.DialGroup {
+.Group {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -24,15 +24,15 @@
   }
 }
 
-.DialGroup.fade-in {
+.Group.fade-in {
   animation: fadeIn 1s forwards;
 }
 
-.DialGroup.fade-out {
+.Group.fade-out {
   animation: fadeOut 0s forwards;
 }
 
-.DialGroup a img {
+.Group a img {
   max-width: 150px;
   margin: 40px;
 }

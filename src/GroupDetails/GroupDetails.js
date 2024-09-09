@@ -1,124 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrash,
-  faArrowRightArrowLeft,
-} from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-
 import "./GroupDetails.css";
 import { useGroupDetails } from "./useGroupDetails";
-import { ArrowSelector } from "../ArrowSelector/ArrowSelector";
-import { Confirm } from "../Confirm/Confirm";
-import { NewDialForm } from "../NewDialForm/NewDialForm";
-import PopUpModal from "../PopUpModal/PopUpModal";
-import useGroupStore from "../Stores/useGroupStore";
-import useSettingStore from "../Stores/useSettingStore";
-
-function TransferDial({ index, shiftDial, setShowConfirm }) {
-  const [confirmTransfer, setConfirmTransfer] = useState(false);
-  const [showTransfer, setShowTransfer] = useState(false);
-  const [currentGroupIndex] = useSettingStore((state) => [
-    state.currentGroupIndex,
-  ]);
-  const [groups, transferDial] = useGroupStore((state) => [
-    state.groups,
-    state.transferDial,
-  ]);
-  const groupNames = groups.map((group) => group.name);
-  const currentGroup = groups[currentGroupIndex];
-
-  const handleTransfer = () => {
-    const toGroup = document.getElementById("toGroup").value;
-    // UI Flags
-    setConfirmTransfer(false);
-    setShowConfirm(false);
-    setShowTransfer(false);
-    // Remove dial from temp and real array of dials
-    shiftDial(index, null);
-    transferDial(currentGroup.name, currentGroup.dials[index], toGroup);
-  };
-
-  return (
-    <div className="TransferDial">
-      <FontAwesomeIcon
-        className="transfer"
-        icon={faArrowRightArrowLeft}
-        onClick={() => setShowTransfer(true)}
-      />
-      {showTransfer && (
-        <PopUpModal>
-          <h1>{`Transfer ${currentGroup.dials[index].name} Dial to:`}</h1>
-          <select id="toGroup">
-            {groupNames.map(
-              (name) =>
-                name !== currentGroup.name && (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ),
-            )}
-          </select>
-          <div className="buttonBox">
-            <button className="cancel" onClick={() => setShowTransfer(false)}>
-              Cancel
-            </button>
-            <button
-              className="proceed"
-              onClick={() => setConfirmTransfer(true)}
-            >
-              Transfer
-            </button>
-          </div>
-        </PopUpModal>
-      )}
-      {confirmTransfer && (
-        <Confirm
-          message={`This action is immediately applied. Continue with transferring this dial to the ${document.getElementById("toGroup").value} group?`}
-          options={[
-            {
-              label: "Cancel",
-              action: () => setConfirmTransfer(false),
-              color: "#f44336",
-            },
-            { label: "Transfer", action: handleTransfer, color: "#4CAF50" },
-          ]}
-        />
-      )}
-    </div>
-  );
-}
-
-function DeleteDial({ index, shiftDial }) {
-  const [confirmDelete, setConfirmDelete] = useState(false);
-
-  const deleteDial = () => {
-    setConfirmDelete(false);
-    shiftDial(index, null);
-  };
-
-  return (
-    <>
-      <FontAwesomeIcon
-        className="faTrash"
-        icon={faTrash}
-        onClick={() => setConfirmDelete(true)}
-      />
-      {confirmDelete && (
-        <Confirm
-          message="Delete this dial?"
-          options={[
-            {
-              label: "Cancel",
-              action: () => setConfirmDelete(false),
-              color: "#4CAF50",
-            },
-            { label: "Delete", action: deleteDial, color: "#f44336" },
-          ]}
-        />
-      )}
-    </>
-  );
-}
+import ArrowSelector from "../Common/ArrowSelector/ArrowSelector";
+import Confirm from "../Common/Confirm/Confirm";
+import DeleteDial from "../DialOperations/DeleteDial/DeleteDial";
+import NewDialForm from "../DialOperations/NewDialForm/NewDialForm";
+import TransferDial from "../DialOperations/TransferDial/TransferDial";
 
 function DialDetails({
   index,
@@ -155,11 +41,7 @@ function DialDetails({
   );
 }
 
-export default function GroupDetails({
-  setShowDetails,
-  showConfirm,
-  setShowConfirm,
-}) {
+function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
   const {
     applyChanges,
     confirmOptions,
@@ -211,3 +93,5 @@ export default function GroupDetails({
     </div>
   );
 }
+
+export default GroupDetails;
