@@ -2,10 +2,14 @@ import { useState } from "react";
 
 import useGroupStore from "../../Stores/useGroupStore";
 import useSettingStore from "../../Stores/useSettingStore";
+import useRenderStore from "../../Stores/useRenderStore";
 
-function useTransferDial(index, shiftDial, setShowConfirm) {
+function useTransferDial(index, shiftDial) {
   const [confirmTransfer, setConfirmTransfer] = useState(false);
   const [showTransfer, setShowTransfer] = useState(false);
+  const [setShowConfirmUnsavedNav] = useRenderStore((state) => [
+    state.setShowConfirmUnsavedNav,
+  ]);
   const [currentGroupIndex] = useSettingStore((state) => [
     state.currentGroupIndex,
   ]);
@@ -20,7 +24,7 @@ function useTransferDial(index, shiftDial, setShowConfirm) {
     const toGroup = document.getElementById("toGroup").value;
     // UI Flags
     setConfirmTransfer(false);
-    setShowConfirm(false);
+    setShowConfirmUnsavedNav(false);
     setShowTransfer(false);
     // Remove dial from temp and real array of dials
     shiftDial(index, null);

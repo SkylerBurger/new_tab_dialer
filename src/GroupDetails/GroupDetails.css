@@ -101,3 +101,17 @@
   cursor: default;
   opacity: 0.5;
 }
+
+.GroupDetails .DangerousOperations {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f44336;
+  border-radius: 5px;
+  margin: 15px 0;
+  padding: 10px;
+}
+
+.GroupDetails .DangerousOperations button {
+  background-color: #f44336;
+  margin-top: 10px;
+}

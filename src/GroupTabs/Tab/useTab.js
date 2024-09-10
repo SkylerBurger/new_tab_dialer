@@ -3,10 +3,20 @@ import { useState } from "react";
 import useSettingStore from "../../Stores/useSettingStore";
 import useRenderStore from "../../Stores/useRenderStore";
 
-function useTab({ idx, setShowConfirm, setShowDetails }) {
+function useTab({ idx, setShowDetails }) {
   const [showTabMenu, setShowTabMenu] = useState(false);
-  const [isPendingChanges, setShowDials] = useRenderStore((state) => {
-    return [state.isPendingChanges, state.setShowDials];
+  const [
+    isPendingChanges,
+    setShowDials,
+    setShowConfirmUnsavedNav,
+    setNextIndex,
+  ] = useRenderStore((state) => {
+    return [
+      state.isPendingChanges,
+      state.setShowDials,
+      state.setShowConfirmUnsavedNav,
+      state.setNextIndex,
+    ];
   });
   const [currentGroupIndex, updateSetting] = useSettingStore((state) => {
     return [state.currentGroupIndex, state.updateSetting];
@@ -15,7 +25,8 @@ function useTab({ idx, setShowConfirm, setShowDetails }) {
   function handleTabClick({ target }) {
     const liElement = target.closest("li[data-index]");
     if (liElement && isPendingChanges) {
-      setShowConfirm({ newIndex: liElement.dataset.index });
+      setNextIndex(liElement.dataset.index);
+      setShowConfirmUnsavedNav(true);
     } else if (liElement && liElement.dataset.index !== currentGroupIndex) {
       setShowDetails(false);
       setShowDials(false);

@@ -4,22 +4,27 @@ import useGroupStore from "../Stores/useGroupStore";
 import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 
-export function useGroupDetails({
-  showConfirm,
-  setShowConfirm,
-  setShowDetails,
-}) {
+export function useGroupDetails({ setShowDetails }) {
   const [groups, deleteGroup, updateGroupDials] = useGroupStore((state) => [
     state.groups,
     state.deleteGroup,
     state.updateGroupDials,
   ]);
-  const [isPendingChanges, setIsPendingChanges, setShowSettings] =
-    useRenderStore((state) => [
-      state.isPendingChanges,
-      state.setIsPendingChanges,
-      state.setShowSettings,
-    ]);
+  const [
+    isPendingChanges,
+    setIsPendingChanges,
+    setShowSettings,
+    showConfirmUnsavedNav,
+    setShowConfirmUnsavedNav,
+    nextIndex,
+  ] = useRenderStore((state) => [
+    state.isPendingChanges,
+    state.setIsPendingChanges,
+    state.setShowSettings,
+    state.showConfirmUnsavedNav,
+    state.setShowConfirmUnsavedNav,
+    state.nextIndex,
+  ]);
   const [currentGroupIndex, updateGroupIndex, updateSetting] = useSettingStore(
     (state) => {
       return [
@@ -32,7 +37,6 @@ export function useGroupDetails({
 
   const { dials, name } = groups[currentGroupIndex];
   const groupCount = groups.length;
-  const message = "You have unsaved changes.";
 
   const [showAddDial, setShowAddDial] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
@@ -65,7 +69,7 @@ export function useGroupDetails({
   };
 
   const forceGroupNavigation = (newIndex) => {
-    setShowConfirm(null);
+    setShowConfirmUnsavedNav(false);
     setShowDetails(false);
     setIsPendingChanges(false);
     if (newIndex === "settings") {
@@ -75,18 +79,37 @@ export function useGroupDetails({
     }
   };
 
-  const confirmOptions = [
-    {
-      label: "Return to Apply Changes",
-      action: () => setShowConfirm(null),
-      color: "#4CAF50",
-    },
-    {
-      label: "Continue Without Saving",
-      action: () => forceGroupNavigation(showConfirm.newIndex),
-      color: "#f44336",
-    },
-  ];
+  const confirmUnsavedNavOptions = {
+    options: [
+      {
+        label: "Return to Apply Changes",
+        action: () => setShowConfirmUnsavedNav(false),
+        color: "#4CAF50",
+      },
+      {
+        label: "Continue Without Saving",
+        action: () => forceGroupNavigation(nextIndex),
+        color: "#f44336",
+      },
+    ],
+    message: "You have unsaved changes.",
+  };
+
+  const confirmDeleteOptions = {
+    options: [
+      {
+        label: "Cancel",
+        action: () => setShowConfirmDelete(false),
+        color: "#4CAF50",
+      },
+      {
+        label: "Delete",
+        action: () => handleDeleteGroup(name),
+        color: "#f44336",
+      },
+    ],
+    message: "Are you sure you want to delete this group?",
+  };
 
   const onCancel = () => {
     setIsPendingChanges(false);
@@ -111,12 +134,12 @@ export function useGroupDetails({
 
   return {
     applyChanges,
-    confirmOptions,
+    confirmDeleteOptions,
+    confirmUnsavedNavOptions,
     groupCount,
     isPendingChanges,
     tempDials,
     insertNewDial,
-    message,
     name,
     onCancel,
     shiftDial,
@@ -126,6 +149,6 @@ export function useGroupDetails({
     setShowConfirmDelete,
     tempName,
     handleNameInput,
-    handleDeleteGroup,
+    showConfirmUnsavedNav,
   };
 }

@@ -6,16 +6,7 @@ import DeleteDial from "../DialOperations/DeleteDial/DeleteDial";
 import NewDialForm from "../DialOperations/NewDialForm/NewDialForm";
 import TransferDial from "../DialOperations/TransferDial/TransferDial";
 
-function DialDetails({
-  index,
-  first,
-  last,
-  name,
-  icon,
-  link,
-  shiftDial,
-  setShowConfirm,
-}) {
+function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
   return (
     <li className="DialDetails">
       <ArrowSelector
@@ -30,26 +21,22 @@ function DialDetails({
         <p>{link}</p>
       </div>
       <div className="actionsBox">
-        <TransferDial
-          index={index}
-          shiftDial={shiftDial}
-          setShowConfirm={setShowConfirm}
-        />
+        <TransferDial index={index} shiftDial={shiftDial} />
         <DeleteDial index={index} shiftDial={shiftDial} />
       </div>
     </li>
   );
 }
 
-function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
+function GroupDetails({ setShowDetails }) {
   const {
     applyChanges,
-    confirmOptions,
+    confirmDeleteOptions,
+    confirmUnsavedNavOptions,
     groupCount,
     isPendingChanges,
     tempDials,
     insertNewDial,
-    message,
     name,
     onCancel,
     shiftDial,
@@ -59,12 +46,8 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
     setShowConfirmDelete,
     tempName,
     handleNameInput,
-    handleDeleteGroup,
-  } = useGroupDetails({
-    showConfirm,
-    setShowConfirm,
-    setShowDetails,
-  });
+    showConfirmUnsavedNav,
+  } = useGroupDetails({ setShowDetails });
 
   return (
     <div className="GroupDetails">
@@ -72,7 +55,7 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
         <h1>Group Name:</h1>
         <input type="text" value={tempName} onChange={handleNameInput} />
       </div>
-      {showConfirm && <Confirm message={message} options={confirmOptions} />}
+      {showConfirmUnsavedNav && <Confirm {...confirmUnsavedNavOptions} />}
       {showAddDial && (
         <NewDialForm
           insertNewDial={insertNewDial}
@@ -87,7 +70,6 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
             first={index === 0}
             last={index === tempDials.length - 1}
             shiftDial={shiftDial}
-            setShowConfirm={setShowConfirm}
           />
         ))}
       </ul>
@@ -113,30 +95,14 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
       </div>
       {groupCount > 1 && (
         // Don't allow deletion if this is the only group
-        <div>
+        <div className="DangerousOperations">
           <h2>Dangerous Operations</h2>
           <button onClick={() => setShowConfirmDelete(true)}>
             Delete Group
           </button>
         </div>
       )}
-      {showConfirmDelete && (
-        <Confirm
-          message="Are you sure you want to delete this group?"
-          options={[
-            {
-              label: "Cancel",
-              action: () => setShowConfirmDelete(false),
-              color: "#4CAF50",
-            },
-            {
-              label: "Delete",
-              action: () => handleDeleteGroup(name),
-              color: "#f44336",
-            },
-          ]}
-        />
-      )}
+      {showConfirmDelete && <Confirm {...confirmDeleteOptions} />}
     </div>
   );
 }

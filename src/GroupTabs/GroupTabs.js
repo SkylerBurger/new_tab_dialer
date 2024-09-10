@@ -4,7 +4,7 @@ import useGroupStore from "../Stores/useGroupStore";
 import "./groupTabs.css";
 import Tab from "./Tab/Tab";
 
-function GroupTabs({ setShowConfirm, setShowDetails }) {
+function GroupTabs({ setShowDetails }) {
   const groups = useGroupStore((state) => state.groups);
 
   return (
@@ -16,13 +16,12 @@ function GroupTabs({ setShowConfirm, setShowDetails }) {
               <Tab
                 idx={idx}
                 name={group.name}
-                setShowConfirm={setShowConfirm}
                 setShowDetails={setShowDetails}
               />
             );
           })}
       </ul>
-      <SettingsTab setShowConfirm={setShowConfirm} />
+      <SettingsTab />
     </nav>
   );
 }
