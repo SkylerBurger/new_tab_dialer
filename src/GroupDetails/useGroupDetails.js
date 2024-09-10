@@ -9,9 +9,9 @@ export function useGroupDetails({
   setShowConfirm,
   setShowDetails,
 }) {
-  const [showAddDial, setShowAddDial] = useState(false);
-  const [groups, updateGroupDials] = useGroupStore((state) => [
+  const [groups, deleteGroup, updateGroupDials] = useGroupStore((state) => [
     state.groups,
+    state.deleteGroup,
     state.updateGroupDials,
   ]);
   const [isPendingChanges, setIsPendingChanges, setShowSettings] =
@@ -20,10 +20,21 @@ export function useGroupDetails({
       state.setIsPendingChanges,
       state.setShowSettings,
     ]);
-  const [currentGroupIndex, updateSetting] = useSettingStore((state) => {
-    return [state.currentGroupIndex, state.updateSetting];
-  });
+  const [currentGroupIndex, updateGroupIndex, updateSetting] = useSettingStore(
+    (state) => {
+      return [
+        state.currentGroupIndex,
+        state.updateGroupIndex,
+        state.updateSetting,
+      ];
+    },
+  );
+
   const { dials, name } = groups[currentGroupIndex];
+  const message = "You have unsaved changes.";
+
+  const [showAddDial, setShowAddDial] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [tempDials, setTempDials] = useState([...dials]);
   const [tempName, setTempName] = useState(name);
 
@@ -52,7 +63,7 @@ export function useGroupDetails({
     setIsPendingChanges(false);
   };
 
-  function forceGroupNavigation(newIndex) {
+  const forceGroupNavigation = (newIndex) => {
     setShowConfirm(null);
     setShowDetails(false);
     setIsPendingChanges(false);
@@ -61,7 +72,7 @@ export function useGroupDetails({
     } else {
       updateSetting("currentGroupIndex", parseInt(newIndex));
     }
-  }
+  };
 
   const confirmOptions = [
     {
@@ -76,8 +87,6 @@ export function useGroupDetails({
     },
   ];
 
-  const message = "You have unsaved changes.";
-
   const onCancel = () => {
     setIsPendingChanges(false);
     setShowDetails(false);
@@ -91,6 +100,14 @@ export function useGroupDetails({
     setTempName(e.target.value);
   };
 
+  const handleDeleteGroup = (groupName) => {
+    deleteGroup(groupName);
+    setShowConfirmDelete(false);
+    setShowDetails(false);
+    setIsPendingChanges(false);
+    updateGroupIndex(0);
+  };
+
   return {
     applyChanges,
     confirmOptions,
@@ -102,8 +119,11 @@ export function useGroupDetails({
     onCancel,
     shiftDial,
     showAddDial,
+    showConfirmDelete,
     setShowAddDial,
+    setShowConfirmDelete,
     tempName,
     handleNameInput,
+    handleDeleteGroup,
   };
 }

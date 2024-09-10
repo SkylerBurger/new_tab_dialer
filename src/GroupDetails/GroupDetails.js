@@ -53,9 +53,12 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
     onCancel,
     shiftDial,
     showAddDial,
+    showConfirmDelete,
     setShowAddDial,
+    setShowConfirmDelete,
     tempName,
     handleNameInput,
+    handleDeleteGroup,
   } = useGroupDetails({
     showConfirm,
     setShowConfirm,
@@ -64,7 +67,6 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
 
   return (
     <div className="GroupDetails">
-      {/* <h1>{name}</h1> */}
       <div className="GroupName">
         <h1>Group Name:</h1>
         <input type="text" value={tempName} onChange={handleNameInput} />
@@ -108,6 +110,27 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
           </button>
         </div>
       </div>
+      <div>
+        <h2>Dangerous Operations</h2>
+        <button onClick={() => setShowConfirmDelete(true)}>Delete Group</button>
+      </div>
+      {showConfirmDelete && (
+        <Confirm
+          message="Are you sure you want to delete this group?"
+          options={[
+            {
+              label: "Cancel",
+              action: () => setShowConfirmDelete(false),
+              color: "#4CAF50",
+            },
+            {
+              label: "Delete",
+              action: () => handleDeleteGroup(name),
+              color: "#f44336",
+            },
+          ]}
+        />
+      )}
     </div>
   );
 }
