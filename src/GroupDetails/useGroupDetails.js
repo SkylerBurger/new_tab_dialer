@@ -4,26 +4,42 @@ import useGroupStore from "../Stores/useGroupStore";
 import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 
-export function useGroupDetails({
-  showConfirm,
-  setShowConfirm,
-  setShowDetails,
-}) {
-  const [showAddDial, setShowAddDial] = useState(false);
-  const [groups, updateGroupDials] = useGroupStore((state) => [
+export function useGroupDetails({ setShowDetails }) {
+  const [groups, deleteGroup, updateGroupDials] = useGroupStore((state) => [
     state.groups,
+    state.deleteGroup,
     state.updateGroupDials,
   ]);
-  const [isPendingChanges, setIsPendingChanges, setShowSettings] =
-    useRenderStore((state) => [
-      state.isPendingChanges,
-      state.setIsPendingChanges,
-      state.setShowSettings,
-    ]);
-  const [currentGroupIndex, updateSetting] = useSettingStore((state) => {
-    return [state.currentGroupIndex, state.updateSetting];
-  });
+  const [
+    isPendingChanges,
+    setIsPendingChanges,
+    setShowSettings,
+    showConfirmUnsavedNav,
+    setShowConfirmUnsavedNav,
+    nextIndex,
+  ] = useRenderStore((state) => [
+    state.isPendingChanges,
+    state.setIsPendingChanges,
+    state.setShowSettings,
+    state.showConfirmUnsavedNav,
+    state.setShowConfirmUnsavedNav,
+    state.nextIndex,
+  ]);
+  const [currentGroupIndex, updateGroupIndex, updateSetting] = useSettingStore(
+    (state) => {
+      return [
+        state.currentGroupIndex,
+        state.updateGroupIndex,
+        state.updateSetting,
+      ];
+    },
+  );
+
   const { dials, name } = groups[currentGroupIndex];
+  const groupCount = groups.length;
+
+  const [showAddDial, setShowAddDial] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [tempDials, setTempDials] = useState([...dials]);
   const [tempName, setTempName] = useState(name);
 
@@ -52,8 +68,8 @@ export function useGroupDetails({
     setIsPendingChanges(false);
   };
 
-  function forceGroupNavigation(newIndex) {
-    setShowConfirm(null);
+  const forceGroupNavigation = (newIndex) => {
+    setShowConfirmUnsavedNav(false);
     setShowDetails(false);
     setIsPendingChanges(false);
     if (newIndex === "settings") {
@@ -61,22 +77,39 @@ export function useGroupDetails({
     } else {
       updateSetting("currentGroupIndex", parseInt(newIndex));
     }
-  }
+  };
 
-  const confirmOptions = [
-    {
-      label: "Return to Apply Changes",
-      action: () => setShowConfirm(null),
-      color: "#4CAF50",
-    },
-    {
-      label: "Continue Without Saving",
-      action: () => forceGroupNavigation(showConfirm.newIndex),
-      color: "#f44336",
-    },
-  ];
+  const confirmUnsavedNavOptions = {
+    options: [
+      {
+        label: "Return to Apply Changes",
+        action: () => setShowConfirmUnsavedNav(false),
+        color: "#4CAF50",
+      },
+      {
+        label: "Continue Without Saving",
+        action: () => forceGroupNavigation(nextIndex),
+        color: "#f44336",
+      },
+    ],
+    message: "You have unsaved changes.",
+  };
 
-  const message = "You have unsaved changes.";
+  const confirmDeleteOptions = {
+    options: [
+      {
+        label: "Cancel",
+        action: () => setShowConfirmDelete(false),
+        color: "#4CAF50",
+      },
+      {
+        label: "Delete",
+        action: () => handleDeleteGroup(name),
+        color: "#f44336",
+      },
+    ],
+    message: "Are you sure you want to delete this group?",
+  };
 
   const onCancel = () => {
     setIsPendingChanges(false);
@@ -91,19 +124,31 @@ export function useGroupDetails({
     setTempName(e.target.value);
   };
 
+  const handleDeleteGroup = (groupName) => {
+    deleteGroup(groupName);
+    setShowConfirmDelete(false);
+    setShowDetails(false);
+    setIsPendingChanges(false);
+    updateGroupIndex(0);
+  };
+
   return {
     applyChanges,
-    confirmOptions,
+    confirmDeleteOptions,
+    confirmUnsavedNavOptions,
+    groupCount,
     isPendingChanges,
     tempDials,
     insertNewDial,
-    message,
     name,
     onCancel,
     shiftDial,
     showAddDial,
+    showConfirmDelete,
     setShowAddDial,
+    setShowConfirmDelete,
     tempName,
     handleNameInput,
+    showConfirmUnsavedNav,
   };
 }

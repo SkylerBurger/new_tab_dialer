@@ -13,6 +13,15 @@ const useGroupStore = create(
       },
       getGroupsLength: () => get().groups.length,
       setLoadedFromStorage: (value) => set({ loadedFromStorage: value }),
+      deleteGroup: (groupName) => {
+        const newGroups = get().groups.filter(
+          (group) => group.name !== groupName,
+        );
+        set({
+          ...get().state,
+          groups: newGroups,
+        });
+      },
       shiftGroup: (groupName, steps) => {
         const newGroups = get().groups;
         const groupIndex = newGroups.findIndex(

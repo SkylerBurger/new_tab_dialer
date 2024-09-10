@@ -9,14 +9,19 @@ import useRenderStore from "../Stores/useRenderStore";
 import "./Settings.css";
 import { TimeSettings } from "./TimeSettings/TimeSettings";
 
-export function SettingsTab({ setShowConfirm }) {
+export function SettingsTab() {
   const [isPendingChanges, setShowSettings] = useRenderStore((state) => {
     return [state.isPendingChanges, state.setShowSettings];
   });
+  const [setNextIndex, setShowConfirmUnsavedNav] = useRenderStore((state) => [
+    state.setNextIndex,
+    state.setShowConfirmUnsavedNav,
+  ]);
 
   function handleClick() {
     if (isPendingChanges) {
-      setShowConfirm({ newIndex: "settings" });
+      setNextIndex("settings");
+      setShowConfirmUnsavedNav(true);
     } else {
       setShowSettings(true);
     }

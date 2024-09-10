@@ -15,9 +15,9 @@ function TabOptions({ onClick, showTabMenu }) {
   );
 }
 
-function Tab({ idx, name, setShowConfirm, setShowDetails }) {
+function Tab({ idx, name, setShowDetails }) {
   const { closeMenu, openMenu, isSelected, handleTabClick, showTabMenu } =
-    useTab({ idx, setShowConfirm, setShowDetails });
+    useTab({ idx, setShowDetails });
 
   return (
     <li
