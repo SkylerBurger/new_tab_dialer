@@ -31,6 +31,7 @@ export function useGroupDetails({
   );
 
   const { dials, name } = groups[currentGroupIndex];
+  const groupCount = groups.length;
   const message = "You have unsaved changes.";
 
   const [showAddDial, setShowAddDial] = useState(false);
@@ -111,6 +112,7 @@ export function useGroupDetails({
   return {
     applyChanges,
     confirmOptions,
+    groupCount,
     isPendingChanges,
     tempDials,
     insertNewDial,

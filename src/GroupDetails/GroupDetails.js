@@ -45,6 +45,7 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
   const {
     applyChanges,
     confirmOptions,
+    groupCount,
     isPendingChanges,
     tempDials,
     insertNewDial,
@@ -110,10 +111,15 @@ function GroupDetails({ setShowDetails, showConfirm, setShowConfirm }) {
           </button>
         </div>
       </div>
-      <div>
-        <h2>Dangerous Operations</h2>
-        <button onClick={() => setShowConfirmDelete(true)}>Delete Group</button>
-      </div>
+      {groupCount > 1 && (
+        // Don't allow deletion if this is the only group
+        <div>
+          <h2>Dangerous Operations</h2>
+          <button onClick={() => setShowConfirmDelete(true)}>
+            Delete Group
+          </button>
+        </div>
+      )}
       {showConfirmDelete && (
         <Confirm
           message="Are you sure you want to delete this group?"
