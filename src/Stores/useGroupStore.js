@@ -13,6 +13,12 @@ const useGroupStore = create(
       },
       getGroupsLength: () => get().groups.length,
       setLoadedFromStorage: (value) => set({ loadedFromStorage: value }),
+      createGroup: (groupName) => {
+        set({
+          ...get().state,
+          groups: [...get().groups, { name: groupName, dials: [] }],
+        });
+      },
       deleteGroup: (groupName) => {
         const newGroups = get().groups.filter(
           (group) => group.name !== groupName,

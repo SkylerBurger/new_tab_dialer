@@ -6,6 +6,8 @@ const useRenderStore = create((set) => ({
   showSettings: false,
   showConfirmUnsavedNav: false,
   nextIndex: null,
+  showNewGroupForm: false,
+  setShowNewGroupForm: (value) => set({ showNewGroupForm: value }),
   setNextIndex: (value) => set({ nextIndex: value }),
   setShowConfirmUnsavedNav: (value) => set({ showConfirmUnsavedNav: value }),
   setShowDials: (value) => set({ showDials: value }),
