@@ -1,10 +1,11 @@
 import { SettingsTab } from "../Settings/Settings";
 import useGroupStore from "../Stores/useGroupStore";
+import useRenderStore from "../Stores/useRenderStore";
 
 import "./groupTabs.css";
 import Tab from "./Tab/Tab";
 
-function GroupTabs({ setShowDetails }) {
+function GroupTabs() {
   const groups = useGroupStore((state) => state.groups);
 
   return (
@@ -12,13 +13,7 @@ function GroupTabs({ setShowDetails }) {
       <ul>
         {groups &&
           groups.map((group, idx) => {
-            return (
-              <Tab
-                idx={idx}
-                name={group.name}
-                setShowDetails={setShowDetails}
-              />
-            );
+            return <Tab idx={idx} name={group.name} />;
           })}
       </ul>
       <SettingsTab />

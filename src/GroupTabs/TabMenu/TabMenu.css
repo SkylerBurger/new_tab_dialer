@@ -1,11 +1,11 @@
 .TabMenu {
+  background-color: #080808;
   position: absolute;
+  transform: translate(-10px, 10px);
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  top: 40px;
-  left: 0;
 }
 
 .TabMenu ul {

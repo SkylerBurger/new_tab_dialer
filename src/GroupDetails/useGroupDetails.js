@@ -4,7 +4,7 @@ import useGroupStore from "../Stores/useGroupStore";
 import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 
-export function useGroupDetails({ setShowDetails }) {
+export function useGroupDetails() {
   const [groups, deleteGroup, updateGroupDials] = useGroupStore((state) => [
     state.groups,
     state.deleteGroup,
@@ -17,6 +17,7 @@ export function useGroupDetails({ setShowDetails }) {
     showConfirmUnsavedNav,
     setShowConfirmUnsavedNav,
     nextIndex,
+    setShowDialDetails,
   ] = useRenderStore((state) => [
     state.isPendingChanges,
     state.setIsPendingChanges,
@@ -24,6 +25,7 @@ export function useGroupDetails({ setShowDetails }) {
     state.showConfirmUnsavedNav,
     state.setShowConfirmUnsavedNav,
     state.nextIndex,
+    state.setShowDialDetails,
   ]);
   const [currentGroupIndex, updateGroupIndex, updateSetting] = useSettingStore(
     (state) => {
@@ -64,13 +66,13 @@ export function useGroupDetails({ setShowDetails }) {
   const applyChanges = (groupName, dials) => {
     const newGroupName = tempName !== groupName ? tempName : null;
     updateGroupDials(groupName, newGroupName, dials);
-    setShowDetails(false);
+    setShowDialDetails(false);
     setIsPendingChanges(false);
   };
 
   const forceGroupNavigation = (newIndex) => {
     setShowConfirmUnsavedNav(false);
-    setShowDetails(false);
+    setShowDialDetails(false);
     setIsPendingChanges(false);
     if (newIndex === "settings") {
       setShowSettings(true);
@@ -113,7 +115,7 @@ export function useGroupDetails({ setShowDetails }) {
 
   const onCancel = () => {
     setIsPendingChanges(false);
-    setShowDetails(false);
+    setShowDialDetails(false);
   };
 
   const insertNewDial = (name, icon, link) => {
@@ -127,7 +129,7 @@ export function useGroupDetails({ setShowDetails }) {
   const handleDeleteGroup = (groupName) => {
     deleteGroup(groupName);
     setShowConfirmDelete(false);
-    setShowDetails(false);
+    setShowDialDetails(false);
     setIsPendingChanges(false);
     updateGroupIndex(0);
   };

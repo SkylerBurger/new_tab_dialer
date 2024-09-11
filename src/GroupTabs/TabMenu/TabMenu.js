@@ -1,11 +1,18 @@
 import { useEffect, useRef } from "react";
 
 import useGroupStore from "../../Stores/useGroupStore";
+import useRenderStore from "../../Stores/useRenderStore";
 
 import "./TabMenu.css";
 
-function TabMenu({ idx, name, onClose, setShowDetails }) {
+function useTabMenu({ name }) {
   const menuRef = useRef(null);
+  const [setShowNewGroupForm, setShowDialDetails, isPendingChanges] =
+    useRenderStore((state) => [
+      state.setShowNewGroupForm,
+      state.setShowDialDetails,
+      state.isPendingChanges,
+    ]);
   const [shiftGroup, getGroupsLength] = useGroupStore((state) => [
     state.shiftGroup,
     state.getGroupsLength,
@@ -13,7 +20,7 @@ function TabMenu({ idx, name, onClose, setShowDetails }) {
 
   const openDetails = (event) => {
     event.stopPropagation();
-    setShowDetails(true);
+    setShowDialDetails(true);
     if (menuRef.current) menuRef.current.blur();
   };
 
@@ -29,6 +36,26 @@ function TabMenu({ idx, name, onClose, setShowDetails }) {
     }
   });
 
+  return {
+    menuRef,
+    openDetails,
+    handleShiftGroup,
+    getGroupsLength,
+    setShowNewGroupForm,
+    isPendingChanges,
+  };
+}
+
+function TabMenu({ idx, name, onClose }) {
+  const {
+    menuRef,
+    openDetails,
+    handleShiftGroup,
+    getGroupsLength,
+    setShowNewGroupForm,
+    isPendingChanges,
+  } = useTabMenu({ name });
+
   return (
     <div ref={menuRef} className="TabMenu" onBlur={onClose} tabIndex={0}>
       <ul>
@@ -38,6 +65,9 @@ function TabMenu({ idx, name, onClose, setShowDetails }) {
         )}
         {idx !== getGroupsLength() - 1 && (
           <li onClick={(e) => handleShiftGroup(1, e)}>Move Group Right</li>
+        )}
+        {!isPendingChanges && (
+          <li onClick={() => setShowNewGroupForm(true)}>Create New Group</li>
         )}
       </ul>
     </div>

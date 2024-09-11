@@ -1,9 +1,10 @@
 import "./Confirm.css";
+import PopUpModal from "../PopUpModal/PopUpModal";
 
 function Confirm({ message, options }) {
   return (
-    <div className={`Confirm`}>
-      <div className="popup">
+    <PopUpModal>
+      <div className={`Confirm`}>
         <p>{message}</p>
         <div className="butonBox">
           {options.map((option) => {
@@ -18,7 +19,7 @@ function Confirm({ message, options }) {
           })}
         </div>
       </div>
-    </div>
+    </PopUpModal>
   );
 }
 

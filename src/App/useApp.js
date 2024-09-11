@@ -16,7 +16,10 @@ function useApp() {
     state.loadedFromStorage,
     state.updateAllGroups,
   ]);
-  const [showSettings] = useRenderStore((state) => [state.showSettings]);
+  const [showSettings, showNewGroupForm] = useRenderStore((state) => [
+    state.showSettings,
+    state.showNewGroupForm,
+  ]);
 
   const getData = async (configUrl) => {
     try {
@@ -43,6 +46,7 @@ function useApp() {
     background,
     getData,
     showSettings,
+    showNewGroupForm,
   };
 }
 

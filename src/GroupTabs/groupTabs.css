@@ -12,13 +12,11 @@
 .GroupTabs ul {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .GroupTabs ul li {
-  position: relative;
-  top: -5px;
   border: 1px solid white;
-  border-top: none;
   border-radius: 5px;
   height: 40px;
   padding: 10px;
