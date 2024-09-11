@@ -12,7 +12,7 @@
 }
 
 .popup {
-  background-color: #faf0e6;
+  background-color: #9cc8e7;
   color: black;
   display: flex;
   flex-direction: column;
@@ -26,4 +26,50 @@
 .popup h1 {
   color: black;
   font-family: "Oxygen Mono", monospace;
+}
+
+.PopUpModal button {
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  color: black;
+  cursor: pointer;
+  align-self: center;
+}
+
+.PopUpModal input {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  color: black;
+  align-self: center;
+}
+
+.PopUpModal label {
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  color: black;
+  align-self: center;
+}
+
+.PopUpModal .green {
+  background-color: #4caf50;
+}
+
+.PopUpModal .red {
+  background-color: #f44336;
+}
+
+.PopUpModal .buttonBox {
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }

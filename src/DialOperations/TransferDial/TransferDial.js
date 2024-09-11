@@ -17,7 +17,7 @@ function TransferDial({ index, shiftDial }) {
   } = useTransferDial(index, shiftDial);
 
   return (
-    <div className="TransferDial">
+    <div className="TransferDial" style={{ marginLeft: "15px" }}>
       <FontAwesomeIcon
         className="transfer"
         icon={faArrowRightArrowLeft}

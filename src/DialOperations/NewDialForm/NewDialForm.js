@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./NewDialForm.css";
+import PopUpModal from "../../Common/PopUpModal/PopUpModal";
 
 function NewDialForm({ insertNewDial, setShowAddDial }) {
   const [name, setName] = useState("");
@@ -17,8 +17,9 @@ function NewDialForm({ insertNewDial, setShowAddDial }) {
   };
 
   return (
-    <div className="NewDialPopup">
+    <PopUpModal>
       <div className="NewDialForm">
+        <h2>New Dial</h2>
         <div>
           <label>Name</label>
           <input
@@ -55,7 +56,7 @@ function NewDialForm({ insertNewDial, setShowAddDial }) {
           </button>
         </div>
       </div>
-    </div>
+    </PopUpModal>
   );
 }
 
