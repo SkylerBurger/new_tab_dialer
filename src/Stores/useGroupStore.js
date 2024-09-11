@@ -12,6 +12,7 @@ const useGroupStore = create(
         return get().groups[useSettingStore.getState().currentGroupIndex];
       },
       getGroupsLength: () => get().groups.length,
+      getGroupNames: () => get().groups.map((group) => group.name),
       setLoadedFromStorage: (value) => set({ loadedFromStorage: value }),
       createGroup: (groupName) => {
         set({
