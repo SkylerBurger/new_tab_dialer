@@ -1,6 +1,6 @@
 import "./PopUpModal.css";
 
-function PopUpModal({ children, options }) {
+function PopUpModal({ children }) {
   return (
     <div className="PopUpModal">
       <div className="popup">{children}</div>
