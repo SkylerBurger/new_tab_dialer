@@ -28,7 +28,7 @@ function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
   );
 }
 
-function GroupDetails({ setShowDetails }) {
+function GroupDetails() {
   const {
     applyChanges,
     confirmDeleteOptions,
@@ -47,7 +47,7 @@ function GroupDetails({ setShowDetails }) {
     tempName,
     handleNameInput,
     showConfirmUnsavedNav,
-  } = useGroupDetails({ setShowDetails });
+  } = useGroupDetails();
 
   return (
     <div className="GroupDetails">

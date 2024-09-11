@@ -4,9 +4,10 @@ import useSettingStore from "../../Stores/useSettingStore";
 import PopUpModal from "../../Common/PopUpModal/PopUpModal";
 
 function NewGroupForm() {
-  const setShowNewGroupForm = useRenderStore(
-    (state) => state.setShowNewGroupForm,
-  );
+  const [setShowNewGroupForm, setShowDialDetails] = useRenderStore((state) => [
+    state.setShowNewGroupForm,
+    state.setShowDialDetails,
+  ]);
   const updateGroupIndex = useSettingStore((state) => state.updateGroupIndex);
   const [createGroup, getGroupsLength] = useGroupStore((state) => {
     return [state.createGroup, state.getGroupsLength];
@@ -18,6 +19,7 @@ function NewGroupForm() {
     const newIndex = getGroupsLength();
     createGroup(name);
     setShowNewGroupForm(false);
+    setShowDialDetails(false);
     updateGroupIndex(newIndex);
   };
 

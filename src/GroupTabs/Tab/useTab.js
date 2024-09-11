@@ -3,19 +3,21 @@ import { useState } from "react";
 import useSettingStore from "../../Stores/useSettingStore";
 import useRenderStore from "../../Stores/useRenderStore";
 
-function useTab({ idx, setShowDetails }) {
+function useTab({ idx }) {
   const [showTabMenu, setShowTabMenu] = useState(false);
   const [
     isPendingChanges,
     setShowDials,
     setShowConfirmUnsavedNav,
     setNextIndex,
+    setShowDialDetails,
   ] = useRenderStore((state) => {
     return [
       state.isPendingChanges,
       state.setShowDials,
       state.setShowConfirmUnsavedNav,
       state.setNextIndex,
+      state.setShowDialDetails,
     ];
   });
   const [currentGroupIndex, updateSetting] = useSettingStore((state) => {
@@ -28,7 +30,7 @@ function useTab({ idx, setShowDetails }) {
       setNextIndex(liElement.dataset.index);
       setShowConfirmUnsavedNav(true);
     } else if (liElement && liElement.dataset.index !== currentGroupIndex) {
-      setShowDetails(false);
+      setShowDialDetails(false);
       setShowDials(false);
       updateSetting("currentGroupIndex", liElement.dataset.index);
     }

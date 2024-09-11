@@ -15,9 +15,9 @@ function TabOptions({ onClick, showTabMenu }) {
   );
 }
 
-function Tab({ idx, name, setShowDetails }) {
+function Tab({ idx, name }) {
   const { closeMenu, openMenu, isSelected, handleTabClick, showTabMenu } =
-    useTab({ idx, setShowDetails });
+    useTab({ idx });
 
   return (
     <li
@@ -30,14 +30,7 @@ function Tab({ idx, name, setShowDetails }) {
       {isSelected && (
         <TabOptions onClick={openMenu} showTabMenu={showTabMenu} />
       )}
-      {showTabMenu && (
-        <TabMenu
-          idx={idx}
-          name={name}
-          onClose={closeMenu}
-          setShowDetails={setShowDetails}
-        />
-      )}
+      {showTabMenu && <TabMenu idx={idx} name={name} onClose={closeMenu} />}
     </li>
   );
 }
