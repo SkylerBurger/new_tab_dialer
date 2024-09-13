@@ -16,10 +16,13 @@ function useApp() {
     state.loadedFromStorage,
     state.updateAllGroups,
   ]);
-  const [showSettings, showNewGroupForm] = useRenderStore((state) => [
-    state.showSettings,
-    state.showNewGroupForm,
-  ]);
+  const [showSettings, showNewGroupForm, showWelcome, setShowWelcome] =
+    useRenderStore((state) => [
+      state.showSettings,
+      state.showNewGroupForm,
+      state.showWelcome,
+      state.setShowWelcome,
+    ]);
 
   const getData = async (configUrl) => {
     try {
@@ -37,8 +40,7 @@ function useApp() {
   useEffect(() => {
     const missingFromStorage = !groupsfromStorage || !settingsFromStorage;
     if (missingFromStorage) {
-      const configUrl = window.prompt("URL to JSON config file:");
-      getData(configUrl);
+      setShowWelcome(true);
     }
   }, []);
 
@@ -47,6 +49,7 @@ function useApp() {
     getData,
     showSettings,
     showNewGroupForm,
+    showWelcome,
   };
 }
 

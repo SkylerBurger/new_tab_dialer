@@ -20,6 +20,12 @@ const useGroupStore = create(
           groups: [...get().groups, { name: groupName, dials: [] }],
         });
       },
+      createInitialGroup: () => {
+        set({
+          ...get().state,
+          groups: [{ name: "Default", dials: [] }],
+        });
+      },
       deleteGroup: (groupName) => {
         const newGroups = get().groups.filter(
           (group) => group.name !== groupName,

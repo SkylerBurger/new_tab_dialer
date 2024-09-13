@@ -8,6 +8,8 @@ const useRenderStore = create((set) => ({
   nextIndex: null,
   showNewGroupForm: false,
   showDialDetails: false,
+  showWelcome: true,
+  setShowWelcome: (value) => set({ showWelcome: value }),
   setShowDialDetails: (value) => set({ showDialDetails: value }),
   setShowNewGroupForm: (value) => set({ showNewGroupForm: value }),
   setNextIndex: (value) => set({ nextIndex: value }),

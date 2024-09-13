@@ -1,0 +1,9 @@
+.Welcome h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.Welcome button {
+  margin: 10px;
+}
