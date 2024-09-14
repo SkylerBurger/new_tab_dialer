@@ -4,7 +4,7 @@ import useGroupStore from "../Stores/useGroupStore";
 import useRenderStore from "../Stores/useRenderStore";
 import useSettingStore from "../Stores/useSettingStore";
 
-function useWelcome() {
+function useWelcome(getData) {
   const [createInitialGroup] = useGroupStore((state) => [
     state.createInitialGroup,
   ]);
@@ -23,13 +23,20 @@ function useWelcome() {
     setShowDialDetails(true);
   };
 
+  const handleLoadConfig = () => {
+    const configUrl = document.getElementById("configUrl").value;
+    getData(configUrl);
+    setShowWelcome(false);
+  };
+
   return {
     handleCreateGroup,
+    handleLoadConfig,
   };
 }
 
-function Welcome() {
-  const { handleCreateGroup } = useWelcome();
+function Welcome({ getData }) {
+  const { handleCreateGroup, handleLoadConfig } = useWelcome(getData);
 
   return (
     <PopUpModal>
@@ -45,7 +52,9 @@ function Welcome() {
           id="configUrl"
           placeholder="https://example.com/config.json"
         />
-        <button className="green">Load Config</button>
+        <button className="green" onClick={handleLoadConfig}>
+          Load Config
+        </button>
       </div>
     </PopUpModal>
   );

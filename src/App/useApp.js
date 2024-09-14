@@ -39,10 +39,8 @@ function useApp() {
 
   useEffect(() => {
     const missingFromStorage = !groupsfromStorage || !settingsFromStorage;
-    if (missingFromStorage) {
-      setShowWelcome(true);
-    }
-  }, []);
+    setShowWelcome(missingFromStorage);
+  }, [settingsFromStorage, groupsfromStorage]);
 
   return {
     background,

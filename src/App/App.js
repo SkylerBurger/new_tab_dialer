@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div id="App" style={{ backgroundImage: `url("${background}")` }}>
-      {showWelcome && <Welcome />}
+      {showWelcome && <Welcome getData={getData} />}
       {showSettings && !showWelcome && <Settings getData={getData} />}
       {!showSettings && !showWelcome && <Dialer />}
       {showNewGroupForm && <NewGroupForm />}
