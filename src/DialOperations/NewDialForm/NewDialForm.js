@@ -3,16 +3,16 @@ import { useState } from "react";
 import PopUpModal from "../../Common/PopUpModal/PopUpModal";
 
 function NewDialForm({ insertNewDial, setShowAddDial }) {
-  const [name, setName] = useState("");
+  const [dialName, setDialName] = useState("");
   const [icon, setIcon] = useState("");
   const [link, setLink] = useState("");
 
-  const handleNameChange = (e) => setName(e.target.value);
+  const handleDialNameChange = (e) => setDialName(e.target.value);
   const handleIconChange = (e) => setIcon(e.target.value);
   const handleLinkChange = (e) => setLink(e.target.value);
 
   const handleAdd = () => {
-    insertNewDial(name, icon, link);
+    insertNewDial(dialName, icon, link);
     setShowAddDial(false);
   };
 
@@ -21,12 +21,12 @@ function NewDialForm({ insertNewDial, setShowAddDial }) {
       <div className="NewDialForm">
         <h2>New Dial</h2>
         <div>
-          <label>Name</label>
+          <label>Dial Name</label>
           <input
             type="text"
-            placeholder="Name"
-            value={name}
-            onChange={handleNameChange}
+            placeholder="Dial Name"
+            value={dialName}
+            onChange={handleDialNameChange}
           />
         </div>
         <div>

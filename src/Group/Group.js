@@ -7,9 +7,15 @@ function Group() {
 
   return (
     <div className={`Group ${showDials ? "fade-in" : "fade-out"}`}>
-      {dials.map((dialData, index) => {
-        return <Dial {...dialData} key={index} />;
-      })}
+      {dials &&
+        dials.map((dialData, index) => {
+          return <Dial {...dialData} key={index} />;
+        })}
+      {dials.length === 0 && (
+        <div className="emptyGroupNotice">
+          Edit the group above to add a dial.
+        </div>
+      )}
     </div>
   );
 }
