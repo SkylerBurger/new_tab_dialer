@@ -28,7 +28,7 @@ export function SettingsTab() {
   }
   return (
     <ul style={{ marginBottom: "auto" }}>
-      <li>
+      <li title="Open Settings">
         <FontAwesomeIcon onClick={handleClick} icon={faGear} />
       </li>
     </ul>

@@ -37,10 +37,19 @@ function useApp() {
     }
   };
 
+  // Show the welcome screen if no settings or groups are in storage
   useEffect(() => {
     const missingFromStorage = !groupsfromStorage || !settingsFromStorage;
     setShowWelcome(missingFromStorage);
   }, [settingsFromStorage, groupsfromStorage]);
+
+  // Set the background image
+  useEffect(() => {
+    const appElement = document.getElementById("App");
+    if (appElement && background) {
+      appElement.style.backgroundImage = `url("${background}")`;
+    }
+  }, [background]);
 
   return {
     background,

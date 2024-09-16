@@ -40,7 +40,7 @@ function useGroup() {
     if (timeoutId) {
       return () => clearTimeout(timeoutId);
     }
-  }, [currentGroupIndex]);
+  }, [currentGroupIndex, groups]);
 
   if (!currentGroup) {
     return { dials: [] };
