@@ -16,10 +16,13 @@ function useApp() {
     state.loadedFromStorage,
     state.updateAllGroups,
   ]);
-  const [showSettings, showNewGroupForm] = useRenderStore((state) => [
-    state.showSettings,
-    state.showNewGroupForm,
-  ]);
+  const [showSettings, showNewGroupForm, showWelcome, setShowWelcome] =
+    useRenderStore((state) => [
+      state.showSettings,
+      state.showNewGroupForm,
+      state.showWelcome,
+      state.setShowWelcome,
+    ]);
 
   const getData = async (configUrl) => {
     try {
@@ -34,19 +37,26 @@ function useApp() {
     }
   };
 
+  // Show the welcome screen if no settings or groups are in storage
   useEffect(() => {
     const missingFromStorage = !groupsfromStorage || !settingsFromStorage;
-    if (missingFromStorage) {
-      const configUrl = window.prompt("URL to JSON config file:");
-      getData(configUrl);
+    setShowWelcome(missingFromStorage);
+  }, [settingsFromStorage, groupsfromStorage]);
+
+  // Set the background image
+  useEffect(() => {
+    const appElement = document.getElementById("App");
+    if (appElement && background) {
+      appElement.style.backgroundImage = `url("${background}")`;
     }
-  }, []);
+  }, [background]);
 
   return {
     background,
     getData,
     showSettings,
     showNewGroupForm,
+    showWelcome,
   };
 }
 

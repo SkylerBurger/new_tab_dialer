@@ -36,3 +36,16 @@
   max-width: 150px;
   margin: 40px;
 }
+
+.emptyGroupNotice {
+  position: absolute;
+  top: 45vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #fff;
+  padding: 20px;
+  background-color: #0f0f0f;
+  border-radius: 10px;
+}

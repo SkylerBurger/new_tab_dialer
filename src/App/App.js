@@ -3,15 +3,16 @@ import { Settings } from "../Settings/Settings";
 
 import "./App.css";
 import useApp from "./useApp";
-import NewGroupForm from "../Group/NewGroupForm/NewGroupForm";
+import Welcome from "../Welcome/Welcome";
 
 function App() {
-  const { background, getData, showSettings, showNewGroupForm } = useApp();
+  const { background, getData, showSettings, showWelcome } = useApp();
 
   return (
     <div id="App" style={{ backgroundImage: `url("${background}")` }}>
-      {showSettings ? <Settings getData={getData} /> : <Dialer />}
-      {showNewGroupForm && <NewGroupForm />}
+      {showWelcome && <Welcome getData={getData} />}
+      {showSettings && !showWelcome && <Settings getData={getData} />}
+      {!showSettings && !showWelcome && <Dialer />}
     </div>
   );
 }
