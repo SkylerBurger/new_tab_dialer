@@ -13,6 +13,7 @@ export function TimeSettings({ timeEnabled, timeFormat, updateSetting }) {
 
   return (
     <div id="TimeSettings">
+      <h2>Time Settings</h2>
       <div>
         <label for="time-enabled">Show Time</label>
         <select

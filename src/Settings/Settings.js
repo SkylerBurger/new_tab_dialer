@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faRefresh } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import NavClose from "../Common/NavClose/NavClose";
 import useSettingStore from "../Stores/useSettingStore";
@@ -36,27 +36,46 @@ export function SettingsTab() {
 }
 
 export function Settings({ getData }) {
-  const [configUrl, timeEnabled, timeFormat, updateSetting] = useSettingStore(
-    (state) => {
+  const [background, configUrl, timeEnabled, timeFormat, updateSetting] =
+    useSettingStore((state) => {
       return [
+        state.background,
         state.configUrl,
         state.timeEnabled,
         state.timeFormat,
         state.updateSetting,
       ];
-    },
-  );
+    });
   const [setShowSettings] = useRenderStore((state) => [state.setShowSettings]);
-  const [urlInputValue, setUrlInputValue] = useState(configUrl);
+  const [configUrlInputValue, setConfigUrlInputValue] = useState(configUrl);
+  const [backgroundUrlInputValue, setBackgroundUrlInputValue] =
+    useState(background);
+
+  useEffect(() => {
+    const newBackgroundUrl = document.getElementById("background");
+    const applyBackgroundButton = document.getElementById(
+      "applyBackgroundButton",
+    );
+    applyBackgroundButton.disabled = newBackgroundUrl.value === background;
+  }, [background, backgroundUrlInputValue]);
 
   const handleConfigRefresh = () => {
     const newUrl = document.getElementById("config-url");
     getData(newUrl.value);
   };
 
-  const handleUrlChange = () => {
+  const handleConfigUrlChange = () => {
     const current = document.getElementById("config-url").value;
-    setUrlInputValue(current);
+    setConfigUrlInputValue(current);
+  };
+
+  const handleBackgroundUrlChange = () => {
+    const newUrl = document.getElementById("background").value;
+    setBackgroundUrlInputValue(newUrl);
+  };
+
+  const handleSetBakcground = () => {
+    updateSetting("background", backgroundUrlInputValue);
   };
 
   return (
@@ -64,13 +83,24 @@ export function Settings({ getData }) {
       <NavClose onClose={() => setShowSettings(false)} />
       <div className="Settings">
         <h1>Settings</h1>
+        <h2>Background</h2>
+        <input
+          type="text"
+          label="background"
+          id="background"
+          value={backgroundUrlInputValue}
+          onChange={handleBackgroundUrlChange}
+        />
+        <button id="applyBackgroundButton" onClick={handleSetBakcground}>
+          Apply Background
+        </button>
         <h2>Config File URL</h2>
         <input
           type="text"
           label="configURL"
           id="config-url"
-          value={urlInputValue}
-          onChange={handleUrlChange}
+          value={configUrlInputValue}
+          onChange={handleConfigUrlChange}
         />
         <FontAwesomeIcon
           onClick={handleConfigRefresh}
