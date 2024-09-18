@@ -9,70 +9,6 @@
   min-width: 400px;
 }
 
-.DialDetails {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  min-height: 60px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-.DialDetails img {
-  height: 50px;
-  width: 50px;
-  margin: 0 15px 0 10px;
-}
-
-.DialDetails .actionsBox {
-  margin-left: auto;
-  display: flex;
-}
-
-.DialDetails .faTrash,
-.DialDetails .transfer {
-  cursor: pointer;
-  margin-right: 15px;
-}
-
-.TransferDial button {
-  margin: 5px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.TransferDial .proceed {
-  background-color: #4caf50;
-}
-
-.TransferDial .cancel {
-  background-color: #f44336;
-}
-
-.TransferDial .buttonBox {
-  display: flex;
-  justify-content: space-between;
-}
-
-.GroupName {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.GroupName h1 {
-  margin: 0 10px;
-}
-
-.GroupName input {
-  font-size: 24px;
-  border-radius: 5px;
-}
-
 .GroupDetails .buttonBox {
   margin: 15px auto 0 auto;
   width: 50%;
@@ -113,4 +49,20 @@
 .GroupDetails .DangerousOperations button {
   background-color: #f44336;
   margin-top: 10px;
+}
+
+.GroupName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.GroupName h1 {
+  margin: 0 10px;
+}
+
+.GroupName input {
+  font-size: 24px;
+  border-radius: 5px;
 }

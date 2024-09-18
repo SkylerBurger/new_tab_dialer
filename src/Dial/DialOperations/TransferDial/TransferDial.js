@@ -5,6 +5,7 @@ import Confirm from "../../../Common/Confirm/Confirm";
 import PopUpModal from "../../../Common/PopUpModal/PopUpModal";
 import useTransferDial from "./useTransferDial";
 
+
 function TransferDial({ index, shiftDial }) {
   const {
     confirmTransfer,
@@ -17,7 +18,7 @@ function TransferDial({ index, shiftDial }) {
   } = useTransferDial(index, shiftDial);
 
   return (
-    <div className="TransferDial" style={{ marginLeft: "15px" }}>
+    <div className="TransferDial dialOperation" title="Transfer Dial">
       <FontAwesomeIcon
         className="transfer"
         icon={faArrowRightArrowLeft}
@@ -37,11 +38,11 @@ function TransferDial({ index, shiftDial }) {
             )}
           </select>
           <div className="buttonBox">
-            <button className="cancel" onClick={() => setShowTransfer(false)}>
+            <button className="red" onClick={() => setShowTransfer(false)}>
               Cancel
             </button>
             <button
-              className="proceed"
+              className="green"
               onClick={() => setConfirmTransfer(true)}
             >
               Transfer

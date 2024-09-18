@@ -13,7 +13,7 @@ function DeleteDial({ index, shiftDial }) {
   };
 
   return (
-    <>
+    <div className="DeleteDial dialOperation" title="Delete Dial">
       <FontAwesomeIcon
         className="faTrash"
         icon={faTrash}
@@ -32,7 +32,7 @@ function DeleteDial({ index, shiftDial }) {
           ]}
         />
       )}
-    </>
+    </div>
   );
 }
 
