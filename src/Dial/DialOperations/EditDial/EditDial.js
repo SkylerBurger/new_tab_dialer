@@ -14,6 +14,12 @@ function useEditDial(groupName, index, name, icon, link) {
   const [updateGroup] = useGroupStore((state) => [state.updateGroup]);
 
   useEffect(() => {
+    setTempName(name);
+    setTempIcon(icon);
+    setTempLink(link);
+  }, [name, icon, link]);
+
+  useEffect(() => {
     const foundChange =
       tempName !== name || tempIcon !== icon || tempLink !== link;
     setIsModified(foundChange);
@@ -67,10 +73,16 @@ function EditDial({ groupName, index, name, icon, link }) {
     handleInputChange,
     saveChanges,
   } = useEditDial(groupName, index, name, icon, link);
+
+  const handleShowEdit = () => {
+    console.log(`Edit Dial: ${name} ${icon} ${link}`);
+    setShowEdit(true);
+  };
+
   return (
     <>
       <div className="EditDial dialOperation" title="Edit Dial">
-        <FontAwesomeIcon icon={faPencil} onClick={() => setShowEdit(true)} />
+        <FontAwesomeIcon icon={faPencil} onClick={handleShowEdit} />
       </div>
       {showEdit && (
         <PopUpModal>
