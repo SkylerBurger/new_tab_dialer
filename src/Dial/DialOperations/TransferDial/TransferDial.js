@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-import Confirm from "../../Common/Confirm/Confirm";
-import PopUpModal from "../../Common/PopUpModal/PopUpModal";
+import Confirm from "../../../Common/Confirm/Confirm";
+import PopUpModal from "../../../Common/PopUpModal/PopUpModal";
 import useTransferDial from "./useTransferDial";
 
 function TransferDial({ index, shiftDial }) {

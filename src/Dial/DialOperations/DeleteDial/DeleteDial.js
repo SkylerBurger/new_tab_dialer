@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-import Confirm from "../../Common/Confirm/Confirm";
+import Confirm from "../../../Common/Confirm/Confirm";
 
 function DeleteDial({ index, shiftDial }) {
   const [confirmDelete, setConfirmDelete] = useState(false);

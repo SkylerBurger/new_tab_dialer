@@ -1,32 +1,8 @@
 import "./GroupDetails.css";
 import { useGroupDetails } from "./useGroupDetails";
-import ArrowSelector from "../Common/ArrowSelector/ArrowSelector";
-import Confirm from "../Common/Confirm/Confirm";
-import DeleteDial from "../DialOperations/DeleteDial/DeleteDial";
-import NewDialForm from "../DialOperations/NewDialForm/NewDialForm";
-import TransferDial from "../DialOperations/TransferDial/TransferDial";
-
-function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
-  return (
-    <li className="DialDetails">
-      <ArrowSelector
-        downAble={!last}
-        onDown={() => shiftDial(index, 1)}
-        onUp={() => shiftDial(index, -1)}
-        upAble={!first}
-      />
-      <img src={icon} alt={name} />
-      <div>
-        <p>{name}</p>
-        <p>{link}</p>
-      </div>
-      <div className="actionsBox">
-        <TransferDial index={index} shiftDial={shiftDial} />
-        <DeleteDial index={index} shiftDial={shiftDial} />
-      </div>
-    </li>
-  );
-}
+import Confirm from "../../Common/Confirm/Confirm";
+import NewDialForm from "../../Dial/DialOperations/NewDialForm/NewDialForm";
+import DialDetails from "../../Dial/DialDetails";
 
 function GroupDetails() {
   const {

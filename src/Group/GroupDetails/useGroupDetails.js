@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import useGroupStore from "../Stores/useGroupStore";
-import useSettingStore from "../Stores/useSettingStore";
-import useRenderStore from "../Stores/useRenderStore";
+import useGroupStore from "../../Stores/useGroupStore";
+import useSettingStore from "../../Stores/useSettingStore";
+import useRenderStore from "../../Stores/useRenderStore";
 
 export function useGroupDetails() {
   const [groups, deleteGroup, updateGroupDials] = useGroupStore((state) => [

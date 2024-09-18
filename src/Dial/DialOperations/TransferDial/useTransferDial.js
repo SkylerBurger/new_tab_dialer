@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import useGroupStore from "../../Stores/useGroupStore";
-import useSettingStore from "../../Stores/useSettingStore";
-import useRenderStore from "../../Stores/useRenderStore";
+import useGroupStore from "../../../Stores/useGroupStore";
+import useSettingStore from "../../../Stores/useSettingStore";
+import useRenderStore from "../../../Stores/useRenderStore";
 
 function useTransferDial(index, shiftDial) {
   const [confirmTransfer, setConfirmTransfer] = useState(false);
