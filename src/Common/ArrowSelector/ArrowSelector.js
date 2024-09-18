@@ -16,7 +16,7 @@ function ArrowSelector({ downAble, onDown, downTitle, onUp, upAble, upTitle }) {
         className={downAble ? "" : "dimmed"}
         icon={faCaretDown}
         onClick={onDown}
-        title={downAble ? downTitle: ""}
+        title={downAble ? downTitle : ""}
       />
     </div>
   );

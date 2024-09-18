@@ -3,13 +3,15 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import Confirm from "../../../Common/Confirm/Confirm";
+import useGroupStore from "../../../Stores/useGroupStore";
 
-function DeleteDial({ index, shiftDial }) {
+function DeleteDial({ index, groupName }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const shiftDial = useGroupStore.getState().shiftDial;
 
   const deleteDial = () => {
     setConfirmDelete(false);
-    shiftDial(index, null);
+    shiftDial(groupName, index);
   };
 
   return (

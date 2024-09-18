@@ -13,11 +13,7 @@
   margin: 15px auto 0 auto;
   width: 50%;
   display: flex;
-  justify-content: space-between;
-}
-
-.GroupDetails .innerButtonBox {
-  display: flex;
+  justify-content: center;
 }
 
 .GroupDetails button {

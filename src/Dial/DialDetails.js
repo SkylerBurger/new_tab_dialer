@@ -3,16 +3,18 @@ import ArrowSelector from "../Common/ArrowSelector/ArrowSelector";
 import DeleteDial from "./DialOperations/DeleteDial/DeleteDial";
 import EditDial from "./DialOperations/EditDial/EditDial";
 import TransferDial from "./DialOperations/TransferDial/TransferDial";
+import useGroupStore from "../Stores/useGroupStore";
 
+function DialDetails({ groupName, index, first, last, name, icon, link }) {
+  const shiftDial = useGroupStore.getState().shiftDial;
 
-function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
   return (
     <li className="DialDetails">
       <ArrowSelector
         downAble={!last}
-        onDown={() => shiftDial(index, 1)}
+        onDown={() => shiftDial(groupName, index, 1)}
         downTitle="Move Dial Lower in Group"
-        onUp={() => shiftDial(index, -1)}
+        onUp={() => shiftDial(groupName, index, -1)}
         upAble={!first}
         upTitle="Move Dial Higher in Group"
       />
@@ -22,9 +24,15 @@ function DialDetails({ index, first, last, name, icon, link, shiftDial }) {
         <p>{link}</p>
       </div>
       <div className="actionsBox">
-        <EditDial />
-        <TransferDial index={index} shiftDial={shiftDial} />
-        <DeleteDial index={index} shiftDial={shiftDial} />
+        <EditDial
+          index={index}
+          name={name}
+          icon={icon}
+          link={link}
+          groupName={groupName}
+        />
+        <TransferDial index={index} groupName={groupName} />
+        <DeleteDial index={index} groupName={groupName} />
       </div>
     </li>
   );

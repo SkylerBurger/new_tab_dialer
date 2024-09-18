@@ -6,23 +6,17 @@ import DialDetails from "../../Dial/DialDetails";
 
 function GroupDetails() {
   const {
-    applyChanges,
+    dials,
     confirmDeleteOptions,
-    confirmUnsavedNavOptions,
     groupCount,
-    isPendingChanges,
-    tempDials,
     insertNewDial,
     name,
-    onCancel,
-    shiftDial,
     showAddDial,
     showConfirmDelete,
     setShowAddDial,
     setShowConfirmDelete,
     tempName,
     handleNameInput,
-    showConfirmUnsavedNav,
   } = useGroupDetails();
 
   return (
@@ -31,7 +25,6 @@ function GroupDetails() {
         <h1>Group Name:</h1>
         <input type="text" value={tempName} onChange={handleNameInput} />
       </div>
-      {showConfirmUnsavedNav && <Confirm {...confirmUnsavedNavOptions} />}
       {showAddDial && (
         <NewDialForm
           insertNewDial={insertNewDial}
@@ -39,13 +32,13 @@ function GroupDetails() {
         />
       )}
       <ul>
-        {tempDials.map((dial, index) => (
+        {dials.map((dial, index) => (
           <DialDetails
             {...dial}
+            groupName={name}
             index={index}
             first={index === 0}
-            last={index === tempDials.length - 1}
-            shiftDial={shiftDial}
+            last={index === dials.length - 1}
           />
         ))}
       </ul>
@@ -56,18 +49,6 @@ function GroupDetails() {
         >
           Add New Dial
         </button>
-        <div>
-          <button style={{ backgroundColor: "#f44336" }} onClick={onCancel}>
-            Cancel
-          </button>
-          <button
-            className="applyChanges"
-            onClick={() => applyChanges(name, tempDials)}
-            disabled={!isPendingChanges}
-          >
-            Apply Changes
-          </button>
-        </div>
       </div>
       {groupCount > 1 && (
         // Don't allow deletion if this is the only group
