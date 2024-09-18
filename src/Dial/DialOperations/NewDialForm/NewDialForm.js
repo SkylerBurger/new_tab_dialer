@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import PopUpModal from "../../Common/PopUpModal/PopUpModal";
+import PopUpModal from "../../../Common/PopUpModal/PopUpModal";
 
 function NewDialForm({ insertNewDial, setShowAddDial }) {
   const [dialName, setDialName] = useState("");

@@ -48,6 +48,16 @@ const useGroupStore = create(
           set({ groups: newGroups });
         }
       },
+      shiftDial: (groupname, index, offset = null) => {
+        const newDials = [
+          ...get().groups.find((group) => group.name === groupname).dials,
+        ];
+        const targetDial = newDials.splice(index, 1)[0];
+        if (offset !== null) {
+          newDials.splice(index + offset, 0, targetDial);
+        }
+        get().updateGroup(groupname, newDials);
+      },
       transferDial: (fromGroup, dial, toGroup) => {
         const groups = get().groups.map((group) => {
           if (group.name === fromGroup) {
@@ -64,7 +74,7 @@ const useGroupStore = create(
         set({ groups });
       },
       updateAllGroups: (groups) => set({ groups }),
-      updateGroupDials: (groupName, newGroupName, newDials) => {
+      updateGroup: (groupName, newDials, newGroupName = null) => {
         set({
           groups: get().groups.map((group) => {
             if (group.name === groupName) {

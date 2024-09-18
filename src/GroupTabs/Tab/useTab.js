@@ -5,20 +5,8 @@ import useRenderStore from "../../Stores/useRenderStore";
 
 function useTab({ idx }) {
   const [showTabMenu, setShowTabMenu] = useState(false);
-  const [
-    isPendingChanges,
-    setShowDials,
-    setShowConfirmUnsavedNav,
-    setNextIndex,
-    setShowDialDetails,
-  ] = useRenderStore((state) => {
-    return [
-      state.isPendingChanges,
-      state.setShowDials,
-      state.setShowConfirmUnsavedNav,
-      state.setNextIndex,
-      state.setShowDialDetails,
-    ];
+  const [setShowDials, setShowDialDetails] = useRenderStore((state) => {
+    return [state.setShowDials, state.setShowDialDetails];
   });
   const [currentGroupIndex, updateSetting] = useSettingStore((state) => {
     return [state.currentGroupIndex, state.updateSetting];
@@ -26,12 +14,9 @@ function useTab({ idx }) {
 
   function handleTabClick({ target }) {
     const liElement = target.closest("li[data-index]");
-    if (liElement && isPendingChanges) {
-      setNextIndex(liElement.dataset.index);
-      setShowConfirmUnsavedNav(true);
-    } else if (liElement && liElement.dataset.index !== currentGroupIndex) {
+    if (liElement) {
       setShowDialDetails(false);
-      setShowDials(false);
+      setShowDials(true);
       updateSetting("currentGroupIndex", liElement.dataset.index);
     }
   }

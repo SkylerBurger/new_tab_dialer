@@ -1,5 +1,5 @@
 import Group from "../Group/Group";
-import GroupDetails from "../GroupDetails/GroupDetails";
+import GroupDetails from "../Group/GroupDetails/GroupDetails";
 import GroupTabs from "../GroupTabs/GroupTabs";
 import Time from "../Time/Time";
 import NewGroupForm from "../Group/NewGroupForm/NewGroupForm";

@@ -7,12 +7,10 @@ import "./TabMenu.css";
 
 function useTabMenu({ name }) {
   const menuRef = useRef(null);
-  const [setShowNewGroupForm, setShowDialDetails, isPendingChanges] =
-    useRenderStore((state) => [
-      state.setShowNewGroupForm,
-      state.setShowDialDetails,
-      state.isPendingChanges,
-    ]);
+  const [setShowNewGroupForm, setShowDialDetails] = useRenderStore((state) => [
+    state.setShowNewGroupForm,
+    state.setShowDialDetails,
+  ]);
   const [shiftGroup, getGroupsLength] = useGroupStore((state) => [
     state.shiftGroup,
     state.getGroupsLength,
@@ -42,7 +40,6 @@ function useTabMenu({ name }) {
     handleShiftGroup,
     getGroupsLength,
     setShowNewGroupForm,
-    isPendingChanges,
   };
 }
 
@@ -53,7 +50,6 @@ function TabMenu({ idx, name, onClose }) {
     handleShiftGroup,
     getGroupsLength,
     setShowNewGroupForm,
-    isPendingChanges,
   } = useTabMenu({ name });
 
   return (
@@ -66,9 +62,8 @@ function TabMenu({ idx, name, onClose }) {
         {idx !== getGroupsLength() - 1 && (
           <li onClick={(e) => handleShiftGroup(1, e)}>Move Group Right</li>
         )}
-        {!isPendingChanges && (
-          <li onClick={() => setShowNewGroupForm(true)}>Create New Group</li>
-        )}
+
+        <li onClick={() => setShowNewGroupForm(true)}>Create New Group</li>
       </ul>
     </div>
   );

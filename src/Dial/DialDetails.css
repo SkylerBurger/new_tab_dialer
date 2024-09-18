@@ -1,0 +1,25 @@
+.DialDetails {
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.DialDetails img {
+  height: 50px;
+  width: 50px;
+  margin: 0 15px 0 10px;
+}
+
+.DialDetails .actionsBox {
+  margin-left: auto;
+  display: flex;
+}
+
+.dialOperation {
+  padding: 10px;
+}

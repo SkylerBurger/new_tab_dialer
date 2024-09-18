@@ -10,22 +10,14 @@ import "./Settings.css";
 import { TimeSettings } from "./TimeSettings/TimeSettings";
 
 export function SettingsTab() {
-  const [isPendingChanges, setShowSettings] = useRenderStore((state) => {
-    return [state.isPendingChanges, state.setShowSettings];
+  const [setShowSettings] = useRenderStore((state) => {
+    return [state.setShowSettings];
   });
-  const [setNextIndex, setShowConfirmUnsavedNav] = useRenderStore((state) => [
-    state.setNextIndex,
-    state.setShowConfirmUnsavedNav,
-  ]);
 
   function handleClick() {
-    if (isPendingChanges) {
-      setNextIndex("settings");
-      setShowConfirmUnsavedNav(true);
-    } else {
-      setShowSettings(true);
-    }
+    setShowSettings(true);
   }
+
   return (
     <ul style={{ marginBottom: "auto" }}>
       <li title="Open Settings">
