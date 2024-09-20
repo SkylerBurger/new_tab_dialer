@@ -1,9 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faRefresh } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileArrowDown,
+  faGear,
+  faRefresh,
+} from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 import NavClose from "../Common/NavClose/NavClose";
 import useSettingStore from "../Stores/useSettingStore";
+import useGroupStore from "../Stores/useGroupStore";
 import useRenderStore from "../Stores/useRenderStore";
 
 import "./Settings.css";
@@ -70,6 +75,18 @@ export function Settings({ getData }) {
     updateSetting("background", backgroundUrlInputValue);
   };
 
+  const promptDownload = () => {
+    const groups = useGroupStore.getState().export();
+    const settings = useSettingStore.getState().export();
+    const data = {
+      groups,
+      settings,
+    };
+    const encodedData = window.btoa(JSON.stringify(data, null, 2));
+    const dataUrl = `data:application/json;base64,${encodedData}`;
+    console.log(dataUrl);
+  };
+
   return (
     <>
       <NavClose onClose={() => setShowSettings(false)} />
@@ -98,6 +115,11 @@ export function Settings({ getData }) {
           onClick={handleConfigRefresh}
           icon={faRefresh}
           className="refresh-icon"
+        />
+        <FontAwesomeIcon
+          icon={faFileArrowDown}
+          className="download-icon"
+          onClick={promptDownload}
         />
         <TimeSettings
           timeEnabled={timeEnabled}
