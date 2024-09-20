@@ -55,9 +55,9 @@ function useSettings({ getData }) {
     };
     const encodedData = window.btoa(JSON.stringify(data, null, 2));
     const dataUrl = `data:application/json;base64,${encodedData}`;
-    window.chrome.runtime.sendMessage({
-      event: "promptDownload",
-      value: dataUrl,
+    window.chrome.downloads.download({
+      url: dataUrl,
+      filename: "dialer-config.json",
     });
   };
 
