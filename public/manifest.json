@@ -5,5 +5,8 @@
     "newtab": "index.html"
   },
   "manifest_version": 3,
-  "permissions": ["downloads"]
+  "permissions": ["downloads"],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
