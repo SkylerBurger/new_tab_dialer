@@ -35,6 +35,7 @@ const useGroupStore = create(
           groups: newGroups,
         });
       },
+      export: () => get().groups,
       shiftGroup: (groupName, steps) => {
         const newGroups = get().groups;
         const groupIndex = newGroups.findIndex(

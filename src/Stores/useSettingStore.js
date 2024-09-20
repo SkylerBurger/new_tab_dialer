@@ -5,7 +5,7 @@ import useRenderStore from "./useRenderStore";
 
 const useSettingStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       background: "",
       configUrl: "",
       timeEnabled: false,
@@ -13,6 +13,15 @@ const useSettingStore = create(
       currentGroupIndex: 0,
       loadedFromStorage: false,
       setLoadedFromStorage: (value) => set({ loadedFromStorage: value }),
+      export: () => {
+        return {
+          background: get().background,
+          configUrl: get().configUrl,
+          timeEnabled: get().timeEnabled,
+          timeFormat: get().timeFormat,
+          currentGroupIndex: get().currentGroupIndex,
+        };
+      },
       updateAllSettings: (settings) => set({ ...settings }),
       updateGroupIndex: (newIndex) => {
         useRenderStore.getState().setShowDials(false);
