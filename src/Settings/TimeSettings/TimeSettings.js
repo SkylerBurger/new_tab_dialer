@@ -1,6 +1,6 @@
 import "./TimeSettings.css";
 
-export function TimeSettings({ timeEnabled, timeFormat, updateSetting }) {
+function TimeSettings({ timeEnabled, timeFormat, updateSetting }) {
   const updateTimeEnabled = (event) => {
     const newValue = event.target.value === "true" ? true : false;
     updateSetting("timeEnabled", newValue);
@@ -39,3 +39,5 @@ export function TimeSettings({ timeEnabled, timeFormat, updateSetting }) {
     </div>
   );
 }
+
+export default TimeSettings;
