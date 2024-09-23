@@ -23,6 +23,7 @@ function useApp() {
       state.showWelcome,
       state.setShowWelcome,
     ]);
+  const environment = process.env.REACT_APP_ENVIRONMENT || "production";
 
   const getData = async (configUrl) => {
     try {
@@ -39,8 +40,15 @@ function useApp() {
 
   // Show the welcome screen if no settings or groups are in storage
   useEffect(() => {
-    const missingFromStorage = !groupsfromStorage || !settingsFromStorage;
-    setShowWelcome(missingFromStorage);
+    if (environment !== "demo") {
+      const missingFromStorage = !groupsfromStorage || !settingsFromStorage;
+      setShowWelcome(missingFromStorage);
+    } else {
+      import("../Demo/demo-config.json").then((data) => {
+        updateAllSettings(data.settings);
+        updateAllGroups(data.groups);
+      });
+    }
   }, [settingsFromStorage, groupsfromStorage]);
 
   // Set the background image

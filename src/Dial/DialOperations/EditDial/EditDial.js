@@ -75,7 +75,6 @@ function EditDial({ groupName, index, name, icon, link }) {
   } = useEditDial(groupName, index, name, icon, link);
 
   const handleShowEdit = () => {
-    console.log(`Edit Dial: ${name} ${icon} ${link}`);
     setShowEdit(true);
   };
 

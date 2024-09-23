@@ -13,17 +13,19 @@
     "postcss": ">=8.4.31",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-app-rewired": "5.0.1",
     "web-vitals": "^2.1.4",
     "ws": ">=8.17.1",
     "zustand": "^4.5.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "now": "react-scripts build && serve -s build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "build:demo": "INLINE_RUNTIME_CHECK=false REACT_APP_ENVIRONMENT=demo react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
+    "now": "react-app-rewired build && serve -s build",
+    "now:demo": "INLINE_RUNTIME_CHECK=false REACT_APP_ENVIRONMENT=demo react-app-rewired build && serve -s build",
     "format": "prettier --write src/",
     "check": "prettier --check src/"
   },
@@ -47,9 +49,11 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "customize-cra": "^1.0.0",
     "nth-check": ">=2.0.1",
     "postcss": ">=8.4.31",
     "prettier": "3.2.5",
+    "react-app-rewired": "^2.2.1",
     "ws": ">=8.17.1"
   }
 }
