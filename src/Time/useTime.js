@@ -17,7 +17,7 @@ function useTime(timeFormat) {
       setReady(true);
     }, 1000);
     return () => clearInterval(updateInterval);
-  }, []);
+  }, [timeFormat]);
 
   return { ready, time };
 }

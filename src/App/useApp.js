@@ -49,7 +49,14 @@ function useApp() {
         updateAllGroups(data.groups);
       });
     }
-  }, [settingsFromStorage, groupsfromStorage]);
+  }, [
+    settingsFromStorage,
+    groupsfromStorage,
+    environment,
+    setShowWelcome,
+    updateAllSettings,
+    updateAllGroups,
+  ]);
 
   // Set the background image
   useEffect(() => {

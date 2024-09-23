@@ -1,6 +1,5 @@
 import { SettingsTab } from "../Settings/Settings";
 import useGroupStore from "../Stores/useGroupStore";
-import useRenderStore from "../Stores/useRenderStore";
 
 import "./groupTabs.css";
 import Tab from "./Tab/Tab";
