@@ -34,6 +34,7 @@ export function Settings({ getData }) {
   const {
     backgroundUrlInputValue,
     configUrlInputValue,
+    environment,
     handleConfigRefresh,
     handleConfigUrlChange,
     handleBackgroundUrlChange,
@@ -81,8 +82,13 @@ export function Settings({ getData }) {
           <FontAwesomeIcon
             icon={faFileArrowDown}
             className="download-icon"
-            onClick={promptDownload}
-            title="Download Config File"
+            onClick={environment === "demo" ? null : promptDownload}
+            style={environment === "demo" ? { color: "gray" } : {}}
+            title={
+              environment === "demo"
+                ? "Download Disabled in Demo, must be installed as a Chrome Extension"
+                : "Download Config File"
+            }
           />
         </div>
         <TimeSettings

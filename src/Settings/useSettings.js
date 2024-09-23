@@ -18,6 +18,9 @@ function useSettings({ getData }) {
   const [configUrlInputValue, setConfigUrlInputValue] = useState(configUrl);
   const [backgroundUrlInputValue, setBackgroundUrlInputValue] =
     useState(background);
+  const [environment, setEnvironment] = useState(
+    process.env.REACT_APP_ENVIRONMENT || "production",
+  );
 
   useEffect(() => {
     const newBackgroundUrl = document.getElementById("background");
@@ -64,6 +67,7 @@ function useSettings({ getData }) {
   return {
     backgroundUrlInputValue,
     configUrlInputValue,
+    environment,
     handleConfigRefresh,
     handleConfigUrlChange,
     handleBackgroundUrlChange,
