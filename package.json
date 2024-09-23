@@ -26,7 +26,7 @@
     "eject": "react-app-rewired eject",
     "now": "react-app-rewired build && serve -s build",
     "now:demo": "INLINE_RUNTIME_CHECK=false REACT_APP_ENVIRONMENT=demo react-app-rewired build && serve -s build",
-    "format": "prettier --write src/",
+    "format": "prettier --write src/ && prettier --write config-overrides.js",
     "check": "prettier --check src/"
   },
   "eslintConfig": {
