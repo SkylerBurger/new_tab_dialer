@@ -3,7 +3,7 @@ import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 import useGroupStore from "../Stores/useGroupStore";
 
-function useSettings({ getData }) {
+function useSettings(getData) {
   const [background, configUrl, timeEnabled, timeFormat, updateSetting] =
     useSettingStore((state) => {
       return [
