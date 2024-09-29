@@ -32,6 +32,7 @@ function useCachedImage(cacheName, imageUrl, storageDuration) {
 
         if (cachedResponse) {
           blob = await cachedResponse.blob();
+          console.log("Loaded image from cache for:", imageUrl);
         } else {
           const response = await fetch(imageUrl);
           // Cache the response for future use

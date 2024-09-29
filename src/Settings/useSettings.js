@@ -62,8 +62,19 @@ function useSettings(getData) {
     });
   };
 
+  const clearCache = async () => {
+    const cacheKeys = await caches.keys();
+    await Promise.all(
+      cacheKeys.map((key) => {
+        console.log("deleting cache", key);
+        return caches.delete(key);
+      }),
+    );
+  };
+
   return {
     backgroundUrlInputValue,
+    clearCache,
     configUrlInputValue,
     environment,
     handleConfigRefresh,
