@@ -32,7 +32,6 @@ function useCachedImage(cacheName, imageUrl, storageDuration) {
 
         if (cachedResponse) {
           blob = await cachedResponse.blob();
-          console.log("Loaded image from cache for:", imageUrl);
         } else {
           const response = await fetch(imageUrl);
           // Cache the response for future use
@@ -43,7 +42,6 @@ function useCachedImage(cacheName, imageUrl, storageDuration) {
           localStorage.setItem(imageUrl, Date.now());
           // Create ObjectURL from the response for the img tag
           blob = await response.blob();
-          console.log("Fetched image for:", imageUrl);
         }
 
         const imageObjectURL = URL.createObjectURL(blob);

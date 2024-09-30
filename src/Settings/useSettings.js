@@ -66,7 +66,6 @@ function useSettings(getData) {
     const cacheKeys = await caches.keys();
     await Promise.all(
       cacheKeys.map((key) => {
-        console.log("deleting cache", key);
         return caches.delete(key);
       }),
     );

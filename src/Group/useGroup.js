@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
 import useRenderStore from "../Stores/useRenderStore";
@@ -6,46 +6,34 @@ import useSettingStore from "../Stores/useSettingStore";
 
 function useGroup() {
   const [groups] = useGroupStore((state) => [state.groups]);
-  const [showDials, setShowDials] = useRenderStore((state) => [
-    state.showDials,
-    state.setShowDials,
-  ]);
+  const [loadCount, incrementLoadCount, showDials, setShowDials] =
+    useRenderStore((state) => [
+      state.loadCount,
+      state.incrementLoadCount,
+      state.showDials,
+      state.setShowDials,
+    ]);
   const [currentGroupIndex] = useSettingStore((state) => [
     state.currentGroupIndex,
   ]);
   const currentGroup = groups[currentGroupIndex];
 
   useEffect(() => {
-    if (!currentGroup) return;
+    setShowDials(false);
+  }, [currentGroupIndex]);
 
-    let timeoutId;
-
-    const checkImages = () => {
-      const imgElements = document.querySelectorAll(".Group img");
-      let loadedCount = 0;
-
-      imgElements.forEach((img) => {
-        if (img.complete) loadedCount++;
-      });
-
-      if (loadedCount === currentGroup.dials.length) {
-        setShowDials(true);
-      } else {
-        timeoutId = setTimeout(checkImages, 100);
-      }
-    };
-    // Initial Check
-    checkImages();
-    // Return cleanup function if timeout was set
-    if (timeoutId) {
-      return () => clearTimeout(timeoutId);
+  useEffect(() => {
+    if (loadCount === 0 && currentGroup.dials.length > 0) {
+      setShowDials(false);
+    } else if (loadCount === currentGroup.dials.length) {
+      setShowDials(true);
     }
-  }, [currentGroupIndex, groups, setShowDials, currentGroup]);
+  }, [loadCount, currentGroup]);
 
   if (!currentGroup) {
     return { dials: [] };
   }
-  return { dials: currentGroup.dials, showDials };
+  return { dials: currentGroup.dials, showDials, incrementLoadCount };
 }
 
 export default useGroup;
