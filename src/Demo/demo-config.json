@@ -6,7 +6,7 @@
         {
           "name": "Calendar",
           "link": "https://calendar.google.com/calendar/",
-          "icon": "https://s3.amazonaws.com/fvd-data/sdpreview/0/1477789475-lrE0qg/preview.png"
+          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/calendar.png"
         },
         {
           "name": "ChatGPT",
@@ -26,7 +26,7 @@
         {
           "name": "Feedly",
           "link": "https://feedly.com/",
-          "icon": "https://s3.amazonaws.com/fvd-data/sdpreview/0/9e9b94e5/1441329192-55e8f028f304f/preview.png"
+          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/feedly.png"
         },
         {
           "name": "Gemini",
@@ -41,17 +41,17 @@
         {
           "name": "LinkedIn",
           "link": "https://www.linkedin.com/",
-          "icon": "https://d5l07j6ktywkt.cloudfront.net/sdpreview/0/591df28f/1393830864-53142bd0a5e88/preview.png"
+          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/linkedin.png"
         },
         {
           "name": "Photos",
           "link": "https://photos.google.com/",
-          "icon": "https://s3.amazonaws.com/fvd-data/sdpreview/0/ae040e7d/1433996105-55790b4941759/preview.png"
+          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/photos.png"
         },
         {
           "name": "Trello",
           "link": "https://www.trello.com/",
-          "icon": "https://d5l07j6ktywkt.cloudfront.net/sdpreview/0/a92ec6cd/1393840386-53145102b429c/preview.png"
+          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/trello.png"
         }
       ]
     },
@@ -115,8 +115,8 @@
         },
         {
           "name": "Twitch",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/twitch.png",
           "link": "https://www.twitch.tv/directory/following/live"
+          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/twitch.png",
         },
         {
           "name": "YouTube",
