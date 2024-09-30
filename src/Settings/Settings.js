@@ -33,6 +33,7 @@ export function SettingsTab() {
 export function Settings({ getData }) {
   const {
     backgroundUrlInputValue,
+    clearCache,
     configUrlInputValue,
     environment,
     handleConfigRefresh,
@@ -51,19 +52,6 @@ export function Settings({ getData }) {
       <NavClose onClose={() => setShowSettings(false)} />
       <div className="Settings">
         <h1>Settings</h1>
-        <div>
-          <h2>Background</h2>
-          <input
-            type="text"
-            label="background"
-            id="background"
-            value={backgroundUrlInputValue}
-            onChange={handleBackgroundUrlChange}
-          />
-          <button id="applyBackgroundButton" onClick={handleSetBakcground}>
-            Apply Background
-          </button>
-        </div>
         <div>
           <h2>Config File URL</h2>
           <input
@@ -90,6 +78,25 @@ export function Settings({ getData }) {
                 : "Download Config File"
             }
           />
+        </div>
+        <div>
+          <h2>Background</h2>
+          <input
+            type="text"
+            label="background"
+            id="background"
+            value={backgroundUrlInputValue}
+            onChange={handleBackgroundUrlChange}
+          />
+          <button id="applyBackgroundButton" onClick={handleSetBakcground}>
+            Apply Background
+          </button>
+        </div>
+        <div>
+          <h2>Caching</h2>
+          <button id="clearCacheButton" onClick={clearCache}>
+            Clear Image Cache
+          </button>
         </div>
         <TimeSettings
           timeEnabled={timeEnabled}

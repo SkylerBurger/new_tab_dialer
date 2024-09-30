@@ -3,7 +3,7 @@ import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 import useGroupStore from "../Stores/useGroupStore";
 
-function useSettings({ getData }) {
+function useSettings(getData) {
   const [background, configUrl, timeEnabled, timeFormat, updateSetting] =
     useSettingStore((state) => {
       return [
@@ -62,8 +62,18 @@ function useSettings({ getData }) {
     });
   };
 
+  const clearCache = async () => {
+    const cacheKeys = await caches.keys();
+    await Promise.all(
+      cacheKeys.map((key) => {
+        return caches.delete(key);
+      }),
+    );
+  };
+
   return {
     backgroundUrlInputValue,
+    clearCache,
     configUrlInputValue,
     environment,
     handleConfigRefresh,
