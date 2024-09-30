@@ -115,8 +115,8 @@
         },
         {
           "name": "Twitch",
-          "link": "https://www.twitch.tv/directory/following/live"
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/twitch.png",
+          "link": "https://www.twitch.tv/directory/following/live",
+          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/twitch.png"
         },
         {
           "name": "YouTube",
