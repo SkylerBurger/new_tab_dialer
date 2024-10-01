@@ -54,12 +54,12 @@ function useCachedImage(cacheName, imageUrl, storageDuration) {
 
     fetchImage();
 
-    return () => {
-      // Clean up the object URL when the component unmounts
-      if (image) {
-        URL.revokeObjectURL(image);
-      }
-    };
+    // return () => {
+    //   // Clean up the object URL when the component unmounts
+    //   if (image) {
+    //     URL.revokeObjectURL(image);
+    //   }
+    // };
   }, [imageUrl]);
 
   return image;

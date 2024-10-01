@@ -23,9 +23,9 @@ function useGroup() {
   }, [currentGroupIndex]);
 
   useEffect(() => {
-    if (loadCount === 0 && currentGroup.dials.length > 0) {
+    if (currentGroup && loadCount === 0 && currentGroup.dials.length > 0) {
       setShowDials(false);
-    } else if (loadCount === currentGroup.dials.length) {
+    } else if (currentGroup && loadCount === currentGroup.dials.length) {
       setShowDials(true);
     }
   }, [loadCount, currentGroup]);
