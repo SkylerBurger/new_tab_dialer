@@ -6,52 +6,52 @@
         {
           "name": "Calendar",
           "link": "https://calendar.google.com/calendar/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/calendar.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/calendar.png"
         },
         {
           "name": "ChatGPT",
           "link": "https://chatgpt.com",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/chatgpt.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/chatgpt.png"
         },
         {
           "name": "Current Status IO",
           "link": "https://currentstatus.io/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/news_icon.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/news_icon.png"
         },
         {
           "name": "Drive",
           "link": "https://drive.google.com/drive/u/0/my-drive",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/google_drive.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/google_drive.png"
         },
         {
           "name": "Feedly",
           "link": "https://feedly.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/feedly.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/feedly.png"
         },
         {
           "name": "Gemini",
           "link": "https://gemini.google.com",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/gemini.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/gemini.png"
         },
         {
           "name": "Gmail",
           "link": "https://www.gmail.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/gmail.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/gmail.png"
         },
         {
           "name": "LinkedIn",
           "link": "https://www.linkedin.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/linkedin.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/linkedin.png"
         },
         {
           "name": "Photos",
           "link": "https://photos.google.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/photos.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/photos.png"
         },
         {
           "name": "Trello",
           "link": "https://www.trello.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/trello.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/trello.png"
         }
       ]
     },
@@ -61,17 +61,17 @@
         {
           "name": "Exercism",
           "link": "https://exercism.org/dashboard",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/exercism.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/exercism.png"
         },
         {
           "name": "GitHub",
           "link": "https://www.github.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/github.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/github.png"
         },
         {
           "name": "LeetCode",
           "link": "https://leetcode.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/leetcode.webp"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/leetcode.webp"
         }
       ]
     },
@@ -81,47 +81,47 @@
         {
           "name": "Hoopla",
           "link": "https://www.hoopladigital.com/my/hoopla",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/hoopla.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/hoopla.png"
         },
         {
           "name": "JustWatch",
           "link": "https://www.justwatch.com/us",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/justwatch.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/justwatch.png"
         },
         {
           "name": "Kanopy",
           "link": "https://spl.kanopy.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/kanopy.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/kanopy.png"
         },
         {
           "name": "Pluto",
           "link": "https://pluto.tv",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/pluto_tv.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/pluto_tv.png"
         },
         {
           "name": "Prime Video",
           "link": "https://www.amazon.com/video",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/prime_video.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/prime_video.png"
         },
         {
           "name": "Shudder",
           "link": "https://www.shudder.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/shudder.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/shudder.png"
         },
         {
           "name": "Tubi",
           "link": "https://www.tubi.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/tubi.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/tubi.png"
         },
         {
           "name": "Twitch",
           "link": "https://www.twitch.tv/directory/following/live",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/twitch.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/twitch.png"
         },
         {
           "name": "YouTube",
           "link": "https://www.youtube.com/",
-          "icon": "https://skybur-icons.s3.us-west-2.amazonaws.com/youtube.png"
+          "icon": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/youtube.png"
         }
       ]
     }
