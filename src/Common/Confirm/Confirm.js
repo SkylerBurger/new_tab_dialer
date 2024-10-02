@@ -4,7 +4,7 @@ import PopUpModal from "../PopUpModal/PopUpModal";
 function Confirm({ message, options }) {
   return (
     <PopUpModal>
-      <div className={`Confirm`}>
+      <div className="Confirm">
         <p>{message}</p>
         <div className="butonBox">
           {options.map((option) => {
