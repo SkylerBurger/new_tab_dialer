@@ -38,7 +38,7 @@ function ReorderGroups() {
   };
 
   return (
-    <PopUpModal>
+    <PopUpModal onBlur={handleClose}>
       <div className="ReorderGroups">
         <h1>Reorder Groups</h1>
         <ul>

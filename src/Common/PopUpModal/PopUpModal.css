@@ -23,6 +23,10 @@
   text-align: center;
 }
 
+.popup-window:focus {
+  outline: none;
+}
+
 .PopUpModal h1 {
   color: black;
   font-family: "Oxygen Mono", monospace;
