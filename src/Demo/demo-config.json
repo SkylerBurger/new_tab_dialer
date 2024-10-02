@@ -127,8 +127,7 @@
     }
   ],
   "settings": {
-    "background": "https://skybur-backgrounds.s3.us-west-2.amazonaws.com/window_oil_painting.png",
-    "configUrl": "https://skybur-docs.s3.us-west-2.amazonaws.com/dialer-config.json",
+    "background": "https://mynt-dialer-demo-icons.s3.us-west-2.amazonaws.com/window_oil_painting.png",
     "timeEnabled": false,
     "timeFormat": "24",
     "currentGroupIndex": "0"

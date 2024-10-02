@@ -45,7 +45,6 @@ const useGroupStore = create(
         if (0 <= newIndex && newIndex < newGroups.length) {
           const [movedGroup] = newGroups.splice(groupIndex, 1);
           newGroups.splice(newIndex, 0, movedGroup);
-          useSettingStore.getState().updateGroupIndex(newIndex);
           set({ groups: newGroups });
         }
       },

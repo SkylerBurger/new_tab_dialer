@@ -1,32 +1,29 @@
 import { useEffect, useRef } from "react";
 
-import useGroupStore from "../../Stores/useGroupStore";
 import useRenderStore from "../../Stores/useRenderStore";
 
 import "./TabMenu.css";
 
-function useTabMenu({ name }) {
+function useTabMenu() {
   const menuRef = useRef(null);
-  const [setShowNewGroupForm, setShowDialDetails] = useRenderStore((state) => [
-    state.setShowNewGroupForm,
-    state.setShowDialDetails,
-  ]);
-  const [shiftGroup, getGroupsLength] = useGroupStore((state) => [
-    state.shiftGroup,
-    state.getGroupsLength,
-  ]);
+  const [setShowNewGroupForm, setShowDialDetails, setShowReorderGroups] =
+    useRenderStore((state) => [
+      state.setShowNewGroupForm,
+      state.setShowDialDetails,
+      state.setShowReorderGroups,
+    ]);
 
-  const openDetails = (event) => {
-    event.stopPropagation();
-    setShowDialDetails(true);
-    if (menuRef.current) menuRef.current.blur();
+  const openFactory = (setShowFunc) => {
+    return (event) => {
+      event.stopPropagation();
+      setShowFunc(true);
+      if (menuRef.current) menuRef.current.blur();
+    };
   };
 
-  const handleShiftGroup = (steps, event) => {
-    event.stopPropagation();
-    shiftGroup(name, steps);
-    if (menuRef.current) menuRef.current.blur();
-  };
+  const openDetails = openFactory(setShowDialDetails);
+  const openReorderGroups = openFactory(setShowReorderGroups);
+  const openNewGroupForm = openFactory(setShowNewGroupForm);
 
   useEffect(() => {
     if (menuRef.current) {
@@ -37,33 +34,21 @@ function useTabMenu({ name }) {
   return {
     menuRef,
     openDetails,
-    handleShiftGroup,
-    getGroupsLength,
-    setShowNewGroupForm,
+    openNewGroupForm,
+    openReorderGroups,
   };
 }
 
-function TabMenu({ idx, name, onClose }) {
-  const {
-    menuRef,
-    openDetails,
-    handleShiftGroup,
-    getGroupsLength,
-    setShowNewGroupForm,
-  } = useTabMenu({ name });
+function TabMenu({ onClose }) {
+  const { menuRef, openDetails, openNewGroupForm, openReorderGroups } =
+    useTabMenu();
 
   return (
     <div ref={menuRef} className="TabMenu" onBlur={onClose} tabIndex={0}>
       <ul>
         <li onClick={openDetails}>Edit Group</li>
-        {idx !== 0 && (
-          <li onClick={(e) => handleShiftGroup(-1, e)}>Move Group Left</li>
-        )}
-        {idx !== getGroupsLength() - 1 && (
-          <li onClick={(e) => handleShiftGroup(1, e)}>Move Group Right</li>
-        )}
-
-        <li onClick={() => setShowNewGroupForm(true)}>Create New Group</li>
+        <li onClick={openReorderGroups}>Edit Order</li>
+        <li onClick={openNewGroupForm}>Create New Group</li>
       </ul>
     </div>
   );

@@ -30,7 +30,7 @@ function Tab({ idx, name }) {
       {isSelected && (
         <TabOptions onClick={openMenu} showTabMenu={showTabMenu} />
       )}
-      {showTabMenu && <TabMenu idx={idx} name={name} onClose={closeMenu} />}
+      {showTabMenu && <TabMenu onClose={closeMenu} />}
     </li>
   );
 }

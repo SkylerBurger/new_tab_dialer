@@ -11,7 +11,7 @@
   flex-direction: column;
 }
 
-.popup {
+.popup-window {
   background-color: #9cc8e7;
   color: black;
   display: flex;
@@ -23,9 +23,14 @@
   text-align: center;
 }
 
-.popup h1 {
+.popup-window:focus {
+  outline: none;
+}
+
+.PopUpModal h1 {
   color: black;
   font-family: "Oxygen Mono", monospace;
+  margin-bottom: 15px;
 }
 
 .PopUpModal button {

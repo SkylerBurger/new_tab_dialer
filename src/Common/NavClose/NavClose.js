@@ -7,8 +7,8 @@ export default function NavClose({ onClose }) {
   return (
     <nav className="NavClose">
       <ul>
-        <li title="Close Settings">
-          <FontAwesomeIcon onClick={onClose} icon={faRectangleXmark} />
+        <li title="Close Settings" onClick={onClose}>
+          <FontAwesomeIcon icon={faRectangleXmark} />
         </li>
       </ul>
     </nav>

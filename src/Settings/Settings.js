@@ -23,8 +23,8 @@ export function SettingsTab() {
 
   return (
     <ul style={{ marginBottom: "auto" }}>
-      <li title="Open Settings">
-        <FontAwesomeIcon onClick={handleClick} icon={faGear} />
+      <li title="Open Settings" onClick={handleClick}>
+        <FontAwesomeIcon icon={faGear} />
       </li>
     </ul>
   );
