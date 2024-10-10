@@ -42,8 +42,6 @@ export function useGroupDetails() {
   };
 
   const insertNewDial = (dialName, icon, link) => {
-    console.log(`insertNewDial(${dialName}, ${icon}, ${link})`);
-    console.log(`groupName: ${groupName}`);
     const newDial = { name: dialName, icon, link };
     const newDials = [...dials, newDial];
     updateGroup(groupName, newDials);
