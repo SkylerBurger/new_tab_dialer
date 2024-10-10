@@ -8,9 +8,11 @@ import Welcome from "../Welcome/Welcome";
 function App() {
   const { background, getData, showSettings, showWelcome, showDialer } =
     useApp();
-  const backgroundStyle = background
-    ? { backgroundImage: `url("${background}")` }
-    : {};
+  const backgroundStyle = {
+    backgroundImage: background
+      ? `url("${background}")`
+      : "linear-gradient(to bottom, #656565, lightgray, #656565)",
+  };
 
   return (
     <div id="App" style={backgroundStyle}>
