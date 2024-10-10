@@ -10,7 +10,7 @@ function GroupDetails() {
     confirmDeleteOptions,
     groupCount,
     insertNewDial,
-    name,
+    groupName,
     showAddDial,
     showConfirmDelete,
     setShowAddDial,
@@ -35,7 +35,7 @@ function GroupDetails() {
         {dials.map((dial, index) => (
           <DialDetails
             {...dial}
-            groupName={name}
+            groupName={groupName}
             index={index}
             first={index === 0}
             last={index === dials.length - 1}

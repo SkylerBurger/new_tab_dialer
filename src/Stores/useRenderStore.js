@@ -7,9 +7,11 @@ const useRenderStore = create((set) => ({
   showDialDetails: false,
   showWelcome: false,
   showDials: false,
+  showDialer: false,
   showReorderGroups: false,
   setShowReorderGroups: (value) => set({ showReorderGroups: value }),
   setShowDials: (value) => set({ showDials: value }),
+  setShowDialer: (value) => set({ showDialer: value }),
   resetLoadCount: () => set({ loadCount: 0 }),
   incrementLoadCount: () =>
     set((state) => ({ loadCount: state.loadCount + 1 })),

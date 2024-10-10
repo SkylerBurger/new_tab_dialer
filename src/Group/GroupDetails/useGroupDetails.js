@@ -17,12 +17,13 @@ export function useGroupDetails() {
     return [state.currentGroupIndex, state.updateGroupIndex];
   });
 
-  const { dials, name } = groups[currentGroupIndex];
+  const dials = groups[currentGroupIndex].dials;
+  const groupName = groups[currentGroupIndex].name;
   const groupCount = groups.length;
 
   const [showAddDial, setShowAddDial] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-  const [tempName, setTempName] = useState(name);
+  const [tempName, setTempName] = useState("Default");
 
   const confirmDeleteOptions = {
     options: [
@@ -33,25 +34,25 @@ export function useGroupDetails() {
       },
       {
         label: "Delete",
-        action: () => handleDeleteGroup(name),
+        action: () => handleDeleteGroup(groupName),
         color: "#f44336",
       },
     ],
     message: "Are you sure you want to delete this group?",
   };
 
-  const insertNewDial = (name, icon, link) => {
-    const newDial = { name, icon, link };
+  const insertNewDial = (dialName, icon, link) => {
+    const newDial = { name: dialName, icon, link };
     const newDials = [...dials, newDial];
-    updateGroup(name, newDials);
+    updateGroup(groupName, newDials);
   };
 
   const handleNameInput = (e) => {
     setTempName(e.target.value);
   };
 
-  const handleDeleteGroup = (groupName) => {
-    deleteGroup(groupName);
+  const handleDeleteGroup = (targetGroupName) => {
+    deleteGroup(targetGroupName);
     setShowConfirmDelete(false);
     setShowDialDetails(false);
     updateGroupIndex(0);
@@ -62,7 +63,7 @@ export function useGroupDetails() {
     confirmDeleteOptions,
     groupCount,
     insertNewDial,
-    name,
+    groupName,
     showAddDial,
     showConfirmDelete,
     setShowAddDial,

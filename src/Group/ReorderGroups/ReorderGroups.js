@@ -40,7 +40,7 @@ function ReorderGroups() {
   return (
     <PopUpModal onBlur={handleClose}>
       <div className="ReorderGroups">
-        <h1>Reorder Groups</h1>
+        <h2>Reorder Groups</h2>
         <ul>
           {groupNames.map((groupName, index) => {
             const first = index === 0;

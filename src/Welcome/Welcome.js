@@ -8,10 +8,13 @@ function useWelcome(getData) {
   const [createInitialGroup] = useGroupStore((state) => [
     state.createInitialGroup,
   ]);
-  const [setShowWelcome, setShowDialDetails] = useRenderStore((state) => [
-    state.setShowWelcome,
-    state.setShowDialDetails,
-  ]);
+  const [setShowWelcome, setShowDialDetails, setShowDialer] = useRenderStore(
+    (state) => [
+      state.setShowWelcome,
+      state.setShowDialDetails,
+      state.setShowDialer,
+    ],
+  );
   const [updateGroupIndex] = useSettingStore((state) => [
     state.updateGroupIndex,
   ]);
@@ -21,6 +24,7 @@ function useWelcome(getData) {
     setShowWelcome(false);
     updateGroupIndex(0);
     setShowDialDetails(true);
+    setShowDialer(true);
   };
 
   const handleLoadConfig = () => {
@@ -41,7 +45,7 @@ function Welcome({ getData }) {
   return (
     <PopUpModal>
       <div className="Welcome">
-        <h2>Welcome to New Tab Dialer</h2>
+        <h2>Welcome to Mynt Dialer</h2>
         <p>You can get started by creating your first group, </p>
         <button className="green" onClick={handleCreateGroup}>
           Create a Group

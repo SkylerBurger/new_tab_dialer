@@ -1,5 +1,5 @@
 {
-  "name": "NewTabDialer",
+  "name": "Mynt Dialer",
   "version": "1.0",
   "chrome_url_overrides": {
     "newtab": "index.html"

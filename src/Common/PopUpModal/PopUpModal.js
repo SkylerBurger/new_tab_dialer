@@ -9,7 +9,7 @@ function PopUpModal({ onBlur, children }) {
     if (popupRef.current) {
       popupRef.current.focus();
     }
-  });
+  }, []);
 
   return (
     <div className="PopUpModal">
