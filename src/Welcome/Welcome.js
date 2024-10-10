@@ -8,10 +8,13 @@ function useWelcome(getData) {
   const [createInitialGroup] = useGroupStore((state) => [
     state.createInitialGroup,
   ]);
-  const [setShowWelcome, setShowDialDetails] = useRenderStore((state) => [
-    state.setShowWelcome,
-    state.setShowDialDetails,
-  ]);
+  const [setShowWelcome, setShowDialDetails, setShowDialer] = useRenderStore(
+    (state) => [
+      state.setShowWelcome,
+      state.setShowDialDetails,
+      state.setShowDialer,
+    ],
+  );
   const [updateGroupIndex] = useSettingStore((state) => [
     state.updateGroupIndex,
   ]);
@@ -21,6 +24,7 @@ function useWelcome(getData) {
     setShowWelcome(false);
     updateGroupIndex(0);
     setShowDialDetails(true);
+    setShowDialer(true);
   };
 
   const handleLoadConfig = () => {
