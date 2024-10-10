@@ -45,7 +45,7 @@ function Welcome({ getData }) {
   return (
     <PopUpModal>
       <div className="Welcome">
-        <h2>Welcome to New Tab Dialer</h2>
+        <h2>Welcome to Mynt Dialer</h2>
         <p>You can get started by creating your first group, </p>
         <button className="green" onClick={handleCreateGroup}>
           Create a Group

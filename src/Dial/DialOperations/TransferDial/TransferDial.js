@@ -25,7 +25,7 @@ function TransferDial({ index, groupName }) {
       />
       {showTransfer && (
         <PopUpModal>
-          <h1>{`Transfer ${currentGroup.dials[index].name} Dial to:`}</h1>
+          <h2>{`Transfer ${currentGroup.dials[index].name} Dial to:`}</h2>
           <select id="toGroup">
             {groupNames.map(
               (name) =>
