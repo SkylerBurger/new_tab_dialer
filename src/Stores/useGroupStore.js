@@ -36,6 +36,16 @@ const useGroupStore = create(
         });
       },
       export: () => get().groups,
+      renameGroup: (groupName, newGroupName) => {
+        const newGroups = get().groups.map((group) => {
+          if (group.name === groupName) {
+            return { ...group, name: newGroupName };
+          } else {
+            return group;
+          }
+        });
+        set({ groups: newGroups });
+      },
       shiftGroup: (groupName, steps) => {
         const newGroups = get().groups;
         const groupIndex = newGroups.findIndex(
