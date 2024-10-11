@@ -3,6 +3,7 @@ import { useGroupDetails } from "./useGroupDetails";
 import Confirm from "../../Common/Confirm/Confirm";
 import NewDialForm from "../../Dial/DialOperations/NewDialForm/NewDialForm";
 import DialDetails from "../../Dial/DialDetails";
+import EditGroupName from "../EditGroupName/EditGroupName";
 
 function GroupDetails() {
   const {
@@ -15,16 +16,11 @@ function GroupDetails() {
     showConfirmDelete,
     setShowAddDial,
     setShowConfirmDelete,
-    tempName,
-    handleNameInput,
   } = useGroupDetails();
 
   return (
     <div className="GroupDetails">
-      <div className="GroupName">
-        <h1>Group Name:</h1>
-        <input type="text" value={tempName} onChange={handleNameInput} />
-      </div>
+      <EditGroupName groupName={groupName} />
       {showAddDial && (
         <NewDialForm
           insertNewDial={insertNewDial}

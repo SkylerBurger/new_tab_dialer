@@ -30,7 +30,7 @@
 .PopUpModal h2 {
   color: black;
   font-family: "Oxygen Mono", monospace;
-  margin-bottom: 15px;
+  padding: 10px;
 }
 
 .PopUpModal button {
