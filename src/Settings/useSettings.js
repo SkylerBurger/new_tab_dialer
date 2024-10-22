@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+
 import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 import useGroupStore from "../Stores/useGroupStore";
+import verifyContent from "../Common/Utilities/verifyContent";
 
 function useSettings(getData) {
   const [background, configUrl, timeEnabled, timeFormat, updateSetting] =
@@ -18,6 +20,8 @@ function useSettings(getData) {
   const [configUrlInputValue, setConfigUrlInputValue] = useState(configUrl);
   const [backgroundUrlInputValue, setBackgroundUrlInputValue] =
     useState(background);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popUpMessage, setPopUpMessage] = useState("");
   const environment = process.env.REACT_APP_ENVIRONMENT || "production";
 
   useEffect(() => {
@@ -43,8 +47,21 @@ function useSettings(getData) {
     setBackgroundUrlInputValue(newUrl);
   };
 
-  const handleSetBakcground = () => {
-    updateSetting("background", backgroundUrlInputValue);
+  const handleSetBackground = async () => {
+    if (await verifyContent(backgroundUrlInputValue, "image")) {
+      updateSetting("background", backgroundUrlInputValue);
+      setPopUpMessage("Background updated successfully!");
+    } else {
+      setPopUpMessage(
+        `The URL provided did not lead to a valid image: ${backgroundUrlInputValue}`,
+      );
+    }
+    setShowPopUp(true);
+  };
+
+  const clearPopUp = () => {
+    setShowPopUp(false);
+    setPopUpMessage("");
   };
 
   const promptDownload = () => {
@@ -74,14 +91,17 @@ function useSettings(getData) {
   return {
     backgroundUrlInputValue,
     clearCache,
+    clearPopUp,
     configUrlInputValue,
     environment,
     handleConfigRefresh,
     handleConfigUrlChange,
     handleBackgroundUrlChange,
-    handleSetBakcground,
+    handleSetBackground,
+    popUpMessage,
     promptDownload,
     setShowSettings,
+    showPopUp,
     timeEnabled,
     timeFormat,
     updateSetting,
