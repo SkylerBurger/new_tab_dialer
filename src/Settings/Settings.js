@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import NavClose from "../Common/NavClose/NavClose";
+import PopUpModal from "../Common/PopUpModal/PopUpModal";
 import useRenderStore from "../Stores/useRenderStore";
 
 import "./Settings.css";
@@ -34,14 +35,17 @@ export function Settings({ getData }) {
   const {
     backgroundUrlInputValue,
     clearCache,
+    clearPopUp,
     configUrlInputValue,
     environment,
     handleConfigRefresh,
     handleConfigUrlChange,
     handleBackgroundUrlChange,
-    handleSetBakcground,
+    handleSetBackground,
+    popUpMessage,
     promptDownload,
     setShowSettings,
+    showPopUp,
     timeEnabled,
     timeFormat,
     updateSetting,
@@ -88,7 +92,7 @@ export function Settings({ getData }) {
             value={backgroundUrlInputValue}
             onChange={handleBackgroundUrlChange}
           />
-          <button id="applyBackgroundButton" onClick={handleSetBakcground}>
+          <button id="applyBackgroundButton" onClick={handleSetBackground}>
             Apply Background
           </button>
         </div>
@@ -104,6 +108,16 @@ export function Settings({ getData }) {
           updateSetting={updateSetting}
         />
       </div>
+      {showPopUp && (
+        <PopUpModal onBlur={clearPopUp}>
+          <p>{popUpMessage}</p>
+          <div className="butonBox">
+            <button className="green" onClick={clearPopUp}>
+              OK
+            </button>
+          </div>
+        </PopUpModal>
+      )}
     </>
   );
 }
