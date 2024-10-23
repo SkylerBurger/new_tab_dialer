@@ -24,6 +24,7 @@
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
   font-family: "Oxygen Mono", monospace;
+  text-shadow: 0 0 5px black;
 }
 
 .selectedGroup {
@@ -33,4 +34,5 @@
 .tabOptions {
   display: inline;
   margin: 0 5px 0 10px;
+  filter: drop-shadow(0 0 4px black);
 }
