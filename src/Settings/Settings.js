@@ -55,7 +55,9 @@ export function Settings({ getData }) {
     <>
       <NavClose onClose={() => setShowSettings(false)} />
       <div className="Settings">
-        <h1>Settings</h1>
+        <div>
+          <h1>Settings</h1>
+        </div>
         <div>
           <h2>Config File URL</h2>
           <input
