@@ -39,7 +39,6 @@ function useSettings(getData) {
       new URL(newUrl.value);
       await getData(newUrl.value);
     } catch (error) {
-      console.log("There was an error");
       setPopUpMessage(
         `The URL provided resulted in the following error: ${error}`,
       );
