@@ -4,6 +4,7 @@ import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
 import useGroupStore from "../Stores/useGroupStore";
 import verifyContent from "../Common/Utilities/verifyContent";
+import configSchema from "../Validation/config";
 
 function useSettings(getData) {
   const [background, configUrl, timeEnabled, timeFormat, updateSetting] =
@@ -32,9 +33,18 @@ function useSettings(getData) {
     applyBackgroundButton.disabled = newBackgroundUrl.value === background;
   }, [background, backgroundUrlInputValue]);
 
-  const handleConfigRefresh = () => {
+  const handleConfigRefresh = async () => {
     const newUrl = document.getElementById("config-url");
-    getData(newUrl.value);
+    try {
+      new URL(newUrl.value);
+      await getData(newUrl.value);
+    } catch (error) {
+      console.log("There was an error");
+      setPopUpMessage(
+        `The URL provided resulted in the following error: ${error}`,
+      );
+      setShowPopUp(true);
+    }
   };
 
   const handleConfigUrlChange = () => {
@@ -71,7 +81,13 @@ function useSettings(getData) {
       groups,
       settings,
     };
-    const encodedData = window.btoa(JSON.stringify(data, null, 2));
+    const { error, value } = configSchema.validate(data);
+    if (error) {
+      setPopUpMessage(`There was an error exporting the data: ${error}`);
+      setShowPopUp(true);
+      return;
+    }
+    const encodedData = window.btoa(JSON.stringify(value, null, 2));
     const dataUrl = `data:application/json;base64,${encodedData}`;
     window.chrome.downloads.download({
       url: dataUrl,

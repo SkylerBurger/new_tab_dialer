@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import useGroupStore from "../Stores/useGroupStore";
 import useSettingStore from "../Stores/useSettingStore";
 import useRenderStore from "../Stores/useRenderStore";
+import configSchema from "../Validation/config";
 
 function useApp() {
   const [background, updateAllSettings, settingsFromStorage] = useSettingStore(
@@ -34,17 +35,16 @@ function useApp() {
   const environment = process.env.REACT_APP_ENVIRONMENT || "production";
 
   const getData = async (configUrl) => {
-    try {
-      const response = await fetch(configUrl);
-      const parsedConfig = await response.json();
-      // TODO: Add validation of the retrieved config here; Joi too much?
-      parsedConfig.settings.configUrl = configUrl;
-      updateAllSettings(parsedConfig.settings);
-      updateAllGroups(parsedConfig.groups);
-      setShowDialer(true);
-    } catch (error) {
-      console.error(error);
+    const response = await fetch(configUrl);
+    const parsedConfig = await response.json();
+    const { error, value } = configSchema.validate(parsedConfig);
+    if (error) {
+      throw new Error(error);
     }
+    value.settings.configUrl = configUrl;
+    updateAllSettings(value.settings);
+    updateAllGroups(value.groups);
+    setShowDialer(true);
   };
 
   // Show the welcome screen if no settings or groups are in storage
