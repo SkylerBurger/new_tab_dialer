@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function useCachedImage(cacheName, imageUrl, storageDuration) {
   const [image, setImage] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const checkForValidCache = async () => {
@@ -53,6 +54,7 @@ function useCachedImage(cacheName, imageUrl, storageDuration) {
         setImage(imageObjectURL);
       } catch (error) {
         // Placeholder image
+        setError(true);
         const response = await fetch("./not_found.png");
         const blob = await response.blob();
         const imageObjectURL = URL.createObjectURL(blob);
@@ -63,7 +65,7 @@ function useCachedImage(cacheName, imageUrl, storageDuration) {
     fetchImage();
   }, [imageUrl]);
 
-  return image;
+  return { error, image };
 }
 
 export default useCachedImage;
