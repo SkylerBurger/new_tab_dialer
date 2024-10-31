@@ -37,6 +37,11 @@ function useCachedImage(cacheName, imageUrl, storageDuration) {
           // Cache the response for future use
           const cache = await caches.open(cacheName);
           const clonedResponse = response.clone();
+          if (!clonedResponse.ok) {
+            throw new Error(
+              `HTTP error while fetching image: ${clonedResponse.status}`,
+            );
+          }
           cache.put(imageUrl, clonedResponse);
           // Set creation time in localStorage
           localStorage.setItem(imageUrl, Date.now());
@@ -47,19 +52,15 @@ function useCachedImage(cacheName, imageUrl, storageDuration) {
         const imageObjectURL = URL.createObjectURL(blob);
         setImage(imageObjectURL);
       } catch (error) {
-        console.error("Error fetching image:", error);
-        // TODO: return placeholder image
+        // Placeholder image
+        const response = await fetch("./not_found.png");
+        const blob = await response.blob();
+        const imageObjectURL = URL.createObjectURL(blob);
+        setImage(imageObjectURL);
       }
     };
 
     fetchImage();
-
-    // return () => {
-    //   // Clean up the object URL when the component unmounts
-    //   if (image) {
-    //     URL.revokeObjectURL(image);
-    //   }
-    // };
   }, [imageUrl]);
 
   return image;
