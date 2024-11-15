@@ -16,7 +16,9 @@ function useEditGroupName(groupName) {
   const [restrictRename, setRestrictRename] = useState(true);
 
   const handleNameSave = () => {
-    renameGroup(groupName, tempName);
+    const trimmedNewName = tempName.trim();
+    setTempName(trimmedNewName);
+    renameGroup(groupName, trimmedNewName);
     setShowEdit(false);
   };
 
@@ -30,7 +32,7 @@ function useEditGroupName(groupName) {
     if (newName === "") {
       createButton.title = "Name cannot be empty";
       setRestrictRename(true);
-    } else if (existingNames.includes(newName)) {
+    } else if (existingNames.includes(newName.trim())) {
       createButton.title = "Name already exists";
       setRestrictRename(true);
     } else {
